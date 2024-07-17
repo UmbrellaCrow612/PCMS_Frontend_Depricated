@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { SearchCasesPageComponent } from './search-cases-page/search-cases-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -11,11 +12,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    SearchCasesPageComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [
     provideAnimationsAsync()

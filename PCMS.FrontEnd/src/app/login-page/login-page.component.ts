@@ -24,6 +24,13 @@ export class LoginPageComponent {
 
   matcher = new MyErrorStateMatcher();
 
+  showPassword = false;
+
+  clickShowPassword(event: MouseEvent) {
+    this.showPassword = !this.showPassword
+    event.stopPropagation();
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
       console.warn(this.loginForm.value);

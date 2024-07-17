@@ -1,7 +1,5 @@
 <div class="main">
-
-  <mat-card appearance="outlined">
-    
+  <mat-card appearance="raised">
     <mat-card-header>
       <mat-card-title>Police Case Management System</mat-card-title>
       <mat-card-subtitle>Login Form</mat-card-subtitle>
@@ -37,13 +35,22 @@
           <mat-label>Password</mat-label>
           <input
             matInput
-            type="password"
+            [type]="showPassword ? 'text' : 'password'"
             formControlName="password"
             required
             aria-required="true"
             autocomplete="current-password"
             [errorStateMatcher]="matcher"
           />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickShowPassword($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="showPassword"
+          >
+            <mat-icon>{{ showPassword ? "visibility" : "visibility_off" }}</mat-icon>
+          </button>
           <mat-hint>Enter your password</mat-hint>
           @if (loginForm.get('password')?.hasError('required') &&
           (loginForm.get('password')?.dirty ||
@@ -64,5 +71,4 @@
       </form>
     </mat-card-content>
   </mat-card>
-
 </div>
