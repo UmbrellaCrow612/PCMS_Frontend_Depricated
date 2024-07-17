@@ -1,6 +1,5 @@
 <div class="main">
   <div class="center">
-
     <h1 class="mat-title-large" tabindex="0">Police Case Management System</h1>
     
     <div class="logo">
@@ -11,17 +10,23 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Username</mat-label>
-        <input matInput type="text" required aria-required="true" autocomplete="username" formControlName="username" autofocus/>
+        <input matInput type="text" formControlName="username" required aria-required="true" autocomplete="username" [errorStateMatcher]="matcher" autofocus/>
+        <mat-hint>Enter your username</mat-hint>
+        @if (loginForm.get('username')?.hasError('required') && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)) {
+          <mat-error>Username is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput type="password" required aria-required="true" autocomplete="current-password"  formControlName="password" />
+        <input matInput type="password" formControlName="password" required aria-required="true" autocomplete="current-password" [errorStateMatcher]="matcher"/>
+        <mat-hint>Enter your password</mat-hint>
+        @if (loginForm.get('password')?.hasError('required') && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)) {
+          <mat-error>Password is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
-
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" aria-label="Log in to the Police Case Management System">Login</button>
     </form>
-    
   </div>
 </div>
