@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* Global CSS Reset */
+
+/* Remove all default margin, padding, and border */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure media elements fit their containers */
+img,
+video,
+audio {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure consistent box sizing */
+* {
+  box-sizing: border-box;
+}
+

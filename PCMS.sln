@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCMS.API", "PCMS.API\PCMS.API.csproj", "{490A3A87-ACAD-4172-A9BA-D571E6A9B14C}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "PCMS.FrontEnd", "PCMS.FrontEnd\PCMS.FrontEnd.esproj", "{04C9DA32-0D68-4215-8292-00C9A950D369}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{490A3A87-ACAD-4172-A9BA-D571E6A9B14C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{490A3A87-ACAD-4172-A9BA-D571E6A9B14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{490A3A87-ACAD-4172-A9BA-D571E6A9B14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{490A3A87-ACAD-4172-A9BA-D571E6A9B14C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C9DA32-0D68-4215-8292-00C9A950D369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C9DA32-0D68-4215-8292-00C9A950D369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C9DA32-0D68-4215-8292-00C9A950D369}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{04C9DA32-0D68-4215-8292-00C9A950D369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C9DA32-0D68-4215-8292-00C9A950D369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C9DA32-0D68-4215-8292-00C9A950D369}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDC63647-C9C3-4BC1-950A-19B655434B60}
+	EndGlobalSection
+EndGlobal
