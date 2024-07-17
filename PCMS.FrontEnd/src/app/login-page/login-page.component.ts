@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -7,5 +7,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
+
+  loginForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
+
+  onSubmit() {
+    console.warn(this.loginForm.value);
+  }
 
 }
