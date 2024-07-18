@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 interface CaseStatusOption {
   status: string;
@@ -9,6 +10,7 @@ interface CaseStatusOption {
   selector: 'app-search-cases-page',
   templateUrl: './search-cases-page.component.html',
   styleUrl: './search-cases-page.component.css',
+  providers: [provideNativeDateAdapter()],
 })
 export class SearchCasesPageComponent {
   SearchCaseNumberInput = new FormControl('', [
@@ -29,4 +31,33 @@ export class SearchCasesPageComponent {
   CaseStatusSelectControl = new FormControl<CaseStatusOption | string>(
     this.CaseStatusOptions[0].status
   );
+
+  CaseRangeDateFilter = (d: Date | null): boolean => {
+    const date = d || new Date();
+    const year = date.getFullYear();
+    const currentYear = new Date().getFullYear();
+
+    // Allow dates from 2020 up to and including the current year
+    return year >= 2020 && year <= currentYear;
+  };
+
+  readonly CaseRangeDate = new FormGroup({
+    start: new FormControl<Date>(this.getYesterday()),
+    end: new FormControl<Date>(new Date()),
+  });
+
+  private getYesterday(): Date {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    return yesterday;
+  }
+
+  ClearForm() {
+    this.SearchCaseNumberInput.setValue('');
+    this.CaseStatusSelectControl.setValue(this.CaseStatusOptions[0].status);
+    this.CaseRangeDate.setValue({
+      start: this.getYesterday(),
+      end: new Date(),
+    });
+  }
 }

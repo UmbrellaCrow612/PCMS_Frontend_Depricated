@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [AppComponent, LoginPageComponent, SearchCasesPageComponent],
@@ -26,7 +27,8 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
