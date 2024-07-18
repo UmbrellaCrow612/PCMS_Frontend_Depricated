@@ -19,3 +19,9 @@
   gap: 3em;
   padding-top: 3em;
 }
+
+.flex_wrap{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

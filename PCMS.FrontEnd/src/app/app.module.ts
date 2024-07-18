@@ -7,19 +7,16 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { SearchCasesPageComponent } from './search-cases-page/search-cases-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatCardModule} from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginPageComponent,
-    SearchCasesPageComponent
-  ],
+  declarations: [AppComponent, LoginPageComponent, SearchCasesPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,11 +25,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
