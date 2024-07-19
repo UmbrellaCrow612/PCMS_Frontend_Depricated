@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [AppComponent, LoginPageComponent, SearchCasesPageComponent],
@@ -29,6 +30,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatIconModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatAutocompleteModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

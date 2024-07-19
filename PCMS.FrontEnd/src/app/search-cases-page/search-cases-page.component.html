@@ -83,6 +83,28 @@
           <mat-hint>Pick a case Priority</mat-hint>
         </mat-form-field>
         <!-- Case CasePriority ends-->
+
+        <!-- Incident Type -->
+        <mat-form-field>
+          <mat-label>Incident Type</mat-label>
+          <input
+            type="text"
+            aria-label="Incident Type"
+            matInput
+            [formControl]="IncidentTypeAutoCompleteControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            @for (IncidentTypeFilteredOption of IncidentTypeFilteredOptions |
+            async; track IncidentTypeFilteredOption) {
+            <mat-option [value]="IncidentTypeFilteredOption.type">{{
+              IncidentTypeFilteredOption.type
+            }}</mat-option>
+            }
+          </mat-autocomplete>
+          <mat-hint>Pick a Incident Type</mat-hint>
+        </mat-form-field>
+        <!-- Incident Type ends-->
       </form>
     </mat-card-content>
     <mat-card-actions>

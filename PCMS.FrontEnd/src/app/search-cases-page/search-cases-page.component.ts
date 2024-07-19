@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 interface CaseStatusOption {
   status: string;
@@ -10,13 +12,29 @@ interface CasePriorityOption {
   level: string;
 }
 
+interface IncidentTypeOption {
+  type: string;
+}
+
 @Component({
   selector: 'app-search-cases-page',
   templateUrl: './search-cases-page.component.html',
   styleUrl: './search-cases-page.component.css',
   providers: [provideNativeDateAdapter()],
 })
-export class SearchCasesPageComponent {
+export class SearchCasesPageComponent implements OnInit {
+  ngOnInit() {
+    this.IncidentTypeFilteredOptions =
+      this.IncidentTypeAutoCompleteControl.valueChanges.pipe(
+        startWith(''),
+        map((value) => {
+          const searchValue =
+            typeof value === 'string' ? value : value?.type || '';
+          return this._IncidentTypeFilter(searchValue);
+        })
+      );
+  }
+
   SearchCaseNumberInput = new FormControl('', [
     Validators.minLength(8),
     Validators.maxLength(30),
@@ -75,6 +93,48 @@ export class SearchCasesPageComponent {
     this.CasePriorityOptions[0].level
   );
 
+  IncidentTypeOptions: IncidentTypeOption[] = [
+    { type: 'Theft' },
+    { type: 'Burglary' },
+    { type: 'Robbery' },
+    { type: 'Assault' },
+    { type: 'Homicide' },
+    { type: 'Sexual Assault' },
+    { type: 'Domestic Violence' },
+    { type: 'Vandalism' },
+    { type: 'Fraud' },
+    { type: 'Drug-related Offense' },
+    { type: 'Traffic Violation' },
+    { type: 'Disorderly Conduct' },
+    { type: 'Cybercrime' },
+    { type: 'Kidnapping' },
+    { type: 'Arson' },
+    { type: 'Trespassing' },
+    { type: 'Missing Person' },
+    { type: 'Identity Theft' },
+    { type: 'Public Intoxication' },
+    { type: 'Hate Crime' },
+    { type: 'Stalking' },
+    { type: 'Child Abuse' },
+    { type: 'Elder Abuse' },
+    { type: 'Animal Cruelty' },
+    { type: 'White-collar Crime' },
+  ];
+
+  IncidentTypeFilteredOptions: Observable<IncidentTypeOption[]> | undefined;
+
+  IncidentTypeAutoCompleteControl = new FormControl<
+    IncidentTypeOption | string
+  >(this.IncidentTypeOptions[0].type);
+
+  private _IncidentTypeFilter(value: string): IncidentTypeOption[] {
+    const filterValue = value.toLowerCase();
+
+    return this.IncidentTypeOptions.filter((option) =>
+      option.type.toLowerCase().includes(filterValue)
+    );
+  }
+
   ClearForm() {
     this.SearchCaseNumberInput.setValue('');
     this.CaseStatusSelectControl.setValue(this.CaseStatusOptions[0].status);
@@ -83,5 +143,8 @@ export class SearchCasesPageComponent {
       end: new Date(),
     });
     this.CasePrioritySelectControl.setValue(this.CasePriorityOptions[0].level);
+    this.IncidentTypeAutoCompleteControl.setValue(
+      this.IncidentTypeOptions[0].type
+    );
   }
 }
