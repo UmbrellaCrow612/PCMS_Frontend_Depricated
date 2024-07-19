@@ -16,6 +16,10 @@ interface IncidentTypeOption {
   type: string;
 }
 
+interface CityOption {
+  city: string;
+}
+
 @Component({
   selector: 'app-search-cases-page',
   templateUrl: './search-cases-page.component.html',
@@ -33,6 +37,15 @@ export class SearchCasesPageComponent implements OnInit {
           return this._IncidentTypeFilter(searchValue);
         })
       );
+
+    this.CityFilteredOptions = this.CityAutoCompleteControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => {
+        const searchValue =
+          typeof value === 'string' ? value : value?.city || '';
+        return this._CityFilter(searchValue);
+      })
+    );
   }
 
   SearchCaseNumberInput = new FormControl('', [
@@ -135,6 +148,29 @@ export class SearchCasesPageComponent implements OnInit {
     );
   }
 
+  CityOptions: CityOption[] = [
+    {
+      city: 'Sheffield',
+    },
+    {
+      city: 'London',
+    },
+  ];
+
+  CityFilteredOptions: Observable<CityOption[]> | undefined;
+
+  CityAutoCompleteControl = new FormControl<CityOption | string>(
+    this.CityOptions[0].city
+  );
+
+  private _CityFilter(value: string): CityOption[] {
+    const filterValue = value.toLowerCase();
+
+    return this.CityOptions.filter((option) =>
+      option.city.toLowerCase().includes(filterValue)
+    );
+  }
+
   ClearForm() {
     this.SearchCaseNumberInput.setValue('');
     this.CaseStatusSelectControl.setValue(this.CaseStatusOptions[0].status);
@@ -146,5 +182,6 @@ export class SearchCasesPageComponent implements OnInit {
     this.IncidentTypeAutoCompleteControl.setValue(
       this.IncidentTypeOptions[0].type
     );
+    this.CityAutoCompleteControl.setValue(this.CityOptions[0].city);
   }
 }

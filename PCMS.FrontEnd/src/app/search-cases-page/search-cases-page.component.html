@@ -105,6 +105,25 @@
           <mat-hint>Pick a Incident Type</mat-hint>
         </mat-form-field>
         <!-- Incident Type ends-->
+
+        <!-- City location -->
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input
+            type="text"
+            aria-label="City Location"
+            matInput
+            [formControl]="CityAutoCompleteControl"
+            [matAutocomplete]="autoTwo"
+          />
+          <mat-autocomplete autoActiveFirstOption #autoTwo="matAutocomplete">
+            @for (option of CityFilteredOptions | async; track option) {
+            <mat-option [value]="option.city">{{ option.city }}</mat-option>
+            }
+          </mat-autocomplete>
+          <mat-hint>Pick a City</mat-hint>
+        </mat-form-field>
+        <!-- City location ends-->
       </form>
     </mat-card-content>
     <mat-card-actions>
