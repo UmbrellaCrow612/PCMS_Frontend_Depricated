@@ -26,11 +26,11 @@
         </mat-form-field>
       </form>
       <h2 class="mat-title-medium">Search for cases based on filters</h2>
-      <form class="flex_wrap">
+      <form [formGroup]="SearchCaseFiltersForm" class="flex_wrap">
         <!-- Case Status -->
         <mat-form-field>
           <mat-label>Case Status</mat-label>
-          <mat-select [formControl]="CaseStatusSelectControl">
+          <mat-select formControlName="CaseStatusSelectControl">
             @for (CaseStatusOption of CaseStatusOptions; track CaseStatusOption)
             {
             <mat-option [value]="CaseStatusOption.status">{{
@@ -39,6 +39,11 @@
             }
           </mat-select>
           <mat-hint>Pick a case status</mat-hint>
+          @if
+          (SearchCaseFiltersForm.get("CaseStatusSelectControl")?.hasError('required'))
+          {
+          <mat-error>Required case status</mat-error>
+          }
         </mat-form-field>
         <!-- Case Status ends -->
 
@@ -46,7 +51,7 @@
         <mat-form-field>
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input
-            [formGroup]="CaseRangeDate"
+            formGroupName="CaseDateRangeControl"
             [rangePicker]="picker"
             [dateFilter]="CaseRangeDateFilter"
           >
@@ -63,16 +68,25 @@
             [for]="picker"
           ></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
-
-          @if (CaseRangeDate.controls.start.hasError('matDatepickerFilter')) {
-          <mat-error>Invalid dates</mat-error>
+          @if
+          (SearchCaseFiltersForm.get("CaseDateRangeControl")?.get("start")?.hasError('matDatepickerFilter'))
+          {
+          <mat-error>Invalid date ranges</mat-error>
+          } @else if
+          (SearchCaseFiltersForm.get("CaseDateRangeControl")?.get("start")?.hasError('required'))
+          {
+          <mat-error>Required start date</mat-error>
+          } @else if
+          (SearchCaseFiltersForm.get("CaseDateRangeControl")?.get("end")?.hasError('required'))
+          {
+          <mat-error>Required end date</mat-error>
           }
         </mat-form-field>
         <!-- Case Range end -->
         <!-- Case CasePriority -->
         <mat-form-field>
           <mat-label>Case Priority</mat-label>
-          <mat-select [formControl]="CasePrioritySelectControl">
+          <mat-select formControlName="CasePrioritySelectControl">
             @for (CasePriorityOption of CasePriorityOptions; track
             CasePriorityOption) {
             <mat-option [value]="CasePriorityOption.level">{{
@@ -81,6 +95,11 @@
             }
           </mat-select>
           <mat-hint>Pick a case Priority</mat-hint>
+          @if
+          (SearchCaseFiltersForm.get("CasePrioritySelectControl")?.hasError("required"))
+          {
+          <mat-error>Required Case Priority</mat-error>
+          }
         </mat-form-field>
         <!-- Case CasePriority ends-->
 
@@ -91,7 +110,7 @@
             type="text"
             aria-label="Incident Type"
             matInput
-            [formControl]="IncidentTypeAutoCompleteControl"
+            formControlName="IncidentTypeAutoCompleteControl"
             [matAutocomplete]="auto"
           />
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -103,6 +122,11 @@
             }
           </mat-autocomplete>
           <mat-hint>Pick a Incident Type</mat-hint>
+          @if
+          (SearchCaseFiltersForm.get("IncidentTypeAutoCompleteControl")?.hasError("required"))
+          {
+          <mat-error>Required Incident Type</mat-error>
+          }
         </mat-form-field>
         <!-- Incident Type ends-->
 
@@ -113,7 +137,7 @@
             type="text"
             aria-label="City Location"
             matInput
-            [formControl]="CityAutoCompleteControl"
+            formControlName="CityAutoCompleteControl"
             [matAutocomplete]="autoTwo"
           />
           <mat-autocomplete autoActiveFirstOption #autoTwo="matAutocomplete">
@@ -122,9 +146,17 @@
             }
           </mat-autocomplete>
           <mat-hint>Pick a City</mat-hint>
+          @if
+          (SearchCaseFiltersForm.get("CityAutoCompleteControl")?.hasError("required"))
+          {
+          <mat-error>Required City</mat-error>
+          }
         </mat-form-field>
         <!-- City location ends-->
       </form>
+      {{ SearchCaseFiltersForm.value | json }}
+      <br />
+      Status {{ SearchCaseFiltersForm.status }}
     </mat-card-content>
     <mat-card-actions>
       <button mat-button>Search</button>

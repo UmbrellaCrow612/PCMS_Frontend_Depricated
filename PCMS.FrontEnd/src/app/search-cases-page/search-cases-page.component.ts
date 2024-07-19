@@ -28,21 +28,22 @@ interface CityOption {
 })
 export class SearchCasesPageComponent implements OnInit {
   ngOnInit() {
-    this.IncidentTypeFilteredOptions =
-      this.IncidentTypeAutoCompleteControl.valueChanges.pipe(
-        startWith(''),
-        map((value) => {
-          const searchValue =
-            typeof value === 'string' ? value : value?.type || '';
-          return this._IncidentTypeFilter(searchValue);
-        })
-      );
-
-    this.CityFilteredOptions = this.CityAutoCompleteControl.valueChanges.pipe(
+    this.IncidentTypeFilteredOptions = this.SearchCaseFiltersForm.get(
+      'IncidentTypeAutoCompleteControl'
+    )?.valueChanges.pipe(
       startWith(''),
       map((value) => {
-        const searchValue =
-          typeof value === 'string' ? value : value?.city || '';
+        const searchValue = typeof value === 'string' ? value : '';
+        return this._IncidentTypeFilter(searchValue);
+      })
+    );
+
+    this.CityFilteredOptions = this.SearchCaseFiltersForm.get(
+      'CityAutoCompleteControl'
+    )?.valueChanges.pipe(
+      startWith(''),
+      map((value) => {
+        const searchValue = typeof value === 'string' ? value : '';
         return this._CityFilter(searchValue);
       })
     );
@@ -64,10 +65,6 @@ export class SearchCasesPageComponent implements OnInit {
     { status: 'Under Investigation' },
   ];
 
-  CaseStatusSelectControl = new FormControl<CaseStatusOption | string>(
-    this.CaseStatusOptions[0].status
-  );
-
   CaseRangeDateFilter = (d: Date | null): boolean => {
     const date = d || new Date();
     const year = date.getFullYear();
@@ -76,11 +73,6 @@ export class SearchCasesPageComponent implements OnInit {
     // Allow dates from 2020 up to and including the current year
     return year >= 2020 && year <= currentYear;
   };
-
-  readonly CaseRangeDate = new FormGroup({
-    start: new FormControl<Date>(this.getYesterday()),
-    end: new FormControl<Date>(new Date()),
-  });
 
   private getYesterday(): Date {
     const yesterday = new Date();
@@ -106,10 +98,6 @@ export class SearchCasesPageComponent implements OnInit {
     },
   ];
 
-  CasePrioritySelectControl = new FormControl<CasePriorityOption | string>(
-    this.CasePriorityOptions[0].level
-  );
-
   IncidentTypeOptions: IncidentTypeOption[] = [
     { type: 'Any' },
     { type: 'Theft' },
@@ -121,10 +109,6 @@ export class SearchCasesPageComponent implements OnInit {
   ];
 
   IncidentTypeFilteredOptions: Observable<IncidentTypeOption[]> | undefined;
-
-  IncidentTypeAutoCompleteControl = new FormControl<
-    IncidentTypeOption | string
-  >(this.IncidentTypeOptions[0].type);
 
   private _IncidentTypeFilter(value: string): IncidentTypeOption[] {
     const filterValue = value.toLowerCase();
@@ -148,10 +132,6 @@ export class SearchCasesPageComponent implements OnInit {
 
   CityFilteredOptions: Observable<CityOption[]> | undefined;
 
-  CityAutoCompleteControl = new FormControl<CityOption | string>(
-    this.CityOptions[0].city
-  );
-
   private _CityFilter(value: string): CityOption[] {
     const filterValue = value.toLowerCase();
 
@@ -160,17 +140,38 @@ export class SearchCasesPageComponent implements OnInit {
     );
   }
 
+  SearchCaseFiltersForm = new FormGroup({
+    CaseStatusSelectControl: new FormControl<string>(
+      this.CaseStatusOptions[0].status,
+      [Validators.required]
+    ),
+    CaseDateRangeControl: new FormGroup({
+      start: new FormControl<Date>(this.getYesterday(), [Validators.required]),
+      end: new FormControl<Date>(new Date(), [Validators.required]),
+    }),
+    CasePrioritySelectControl: new FormControl<string>(
+      this.CasePriorityOptions[0].level,
+      [Validators.required]
+    ),
+    IncidentTypeAutoCompleteControl: new FormControl<string>(
+      this.IncidentTypeOptions[0].type,
+      [Validators.required]
+    ),
+    CityAutoCompleteControl: new FormControl<string>(this.CityOptions[0].city, [
+      Validators.required,
+    ]),
+  });
+
   ClearForm() {
-    this.SearchCaseNumberInput.setValue('');
-    this.CaseStatusSelectControl.setValue(this.CaseStatusOptions[0].status);
-    this.CaseRangeDate.setValue({
-      start: this.getYesterday(),
-      end: new Date(),
+    this.SearchCaseFiltersForm.setValue({
+      CaseStatusSelectControl: this.CaseStatusOptions[0].status,
+      CaseDateRangeControl: {
+        start: this.getYesterday(),
+        end: new Date(),
+      },
+      CasePrioritySelectControl: this.CasePriorityOptions[0].level,
+      IncidentTypeAutoCompleteControl: this.IncidentTypeOptions[0].type,
+      CityAutoCompleteControl: this.CityOptions[0].city,
     });
-    this.CasePrioritySelectControl.setValue(this.CasePriorityOptions[0].level);
-    this.IncidentTypeAutoCompleteControl.setValue(
-      this.IncidentTypeOptions[0].type
-    );
-    this.CityAutoCompleteControl.setValue(this.CityOptions[0].city);
   }
 }
