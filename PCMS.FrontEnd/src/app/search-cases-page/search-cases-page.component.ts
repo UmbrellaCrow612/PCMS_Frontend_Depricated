@@ -6,6 +6,10 @@ interface CaseStatusOption {
   status: string;
 }
 
+interface CasePriorityOption {
+  level: string;
+}
+
 @Component({
   selector: 'app-search-cases-page',
   templateUrl: './search-cases-page.component.html',
@@ -52,6 +56,25 @@ export class SearchCasesPageComponent {
     return yesterday;
   }
 
+  CasePriorityOptions: CasePriorityOption[] = [
+    {
+      level: 'Low',
+    },
+    {
+      level: 'Medium',
+    },
+    {
+      level: 'High',
+    },
+    {
+      level: 'Critical',
+    },
+  ];
+
+  CasePrioritySelectControl = new FormControl<CasePriorityOption | string>(
+    this.CasePriorityOptions[0].level
+  );
+
   ClearForm() {
     this.SearchCaseNumberInput.setValue('');
     this.CaseStatusSelectControl.setValue(this.CaseStatusOptions[0].status);
@@ -59,5 +82,6 @@ export class SearchCasesPageComponent {
       start: this.getYesterday(),
       end: new Date(),
     });
+    this.CasePrioritySelectControl.setValue(this.CasePriorityOptions[0].level);
   }
 }
