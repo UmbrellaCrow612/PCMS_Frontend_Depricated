@@ -57,6 +57,7 @@ export class SearchCasesPageComponent implements OnInit {
   /* Form group for optional fields  */
 
   CaseStatusOptions: CaseStatusOption[] = [
+    { status: 'Any' },
     { status: 'Open' },
     { status: 'Closed' },
     { status: 'Pending' },
@@ -89,6 +90,9 @@ export class SearchCasesPageComponent implements OnInit {
 
   CasePriorityOptions: CasePriorityOption[] = [
     {
+      level: 'Any',
+    },
+    {
       level: 'Low',
     },
     {
@@ -107,31 +111,13 @@ export class SearchCasesPageComponent implements OnInit {
   );
 
   IncidentTypeOptions: IncidentTypeOption[] = [
+    { type: 'Any' },
     { type: 'Theft' },
     { type: 'Burglary' },
     { type: 'Robbery' },
     { type: 'Assault' },
     { type: 'Homicide' },
     { type: 'Sexual Assault' },
-    { type: 'Domestic Violence' },
-    { type: 'Vandalism' },
-    { type: 'Fraud' },
-    { type: 'Drug-related Offense' },
-    { type: 'Traffic Violation' },
-    { type: 'Disorderly Conduct' },
-    { type: 'Cybercrime' },
-    { type: 'Kidnapping' },
-    { type: 'Arson' },
-    { type: 'Trespassing' },
-    { type: 'Missing Person' },
-    { type: 'Identity Theft' },
-    { type: 'Public Intoxication' },
-    { type: 'Hate Crime' },
-    { type: 'Stalking' },
-    { type: 'Child Abuse' },
-    { type: 'Elder Abuse' },
-    { type: 'Animal Cruelty' },
-    { type: 'White-collar Crime' },
   ];
 
   IncidentTypeFilteredOptions: Observable<IncidentTypeOption[]> | undefined;
@@ -149,6 +135,9 @@ export class SearchCasesPageComponent implements OnInit {
   }
 
   CityOptions: CityOption[] = [
+    {
+      city: 'Any',
+    },
     {
       city: 'Sheffield',
     },
