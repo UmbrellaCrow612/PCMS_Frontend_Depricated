@@ -174,4 +174,8 @@ export class SearchCasesPageComponent implements OnInit {
       CityAutoCompleteControl: this.CityOptions[0].city,
     });
   }
+
+  onSearchCaseFilterFormSubmit(){
+    console.log(this.SearchCaseFiltersForm.valid)
+  }
 }
