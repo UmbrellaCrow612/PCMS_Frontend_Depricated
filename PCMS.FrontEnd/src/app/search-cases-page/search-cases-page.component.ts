@@ -163,7 +163,7 @@ export class SearchCasesPageComponent implements OnInit {
   });
 
   ClearForm() {
-    this.SearchCaseFiltersForm.setValue({
+    this.SearchCaseFiltersForm.reset({
       CaseStatusSelectControl: this.CaseStatusOptions[0].status,
       CaseDateRangeControl: {
         start: this.getYesterday(),

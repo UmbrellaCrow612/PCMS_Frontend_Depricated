@@ -26,7 +26,11 @@
         </mat-form-field>
       </form>
       <h2 class="mat-title-medium">Search for cases based on filters</h2>
-      <form [formGroup]="SearchCaseFiltersForm" class="flex_wrap" (ngSubmit)="onSearchCaseFilterFormSubmit()">
+      <form
+        [formGroup]="SearchCaseFiltersForm"
+        class="flex_wrap"
+        (ngSubmit)="onSearchCaseFilterFormSubmit()"
+      >
         <!-- Case Status -->
         <mat-form-field>
           <mat-label>Case Status</mat-label>
@@ -157,9 +161,13 @@
       {{ SearchCaseFiltersForm.value | json }}
       <br />
       Status {{ SearchCaseFiltersForm.status }}
+      <br />
+      Dirty {{ SearchCaseFiltersForm.dirty }}
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Search</button>
+      <button mat-button [disabled]="SearchCaseFiltersForm.invalid">
+        Search
+      </button>
       <button mat-button (click)="ClearForm()">Clear</button>
     </mat-card-actions>
   </mat-card>
