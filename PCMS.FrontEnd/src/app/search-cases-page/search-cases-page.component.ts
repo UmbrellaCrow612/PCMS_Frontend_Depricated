@@ -113,9 +113,19 @@ export class SearchCasesPageComponent implements OnInit {
   private _IncidentTypeFilter(value: string): IncidentTypeOption[] {
     const filterValue = value.toLowerCase();
 
-    return this.IncidentTypeOptions.filter((option) =>
+    const values = this.IncidentTypeOptions.filter((option) =>
       option.type.toLowerCase().includes(filterValue)
     );
+
+    if (values.length == 0) {
+      this.SearchCaseFiltersForm.get(
+        'IncidentTypeAutoCompleteControl'
+      )?.setErrors({
+        inValidIncidentTypeOption: true,
+      });
+    }
+
+    return values;
   }
 
   CityOptions: CityOption[] = [

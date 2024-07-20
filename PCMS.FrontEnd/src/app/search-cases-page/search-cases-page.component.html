@@ -130,6 +130,10 @@
           (SearchCaseFiltersForm.get("IncidentTypeAutoCompleteControl")?.hasError("required"))
           {
           <mat-error>Required Incident Type</mat-error>
+          } @else if
+          (SearchCaseFiltersForm.get("IncidentTypeAutoCompleteControl")?.hasError("inValidIncidentTypeOption"))
+          {
+          <mat-error>Invalid Incident Type</mat-error>
           }
         </mat-form-field>
         <!-- Incident Type ends-->
