@@ -154,6 +154,10 @@
           (SearchCaseFiltersForm.get("CityAutoCompleteControl")?.hasError("required"))
           {
           <mat-error>Required City</mat-error>
+          } @else if
+          (SearchCaseFiltersForm.get("CityAutoCompleteControl")?.hasError("inValidCityOption"))
+          {
+          <mat-error>Invalid City option</mat-error>
           }
         </mat-form-field>
         <!-- City location ends-->

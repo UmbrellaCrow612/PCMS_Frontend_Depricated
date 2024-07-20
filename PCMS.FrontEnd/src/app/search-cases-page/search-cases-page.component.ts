@@ -135,9 +135,16 @@ export class SearchCasesPageComponent implements OnInit {
   private _CityFilter(value: string): CityOption[] {
     const filterValue = value.toLowerCase();
 
-    return this.CityOptions.filter((option) =>
+    const values = this.CityOptions.filter((option) =>
       option.city.toLowerCase().includes(filterValue)
     );
+
+    if (values.length == 0) {
+      this.SearchCaseFiltersForm.get('CityAutoCompleteControl')?.setErrors({
+        inValidCityOption: true,
+      });
+    }
+    return values;
   }
 
   SearchCaseFiltersForm = new FormGroup({
@@ -175,7 +182,7 @@ export class SearchCasesPageComponent implements OnInit {
     });
   }
 
-  onSearchCaseFilterFormSubmit(){
-    console.log(this.SearchCaseFiltersForm.valid)
+  onSearchCaseFilterFormSubmit() {
+    console.log(this.SearchCaseFiltersForm.valid);
   }
 }
