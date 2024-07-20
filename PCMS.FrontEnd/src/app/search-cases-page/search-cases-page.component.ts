@@ -179,7 +179,7 @@ export class SearchCasesPageComponent implements OnInit {
     ]),
   });
 
-  ClearForm() {
+  ClearSearchCaseFiltersForm() {
     this.SearchCaseFiltersForm.reset({
       CaseStatusSelectControl: this.CaseStatusOptions[0].status,
       CaseDateRangeControl: {
@@ -193,6 +193,8 @@ export class SearchCasesPageComponent implements OnInit {
   }
 
   onSearchCaseFilterFormSubmit() {
-    console.log(this.SearchCaseFiltersForm.valid);
+    if (this.SearchCaseFiltersForm.valid) {
+      console.log('submit data and its in a valid state');
+    }
   }
 }
