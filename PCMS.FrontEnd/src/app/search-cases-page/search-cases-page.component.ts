@@ -20,6 +20,9 @@ interface CityOption {
   city: string;
 }
 
+interface DepartmentOption {
+  name: string;
+}
 @Component({
   selector: 'app-search-cases-page',
   templateUrl: './search-cases-page.component.html',
@@ -33,8 +36,7 @@ export class SearchCasesPageComponent implements OnInit {
     )?.valueChanges.pipe(
       startWith(''),
       map((value) => {
-        const searchValue = typeof value === 'string' ? value : '';
-        return this._IncidentTypeFilter(searchValue);
+        return this._IncidentTypeFilter(value || '');
       })
     );
 
@@ -43,9 +45,15 @@ export class SearchCasesPageComponent implements OnInit {
     )?.valueChanges.pipe(
       startWith(''),
       map((value) => {
-        const searchValue = typeof value === 'string' ? value : '';
-        return this._CityFilter(searchValue);
+        return this._CityFilter(value || '');
       })
+    );
+
+    this.DepartmentFilteredOptions = this.SearchCaseFiltersForm.get(
+      'DepartmentAutoCompleteControl'
+    )?.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._DepartmentFilter(value || ''))
     );
   }
 
@@ -172,6 +180,32 @@ export class SearchCasesPageComponent implements OnInit {
     return values;
   }
 
+  DepartmentOptions: DepartmentOption[] = [
+    {
+      name: 'any',
+    },
+  ];
+
+  DepartmentFilteredOptions: Observable<DepartmentOption[]> | undefined;
+
+  private _DepartmentFilter(value: string): DepartmentOption[] {
+    const filterValue = value.toLowerCase();
+
+    const values = this.DepartmentOptions.filter((option) =>
+      option.name.toLowerCase().includes(filterValue)
+    );
+
+    if (values.length == 0) {
+      this.SearchCaseFiltersForm.get(
+        'DepartmentAutoCompleteControl'
+      )?.setErrors({
+        inValidDepartmentOption: true,
+      });
+    }
+
+    return values;
+  }
+
   SearchCaseFiltersForm = new FormGroup({
     CaseStatusSelectControl: new FormControl<string>(
       this.CaseStatusOptions[0].status,
@@ -192,6 +226,10 @@ export class SearchCasesPageComponent implements OnInit {
     CityAutoCompleteControl: new FormControl<string>(this.CityOptions[0].city, [
       Validators.required,
     ]),
+    DepartmentAutoCompleteControl: new FormControl<string>(
+      this.DepartmentOptions[0].name,
+      [Validators.required]
+    ),
   });
 
   ClearSearchCaseFiltersForm() {
@@ -204,6 +242,7 @@ export class SearchCasesPageComponent implements OnInit {
       CasePrioritySelectControl: this.CasePriorityOptions[0].level,
       IncidentTypeAutoCompleteControl: this.IncidentTypeOptions[0].type,
       CityAutoCompleteControl: this.CityOptions[0].city,
+      DepartmentAutoCompleteControl: this.DepartmentOptions[0].name,
     });
   }
 

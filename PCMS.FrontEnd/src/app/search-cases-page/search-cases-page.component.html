@@ -195,6 +195,34 @@
         </mat-form-field>
         <!-- City location ends-->
 
+        <!-- Department -->
+        <mat-form-field>
+          <mat-label>Department</mat-label>
+          <input
+            type="text"
+            aria-label="Department"
+            matInput
+            formControlName="DepartmentAutoCompleteControl"
+            [matAutocomplete]="autoThree"
+          />
+          <mat-autocomplete autoActiveFirstOption #autoThree="matAutocomplete">
+            @for (option of DepartmentFilteredOptions | async; track option) {
+            <mat-option [value]="option.name">{{ option.name }}</mat-option>
+            }
+          </mat-autocomplete>
+          <mat-hint>Pick a Department</mat-hint>
+          @if
+          (SearchCaseFiltersForm.get("DepartmentAutoCompleteControl")?.hasError("required"))
+          {
+          <mat-error>Required Department</mat-error>
+          } @else if
+          (SearchCaseFiltersForm.get("DepartmentAutoCompleteControl")?.hasError("inValidDepartmentOption"))
+          {
+          <mat-error>Invalid Department option</mat-error>
+          }
+        </mat-form-field>
+        <!-- Department end-->
+
         <div class="case_filter_btns">
           <button
             mat-raised-button
