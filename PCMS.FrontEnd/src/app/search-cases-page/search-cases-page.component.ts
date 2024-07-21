@@ -182,7 +182,7 @@ export class SearchCasesPageComponent implements OnInit {
 
   DepartmentOptions: DepartmentOption[] = [
     {
-      name: 'any',
+      name: 'Any',
     },
   ];
 
