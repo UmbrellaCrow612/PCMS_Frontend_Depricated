@@ -49,11 +49,26 @@ export class SearchCasesPageComponent implements OnInit {
     );
   }
 
-  SearchCaseNumberInput = new FormControl('', [
-    Validators.minLength(8),
-    Validators.maxLength(30),
-    Validators.pattern(/^CA/),
-  ]);
+  SearchCaseNumberForm = new FormGroup({
+    SearchCaseNumberInput: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(30),
+      Validators.pattern(/^CA/),
+    ]),
+  });
+
+  onSearchCaseNumberFormSubmit() {
+    if (this.SearchCaseNumberForm.valid) {
+      console.log(this.SearchCaseNumberForm.value);
+    }
+  }
+
+  ClearSearchCaseNumberForm() {
+    this.SearchCaseNumberForm.reset({
+      SearchCaseNumberInput: '',
+    });
+  }
 
   /* Form group for optional fields  */
 
@@ -194,7 +209,7 @@ export class SearchCasesPageComponent implements OnInit {
 
   onSearchCaseFilterFormSubmit() {
     if (this.SearchCaseFiltersForm.valid) {
-      console.log('submit data and its in a valid state');
+      console.log(this.SearchCaseFiltersForm.value);
     }
   }
 }

@@ -3,23 +3,46 @@
     <mat-card-header>
       <mat-card-title>Search for a case </mat-card-title>
     </mat-card-header>
-    <mat-card-content class="flex_left_gap">
-      <form>
+    <mat-card-content>
+      <form class="flex_between" [formGroup]="SearchCaseNumberForm" (ngSubmit)="onSearchCaseNumberFormSubmit()">
         <mat-form-field>
           <mat-label>Case Number</mat-label>
-          <input type="text" matInput [formControl]="SearchCaseNumberInput" />
+          <input type="text" matInput formControlName="SearchCaseNumberInput" />
           <mat-hint>Enter case number</mat-hint>
-          @if (SearchCaseNumberInput.hasError('minlength')) {
+          @if
+          (SearchCaseNumberForm.get("SearchCaseNumberInput")?.hasError('required'))
+          {
+          <mat-error>Required Case Number</mat-error>
+          } @else if
+          (SearchCaseNumberForm.get("SearchCaseNumberInput")?.hasError('minlength'))
+          {
           <mat-error>Case Number to short</mat-error>
-          } @if (!SearchCaseNumberInput.hasError('minlength') &&
-          SearchCaseNumberInput.hasError("maxlength")) {
+          } @else if (
+          SearchCaseNumberForm.get("SearchCaseNumberInput")?.hasError("maxlength"))
+          {
           <mat-error>Case Number to long</mat-error>
-          } @if (!SearchCaseNumberInput.hasError('minlength') &&
-          !SearchCaseNumberInput.hasError("maxlength") &&
-          SearchCaseNumberInput.hasError("pattern")) {
+          } @else if (
+          SearchCaseNumberForm.get("SearchCaseNumberInput")?.hasError("pattern"))
+          {
           <mat-error>Case Number must start with CA</mat-error>
           }
         </mat-form-field>
+        <div class="search_case_number_btns">
+          <button
+            mat-raised-button
+            type="submit"
+            [disabled]="SearchCaseNumberForm.invalid"
+          >
+            Search
+          </button>
+          <button
+            mat-raised-button
+            type="button"
+            (click)="ClearSearchCaseNumberForm()"
+          >
+            Clear
+          </button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
@@ -171,14 +194,14 @@
 
         <div class="case_filter_btns">
           <button
-            mat-button
+            mat-raised-button
             [disabled]="SearchCaseFiltersForm.invalid"
             type="submit"
           >
             Search
           </button>
           <button
-            mat-button
+            mat-raised-button
             (click)="ClearSearchCaseFiltersForm()"
             type="button"
           >
