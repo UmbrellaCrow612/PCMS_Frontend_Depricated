@@ -16,9 +16,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { DashBoardPageComponent } from './dash-board-page/dash-board-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, SearchCasesPageComponent],
+  declarations: [AppComponent, LoginPageComponent, SearchCasesPageComponent, DashBoardPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
