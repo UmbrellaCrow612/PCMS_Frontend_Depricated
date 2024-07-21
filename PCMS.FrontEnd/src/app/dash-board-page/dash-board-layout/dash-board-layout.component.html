@@ -1,3 +1,6 @@
-<div>
-  <ng-content />
-</div>
+<mat-sidenav-container class="main">
+  <mat-sidenav [opened]="true"> Sidenav content </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content />
+  </mat-sidenav-content>
+</mat-sidenav-container>
