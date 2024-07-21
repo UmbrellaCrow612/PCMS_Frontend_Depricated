@@ -1,5 +1,15 @@
 <mat-sidenav-container class="main">
-  <mat-sidenav [opened]="true"> Sidenav content </mat-sidenav>
+  <mat-sidenav [opened]="isSideNavOpen" mode="side">
+    <div class="side_arrow">
+      <button
+        mat-icon-button
+        aria-label="Close sidenav"
+        (click)="isSideNavOpen = !isSideNavOpen"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+    </div>
+  </mat-sidenav>
   <mat-sidenav-content>
     <ng-content />
   </mat-sidenav-content>
