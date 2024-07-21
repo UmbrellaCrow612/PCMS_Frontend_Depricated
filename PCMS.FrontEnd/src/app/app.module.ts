@@ -17,9 +17,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DashBoardPageComponent } from './dash-board-page/dash-board-page.component';
+import { DashBoardLayoutComponent } from './dash-board-page/dash-board-layout/dash-board-layout.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, SearchCasesPageComponent, DashBoardPageComponent],
+  declarations: [AppComponent, LoginPageComponent, SearchCasesPageComponent, DashBoardPageComponent, DashBoardLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
