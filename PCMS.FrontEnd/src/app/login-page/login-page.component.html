@@ -20,7 +20,6 @@
             required
             aria-required="true"
             autocomplete="username"
-            [errorStateMatcher]="matcher"
             autofocus
           />
           <mat-hint>Enter your username</mat-hint>
@@ -40,7 +39,6 @@
             required
             aria-required="true"
             autocomplete="current-password"
-            [errorStateMatcher]="matcher"
           />
           <button
             mat-icon-button
@@ -49,7 +47,9 @@
             [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="showPassword"
           >
-            <mat-icon>{{ showPassword ? "visibility" : "visibility_off" }}</mat-icon>
+            <mat-icon>{{
+              showPassword ? "visibility" : "visibility_off"
+            }}</mat-icon>
           </button>
           <mat-hint>Enter your password</mat-hint>
           @if (loginForm.get('password')?.hasError('required') &&
