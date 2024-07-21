@@ -4,13 +4,18 @@
       <button
         mat-icon-button
         aria-label="Close sidenav"
-        (click)="isSideNavOpen = !isSideNavOpen"
+        (click)="toggleSideNav()"
       >
         <mat-icon>chevron_left</mat-icon>
       </button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
+    @if (!isSideNavOpen) {
+    <button mat-icon-button aria-label="Open sidenav" (click)="toggleSideNav()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+    }
     <ng-content />
   </mat-sidenav-content>
 </mat-sidenav-container>
