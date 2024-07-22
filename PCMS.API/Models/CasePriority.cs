@@ -1,6 +1,6 @@
 ﻿namespace PCMS.API.Models
 {
-    internal class Evidence
+    internal class CasePriority
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
     }
