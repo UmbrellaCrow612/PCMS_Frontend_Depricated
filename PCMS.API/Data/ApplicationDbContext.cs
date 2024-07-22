@@ -48,19 +48,14 @@ namespace PCMS.API.Data
                 .WithMany(d => d.Officers)
                 .HasForeignKey(o => o.DepartmentId);
 
-            // Configure the many-to-many relationship between Case and Officer
             modelBuilder.Entity<Case>()
                 .HasMany(c => c.Officers)
-                .WithMany(o => o.Cases)
-                .UsingEntity(j => j.HasMany("OfficerCases"));
+                .WithMany(o => o.Cases);
 
-            // Configure the many-to-many relationship between Case and Suspect
             modelBuilder.Entity<Case>()
                 .HasMany(c => c.Suspects)
-                .WithMany(s => s.Cases)
-                .UsingEntity(j => j.HasMany("CaseSuspects"));
+                .WithMany(s => s.Cases);
 
-            // Configure the one-to-one relationship between Suspect and Person
             modelBuilder.Entity<Suspect>()
                 .HasOne(s => s.Person)
                 .WithMany()
