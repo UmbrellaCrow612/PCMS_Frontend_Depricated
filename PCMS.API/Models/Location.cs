@@ -13,5 +13,7 @@
         public required string County { get; set; }
 
         public required string PostCode { get; set; }
+
+        public ICollection<Case> Cases { get; set; } = [];
     }
 }

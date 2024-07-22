@@ -8,6 +8,11 @@
 
         public required string PasswordHash { get; set; }
 
-        // Relationships
+        public required string DepartmentId { get; set; }
+
+        public required Department Department { get; set; }
+
+        public ICollection<Case> Cases { get; set; } = [];
+
     }
 }
