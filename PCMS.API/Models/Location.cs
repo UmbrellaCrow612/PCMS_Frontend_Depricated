@@ -4,16 +4,25 @@
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        public required string AddressLine1 { get; set; }
+        public required string Name { get; set; }
 
-        public string? AddressLine2 { get; set; }
+        public required string Address { get; set; }
 
         public required string City { get; set; }
 
-        public required string County { get; set; }
-
         public required string PostCode { get; set; }
 
-        public ICollection<Case> Cases { get; set; } = [];
+        public required string Type { get; set; }
+
+        public required string Description { get; set; }
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        public DateTime EditedAt { get; set; } = DateTime.Now;
+
+        public required double Latitude { get; set; }
+
+        public required double Longitude { get; set; }
+
     }
 }
