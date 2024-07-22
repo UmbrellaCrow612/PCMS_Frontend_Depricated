@@ -1,4 +1,4 @@
-﻿namespace PCMS.API.Models.People
+﻿namespace PCMS.API.Models
 {
     internal class Person
     {

@@ -1,6 +1,4 @@
-﻿using PCMS.API.Models.People;
-
-namespace PCMS.API.Models
+﻿namespace PCMS.API.Models
 {
     internal class Department
     {
@@ -8,8 +6,8 @@ namespace PCMS.API.Models
 
         public required string Name { get; set; }
 
-        public ICollection<Officer> Officers { get; set; } = [];
+        public required string Description { get; set; }
 
-        public ICollection<Case> Cases { get; set; } = [];
+        public required string ShortCode { get; set; }
     }
 }

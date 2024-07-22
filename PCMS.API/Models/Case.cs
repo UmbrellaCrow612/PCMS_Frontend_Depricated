@@ -1,6 +1,4 @@
-﻿using PCMS.API.Models.People;
-
-namespace PCMS.API.Models
+﻿namespace PCMS.API.Models
 {
     internal class Case
     {

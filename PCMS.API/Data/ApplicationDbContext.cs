@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PCMS.API.Models.People;
 using PCMS.API.Models;
 
 namespace PCMS.API.Data
