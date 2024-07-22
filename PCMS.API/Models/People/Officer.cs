@@ -12,7 +12,7 @@
 
         public required Department Department { get; set; }
 
-        public ICollection<Case> Cases { get; set; } = [];
+        public ICollection<Case> AssignedCases { get; set; } = [];
 
     }
 }
