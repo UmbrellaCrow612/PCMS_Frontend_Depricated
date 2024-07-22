@@ -57,3 +57,20 @@ namespace PCMS.API.Data
         }
     }
 }
+
+/*
+ 
+
+
+
+
+working backend models
+
+
+todo nxt time:
+
+go back and make proper erd diagrams of all the fields a class should have an the relationships it should have
+
+then go through the code for each relationship of a entity and implamenmt the code for it
+ 
+ */
