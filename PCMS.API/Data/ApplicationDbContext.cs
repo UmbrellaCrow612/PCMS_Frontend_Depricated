@@ -13,7 +13,6 @@ namespace PCMS.API.Data
         public DbSet<Location> Locations { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Officer> Officers { get; set; }
-        public DbSet<Suspect> Suspects { get; set; }
         public DbSet<Person> People { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,15 +51,7 @@ namespace PCMS.API.Data
                 .HasMany(c => c.Officers)
                 .WithMany(o => o.Cases);
 
-            modelBuilder.Entity<Case>()
-                .HasMany(c => c.Suspects)
-                .WithMany(s => s.Cases);
-
-            modelBuilder.Entity<Suspect>()
-                .HasOne(s => s.Person)
-                .WithMany()
-                .HasForeignKey(s => s.PersonId)
-                .OnDelete(DeleteBehavior.Cascade);
+          
 
             base.OnModelCreating(modelBuilder);
         }

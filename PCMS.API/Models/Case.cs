@@ -36,8 +36,6 @@ namespace PCMS.API.Models
 
         public ICollection<Officer> Officers { get; set; } = [];
 
-        public ICollection<Suspect> Suspects { get; set; } = [];
-
         private static string GenerateCaseNumber()
         {
             throw new NotImplementedException();
