@@ -23,7 +23,8 @@ namespace PCMS.API.Models
         [Required]
         public required string PhoneNumber { get; set; }
 
-        public string? ProfileImgUrl { get; set; }
+        [Required]
+        public required string ProfileImgUrl { get; set; }
 
         [Required]
         public required string Address { get; set; }
