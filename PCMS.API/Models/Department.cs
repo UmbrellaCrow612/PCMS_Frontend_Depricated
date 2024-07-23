@@ -15,5 +15,7 @@ namespace PCMS.API.Models
 
         [Required]
         public required string ShortCode { get; set; }
+
+        public virtual ICollection<Case> Cases { get; set; } = [];
     }
 }

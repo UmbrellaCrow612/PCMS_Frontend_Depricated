@@ -19,8 +19,10 @@ namespace PCMS.API.Models
         [Required]
         public required Location Location { get; set; }
 
+        [Required]
         public required string CaseId { get; set; }
 
+        [Required]
         public required virtual Case Case { get; set; }
     }
 }

@@ -29,6 +29,9 @@ namespace PCMS.API.Models
         public required Department Department { get; set; }
 
         [Required]
+        public int DepartmentID { get; set; }
+
+        [Required]
         public required ICollection<Officer> Officers { get; set; }
 
         [Required]
