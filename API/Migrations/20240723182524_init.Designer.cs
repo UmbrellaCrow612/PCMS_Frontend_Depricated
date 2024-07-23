@@ -11,14 +11,80 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240723135800_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240723182524_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
+
+            modelBuilder.Entity("API.Models.Accounts.SuspectAccount", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CaseId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PersonId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("SuspectAccounts");
+                });
+
+            modelBuilder.Entity("API.Models.Accounts.VictimAccount", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CaseId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PersonId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("VictimAccounts");
+                });
+
+            modelBuilder.Entity("API.Models.Accounts.WitnessAccount", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CaseId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PersonId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CaseId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("WitnessAccounts");
+                });
 
             modelBuilder.Entity("API.Models.Case", b =>
                 {
@@ -520,6 +586,78 @@ namespace API.Migrations
                     b.ToTable("CaseOfficer");
                 });
 
+            modelBuilder.Entity("CasePerson", b =>
+                {
+                    b.Property<string>("CasesId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PeopleId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CasesId", "PeopleId");
+
+                    b.HasIndex("PeopleId");
+
+                    b.ToTable("CasePerson");
+                });
+
+            modelBuilder.Entity("API.Models.Accounts.SuspectAccount", b =>
+                {
+                    b.HasOne("API.Models.Case", "Case")
+                        .WithMany("SuspectAccounts")
+                        .HasForeignKey("CaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.People.Person", "Person")
+                        .WithMany("SuspectAccounts")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Case");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("API.Models.Accounts.VictimAccount", b =>
+                {
+                    b.HasOne("API.Models.Case", "Case")
+                        .WithMany("VictimAccounts")
+                        .HasForeignKey("CaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.People.Person", "Person")
+                        .WithMany("VictimAccounts")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Case");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("API.Models.Accounts.WitnessAccount", b =>
+                {
+                    b.HasOne("API.Models.Case", "Case")
+                        .WithMany("WitnessAccounts")
+                        .HasForeignKey("CaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.People.Person", "Person")
+                        .WithMany("WitnessAccounts")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Case");
+
+                    b.Navigation("Person");
+                });
+
             modelBuilder.Entity("API.Models.Case", b =>
                 {
                     b.HasOne("API.Models.Department", "Department")
@@ -647,6 +785,21 @@ namespace API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("CasePerson", b =>
+                {
+                    b.HasOne("API.Models.Case", null)
+                        .WithMany()
+                        .HasForeignKey("CasesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.People.Person", null)
+                        .WithMany()
+                        .HasForeignKey("PeopleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("API.Models.Case", b =>
                 {
                     b.Navigation("Evidences");
@@ -654,6 +807,12 @@ namespace API.Migrations
                     b.Navigation("Media");
 
                     b.Navigation("Reports");
+
+                    b.Navigation("SuspectAccounts");
+
+                    b.Navigation("VictimAccounts");
+
+                    b.Navigation("WitnessAccounts");
                 });
 
             modelBuilder.Entity("API.Models.Department", b =>
@@ -673,6 +832,15 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.People.Officer", b =>
                 {
                     b.Navigation("Reports");
+                });
+
+            modelBuilder.Entity("API.Models.People.Person", b =>
+                {
+                    b.Navigation("SuspectAccounts");
+
+                    b.Navigation("VictimAccounts");
+
+                    b.Navigation("WitnessAccounts");
                 });
 
             modelBuilder.Entity("API.Models.Priority", b =>

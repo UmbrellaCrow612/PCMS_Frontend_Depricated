@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -242,6 +242,30 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CasePerson",
+                columns: table => new
+                {
+                    CasesId = table.Column<string>(type: "TEXT", nullable: false),
+                    PeopleId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CasePerson", x => new { x.CasesId, x.PeopleId });
+                    table.ForeignKey(
+                        name: "FK_CasePerson_Cases_CasesId",
+                        column: x => x.CasesId,
+                        principalTable: "Cases",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CasePerson_Persons_PeopleId",
+                        column: x => x.PeopleId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Evidence",
                 columns: table => new
                 {
@@ -291,6 +315,81 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SuspectAccounts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    PersonId = table.Column<string>(type: "TEXT", nullable: false),
+                    CaseId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SuspectAccounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SuspectAccounts_Cases_CaseId",
+                        column: x => x.CaseId,
+                        principalTable: "Cases",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SuspectAccounts_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VictimAccounts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    PersonId = table.Column<string>(type: "TEXT", nullable: false),
+                    CaseId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VictimAccounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VictimAccounts_Cases_CaseId",
+                        column: x => x.CaseId,
+                        principalTable: "Cases",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VictimAccounts_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WitnessAccounts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    PersonId = table.Column<string>(type: "TEXT", nullable: false),
+                    CaseId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WitnessAccounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WitnessAccounts_Cases_CaseId",
+                        column: x => x.CaseId,
+                        principalTable: "Cases",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WitnessAccounts_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reports",
                 columns: table => new
                 {
@@ -328,6 +427,11 @@ namespace API.Migrations
                 name: "IX_CaseOfficer_OfficersId",
                 table: "CaseOfficer",
                 column: "OfficersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CasePerson_PeopleId",
+                table: "CasePerson",
+                column: "PeopleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cases_DepartmentId",
@@ -388,6 +492,36 @@ namespace API.Migrations
                 name: "IX_Reports_OfficerId",
                 table: "Reports",
                 column: "OfficerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SuspectAccounts_CaseId",
+                table: "SuspectAccounts",
+                column: "CaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SuspectAccounts_PersonId",
+                table: "SuspectAccounts",
+                column: "PersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VictimAccounts_CaseId",
+                table: "VictimAccounts",
+                column: "CaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VictimAccounts_PersonId",
+                table: "VictimAccounts",
+                column: "PersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WitnessAccounts_CaseId",
+                table: "WitnessAccounts",
+                column: "CaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WitnessAccounts_PersonId",
+                table: "WitnessAccounts",
+                column: "PersonId");
         }
 
         /// <inheritdoc />
@@ -397,34 +531,46 @@ namespace API.Migrations
                 name: "CaseOfficer");
 
             migrationBuilder.DropTable(
+                name: "CasePerson");
+
+            migrationBuilder.DropTable(
                 name: "Evidence");
 
             migrationBuilder.DropTable(
                 name: "Media");
 
             migrationBuilder.DropTable(
-                name: "Persons");
-
-            migrationBuilder.DropTable(
                 name: "Reports");
 
             migrationBuilder.DropTable(
-                name: "Cases");
+                name: "SuspectAccounts");
+
+            migrationBuilder.DropTable(
+                name: "VictimAccounts");
+
+            migrationBuilder.DropTable(
+                name: "WitnessAccounts");
 
             migrationBuilder.DropTable(
                 name: "Incidents");
 
             migrationBuilder.DropTable(
-                name: "Priorities");
+                name: "Cases");
 
             migrationBuilder.DropTable(
-                name: "Statuses");
+                name: "Persons");
 
             migrationBuilder.DropTable(
                 name: "Locations");
 
             migrationBuilder.DropTable(
                 name: "Officers");
+
+            migrationBuilder.DropTable(
+                name: "Priorities");
+
+            migrationBuilder.DropTable(
+                name: "Statuses");
 
             migrationBuilder.DropTable(
                 name: "Departments");

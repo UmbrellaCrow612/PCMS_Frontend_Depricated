@@ -1,4 +1,5 @@
-﻿using API.Models.People;
+﻿using API.Models.Accounts;
+using API.Models.People;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Models
@@ -26,6 +27,14 @@ namespace API.Models
         public DbSet<Report> Reports { get; set; }
 
         public DbSet<Status> Statuses { get; set; }
+
+        public DbSet<SuspectAccount> SuspectAccounts { get; set; }
+
+        public DbSet<VictimAccount> VictimAccounts { get; set; }
+
+        public DbSet<WitnessAccount> WitnessAccounts { get; set; }
+
+       
 
 
     }

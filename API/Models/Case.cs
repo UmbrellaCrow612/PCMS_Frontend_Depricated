@@ -1,4 +1,5 @@
-﻿using API.Models.People;
+﻿using API.Models.Accounts;
+using API.Models.People;
 
 namespace API.Models
 {
@@ -41,13 +42,23 @@ namespace API.Models
 
         // one to many
 
-        public required ICollection<Evidence> Evidences { get; set; }
+        public ICollection<Evidence> Evidences { get; set; } = [];
 
         public ICollection<Officer> Officers { get; set; } = [];
 
         public ICollection<Media> Media { get; set; } = [];
 
         public ICollection<Report> Reports { get; set; } = [];
+
+        public ICollection<Person> People { get; set; } = [];
+
+        public ICollection<SuspectAccount> SuspectAccounts { get; set; } = [];
+
+        public ICollection<VictimAccount> VictimAccounts { get; set; } = [];
+
+        public ICollection<WitnessAccount> WitnessAccounts { get; set; } = [];
+
+
 
 
 
