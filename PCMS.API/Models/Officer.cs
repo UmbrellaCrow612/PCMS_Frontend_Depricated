@@ -13,5 +13,17 @@ namespace PCMS.API.Models
         [Required]
         public required string PasswordHash { get; set; }
 
+        [Required]
+        public required AccessLevel AccessLevel { get; set; }
+
+    }
+
+    internal enum AccessLevel
+    {
+        LevelOne,
+        LevelTwo,
+        LevelThree,
+        LevelFour,
+        LevelFive,
     }
 }
