@@ -61,5 +61,7 @@ namespace PCMS.API.Models
         [Required]
         public DateTime DateUpdated { get; set; } = DateTime.Now;
 
+        public ICollection<Case> Cases { get; set; } = [];
+
     }
 }

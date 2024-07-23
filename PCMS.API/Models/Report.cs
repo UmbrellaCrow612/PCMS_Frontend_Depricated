@@ -22,5 +22,8 @@ namespace PCMS.API.Models
         [Required]
         public required string Details { get; set; }
 
+        [Required]
+        public ICollection<Case> Cases { get; set; } = [];
+
     }
 }

@@ -16,6 +16,8 @@ namespace PCMS.API.Models
         [Required]
         public required AccessLevel AccessLevel { get; set; }
 
+        public ICollection<Case> Cases { get; set; } = [];
+
     }
 
     public enum AccessLevel

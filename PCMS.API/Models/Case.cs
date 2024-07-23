@@ -31,16 +31,13 @@ namespace PCMS.API.Models
         [Required]
         public int DepartmentID { get; set; }
 
-        [Required]
-        public required ICollection<Officer> Officers { get; set; }
+        public ICollection<Officer> Officers { get; set; } = [];
 
-        [Required]
-        public required ICollection<Incident> Incidents { get; set; }
+        public ICollection<Incident> Incidents { get; set; } = [];
 
         [Required]
         public required DateTime OpenDate { get; set; }
 
-       
         public DateTime? CloseDate { get; set; }
 
         [Required]

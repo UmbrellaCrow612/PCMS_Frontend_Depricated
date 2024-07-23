@@ -23,6 +23,6 @@ namespace PCMS.API.Models
         public required string CaseId { get; set; }
 
         [Required]
-        public required virtual Case Case { get; set; }
+        public required Case Case { get; set; }
     }
 }

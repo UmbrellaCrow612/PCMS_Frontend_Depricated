@@ -13,6 +13,6 @@ namespace PCMS.API.Models
         [Required]
         public required string Description { get; set; }
 
-        public virtual ICollection<Case> Cases { get; set; } = [];
+        public ICollection<Case> Cases { get; set; } = [];
     }
 }

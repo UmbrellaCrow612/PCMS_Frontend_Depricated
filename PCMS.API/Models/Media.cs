@@ -15,5 +15,11 @@ namespace PCMS.API.Models
 
         [Required]
         public DateTime UploadedAt { get; set; }
+
+        [Required]
+        public required string CaseId { get; set; }
+
+        [Required]
+        public required Case Case { get; set; }
     }
 }
