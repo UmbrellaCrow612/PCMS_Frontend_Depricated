@@ -1,4 +1,4 @@
-namespace PCMS.API
+namespace API
 {
     public class WeatherForecast
     {

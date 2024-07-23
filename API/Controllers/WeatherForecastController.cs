@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PCMS.API.Controllers
+namespace API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
