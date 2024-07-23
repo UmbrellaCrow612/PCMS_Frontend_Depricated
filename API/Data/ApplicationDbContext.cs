@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PCMS.API.Models;
 
-namespace PCMS.API.Data
+namespace API.Models
 {
     public class ApplicationDbContext : DbContext
     {

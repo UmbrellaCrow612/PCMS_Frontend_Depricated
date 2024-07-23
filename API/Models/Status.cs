@@ -1,4 +1,4 @@
-﻿namespace PCMS.API.Models
+﻿namespace API.Models
 {
     public class Status
     {
