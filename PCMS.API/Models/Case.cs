@@ -23,10 +23,10 @@ namespace PCMS.API.Models
         public required Department Department { get; set; }
 
         [Required]
-        public required List<Officer> Officers { get; set; }
+        public required ICollection<Officer> Officers { get; set; }
 
         [Required]
-        public required List<Incident> Incidents { get; set; }
+        public required ICollection<Incident> Incidents { get; set; }
 
         [Required]
         public required DateTime OpenDate { get; set; }
@@ -42,11 +42,11 @@ namespace PCMS.API.Models
 
         public string? CaseNotes { get; set; }
 
-        public List<Person> Suspects { get; set; } = [];
+        public ICollection<Person> Suspects { get; set; } = [];
 
-        public List<Person> Witnesses { get; set; } = [];
+        public ICollection<Person> Witnesses { get; set; } = [];
 
-        public List<Person> Victims { get; set; } = [];
+        public ICollection<Person> Victims { get; set; } = [];
 
 
         [Required]
@@ -58,9 +58,9 @@ namespace PCMS.API.Models
         [Required]
         public required string CaseType { get; set; }
 
-        public List<Media> Media { get; set; } = [];
+        public ICollection<Media> Media { get; set; } = [];
 
-        public List<Report> Reports { get; set; } = [];
+        public ICollection<Report> Reports { get; set; } = [];
         private static string GenerateCaseNumber()
         {
             throw new NotImplementedException();
