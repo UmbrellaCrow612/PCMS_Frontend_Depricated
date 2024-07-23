@@ -1,16 +1,25 @@
-﻿namespace PCMS.API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PCMS.API.Models
 {
-    internal class Priority
+    public class Priority
     {
+        [Required]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
+        [Required]
         public required string Name { get; set; }
 
+        [Required]
         public required string Description { get; set; }
 
+        [Required]
         public required string ColorCode { get; set; }
 
+        [Required]
         public required int NumericValue { get; set; }
+
+        public virtual ICollection<Case> Cases { get; set; } = [];
 
 
     }

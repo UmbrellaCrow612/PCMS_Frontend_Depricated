@@ -2,7 +2,7 @@
 
 namespace PCMS.API.Models
 {
-    internal class Media
+    public class Media
     {
         [Required]
         public string Id { get; set; } = Guid.NewGuid().ToString();

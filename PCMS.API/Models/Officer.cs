@@ -2,7 +2,7 @@
 
 namespace PCMS.API.Models
 {
-    internal class Officer : Person
+    public class Officer : Person
     {
         [Required]
         public required string BadgeNumber { get; set; }
@@ -18,7 +18,7 @@ namespace PCMS.API.Models
 
     }
 
-    internal enum AccessLevel
+    public enum AccessLevel
     {
         LevelOne,
         LevelTwo,

@@ -2,7 +2,7 @@
 
 namespace PCMS.API.Models
 {
-    internal class Case
+    public class Case
     {
         [Required]
         public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -14,10 +14,16 @@ namespace PCMS.API.Models
         public required Status Status { get; set; }
 
         [Required]
+        public required string StatusId { get; set; }
+
+        [Required]
         public required Priority Priority { get; set; }
 
         [Required]
-        public required List<Evidence> Evidences { get; set; }
+        public required string PriorityId { get; set; }
+
+        [Required]
+        public required ICollection<Evidence> Evidences { get; set; }
 
         [Required]
         public required Department Department { get; set; }

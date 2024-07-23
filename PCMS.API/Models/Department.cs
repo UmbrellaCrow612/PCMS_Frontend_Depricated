@@ -2,7 +2,7 @@
 
 namespace PCMS.API.Models
 {
-    internal class Department
+    public class Department
     {
         [Required]
         public string Id { get; set; } = Guid.NewGuid().ToString();

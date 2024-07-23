@@ -2,7 +2,7 @@
 
 namespace PCMS.API.Models
 {
-    internal class Location
+    public class Location
     {
         [Required]
         public string Id { get; set; } = Guid.NewGuid().ToString();
