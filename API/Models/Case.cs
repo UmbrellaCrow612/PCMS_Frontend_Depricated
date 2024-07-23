@@ -37,7 +37,7 @@
 
         public required Department Department { get; set; }
 
-        public int DepartmentId { get; set; }
+        public int DepartmentID { get; set; }
 
 
         // one to many
