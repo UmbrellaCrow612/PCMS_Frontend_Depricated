@@ -31,8 +31,8 @@ namespace PCMS.API.Models
         [Required]
         public required DateTime OpenDate { get; set; }
 
-        [Required]
-        public required DateTime CloseDate { get; set; }
+       
+        public DateTime? CloseDate { get; set; }
 
         [Required]
         public DateTime DateCreated { get; set; } = DateTime.Now;
