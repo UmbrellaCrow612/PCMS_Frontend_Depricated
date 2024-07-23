@@ -1,29 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace PCMS.API.Models
+﻿namespace PCMS.API.Models
 {
     public class Report
     {
-        [Required]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        [Required]
-        public required string CaseNUm { get; set; }
+        public required string CaseId { get; set; }
 
-        [Required]
-        public required DateTime DateCreated { get; set; }
+        public required Case Case { get; set; }
 
-        [Required]
-        public required string Officer { get; set; }
+        public DateTime DateCreated { get; set; }
 
-        [Required]
-        public required string Inci { get; set; }
+        public required string OfficerId { get; set; }
 
-        [Required]
+        public required Officer Officer { get; set; }
+
+        public required string IncidentId { get; set; }
+
+        public required Incident Incident { get; set; }
+
         public required string Details { get; set; }
-
-        [Required]
-        public ICollection<Case> Cases { get; set; } = [];
 
     }
 }
