@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.Models.People;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models
 {
@@ -8,23 +9,23 @@ namespace API.Models
 
         public DbSet<Department> Departments { get; set; }
 
-        public DbSet<Evidence> Evidences { get; set; }
+        public DbSet<Evidence> Evidence { get; set; }
 
         public DbSet<Incident> Incidents { get; set; }
 
         public DbSet<Location> Locations { get; set; }
 
-        public DbSet<Media> Medias { get; set; }
+        public DbSet<Media> Media { get; set; }
 
         public DbSet<Officer> Officers { get; set; }
 
         public DbSet<Person> Persons { get; set; }
 
-        public DbSet<Priority> Prioritys { get; set; }
+        public DbSet<Priority> Priorities { get; set; }
 
         public DbSet<Report> Reports { get; set; }
 
-        public DbSet<Status> Statuss { get; set; }
+        public DbSet<Status> Statuses { get; set; }
 
 
     }

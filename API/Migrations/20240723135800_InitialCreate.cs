@@ -78,7 +78,7 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Prioritys",
+                name: "Priorities",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
@@ -89,11 +89,11 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Prioritys", x => x.Id);
+                    table.PrimaryKey("PK_Priorities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Statuss",
+                name: "Statuses",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
@@ -102,7 +102,7 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Statuss", x => x.Id);
+                    table.PrimaryKey("PK_Statuses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,6 +110,11 @@ namespace API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
+                    BadgeNumber = table.Column<string>(type: "TEXT", nullable: false),
+                    Username = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
+                    AccessLevel = table.Column<int>(type: "INTEGER", nullable: false),
+                    DepartmentId = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     MiddleName = table.Column<string>(type: "TEXT", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
@@ -129,12 +134,7 @@ namespace API.Migrations
                     DriversLicenseNumber = table.Column<string>(type: "TEXT", nullable: true),
                     NationalInsuranceNumber = table.Column<string>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    DateUpdated = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    BadgeNumber = table.Column<string>(type: "TEXT", nullable: false),
-                    Username = table.Column<string>(type: "TEXT", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
-                    AccessLevel = table.Column<int>(type: "INTEGER", nullable: false),
-                    DepartmentId = table.Column<string>(type: "TEXT", nullable: false)
+                    DateUpdated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -174,15 +174,15 @@ namespace API.Migrations
                         principalTable: "Departments",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Cases_Prioritys_PriorityId",
+                        name: "FK_Cases_Priorities_PriorityId",
                         column: x => x.PriorityId,
-                        principalTable: "Prioritys",
+                        principalTable: "Priorities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Cases_Statuss_StatusId",
+                        name: "FK_Cases_Statuses_StatusId",
                         column: x => x.StatusId,
-                        principalTable: "Statuss",
+                        principalTable: "Statuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -242,7 +242,7 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Evidences",
+                name: "Evidence",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
@@ -254,15 +254,15 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Evidences", x => x.Id);
+                    table.PrimaryKey("PK_Evidence", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Evidences_Cases_CaseId",
+                        name: "FK_Evidence_Cases_CaseId",
                         column: x => x.CaseId,
                         principalTable: "Cases",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Evidences_Locations_LocationId",
+                        name: "FK_Evidence_Locations_LocationId",
                         column: x => x.LocationId,
                         principalTable: "Locations",
                         principalColumn: "Id",
@@ -270,7 +270,7 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Medias",
+                name: "Media",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
@@ -281,9 +281,9 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Medias", x => x.Id);
+                    table.PrimaryKey("PK_Media", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Medias_Cases_CaseId",
+                        name: "FK_Media_Cases_CaseId",
                         column: x => x.CaseId,
                         principalTable: "Cases",
                         principalColumn: "Id",
@@ -345,13 +345,13 @@ namespace API.Migrations
                 column: "StatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Evidences_CaseId",
-                table: "Evidences",
+                name: "IX_Evidence_CaseId",
+                table: "Evidence",
                 column: "CaseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Evidences_LocationId",
-                table: "Evidences",
+                name: "IX_Evidence_LocationId",
+                table: "Evidence",
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
@@ -365,8 +365,8 @@ namespace API.Migrations
                 column: "OfficerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Medias_CaseId",
-                table: "Medias",
+                name: "IX_Media_CaseId",
+                table: "Media",
                 column: "CaseId");
 
             migrationBuilder.CreateIndex(
@@ -397,10 +397,10 @@ namespace API.Migrations
                 name: "CaseOfficer");
 
             migrationBuilder.DropTable(
-                name: "Evidences");
+                name: "Evidence");
 
             migrationBuilder.DropTable(
-                name: "Medias");
+                name: "Media");
 
             migrationBuilder.DropTable(
                 name: "Persons");
@@ -415,10 +415,10 @@ namespace API.Migrations
                 name: "Incidents");
 
             migrationBuilder.DropTable(
-                name: "Prioritys");
+                name: "Priorities");
 
             migrationBuilder.DropTable(
-                name: "Statuss");
+                name: "Statuses");
 
             migrationBuilder.DropTable(
                 name: "Locations");

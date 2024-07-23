@@ -128,7 +128,7 @@ namespace API.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Evidences");
+                    b.ToTable("Evidence");
                 });
 
             modelBuilder.Entity("API.Models.Incident", b =>
@@ -240,10 +240,10 @@ namespace API.Migrations
 
                     b.HasIndex("CaseId");
 
-                    b.ToTable("Medias");
+                    b.ToTable("Media");
                 });
 
-            modelBuilder.Entity("API.Models.Officer", b =>
+            modelBuilder.Entity("API.Models.People.Officer", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -344,7 +344,7 @@ namespace API.Migrations
                     b.ToTable("Officers");
                 });
 
-            modelBuilder.Entity("API.Models.Person", b =>
+            modelBuilder.Entity("API.Models.People.Person", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -446,7 +446,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Prioritys");
+                    b.ToTable("Priorities");
                 });
 
             modelBuilder.Entity("API.Models.Report", b =>
@@ -499,7 +499,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Statuss");
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("CaseOfficer", b =>
@@ -569,7 +569,7 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Models.Officer", "Officer")
+                    b.HasOne("API.Models.People.Officer", "Officer")
                         .WithMany()
                         .HasForeignKey("OfficerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -591,7 +591,7 @@ namespace API.Migrations
                     b.Navigation("Case");
                 });
 
-            modelBuilder.Entity("API.Models.Officer", b =>
+            modelBuilder.Entity("API.Models.People.Officer", b =>
                 {
                     b.HasOne("API.Models.Department", "Department")
                         .WithMany("Officers")
@@ -616,7 +616,7 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Models.Officer", "Officer")
+                    b.HasOne("API.Models.People.Officer", "Officer")
                         .WithMany("Reports")
                         .HasForeignKey("OfficerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -637,7 +637,7 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Models.Officer", null)
+                    b.HasOne("API.Models.People.Officer", null)
                         .WithMany()
                         .HasForeignKey("OfficersId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -667,7 +667,7 @@ namespace API.Migrations
                     b.Navigation("Incidents");
                 });
 
-            modelBuilder.Entity("API.Models.Officer", b =>
+            modelBuilder.Entity("API.Models.People.Officer", b =>
                 {
                     b.Navigation("Reports");
                 });

@@ -1,4 +1,6 @@
-﻿namespace API.Models
+﻿using API.Models.People;
+
+namespace API.Models
 {
     public class Report
     {
