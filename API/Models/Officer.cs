@@ -1,6 +1,6 @@
 ﻿namespace API.Models
 {
-    public class Officer : Person
+    public class Officer
     {
         public required string BadgeNumber { get; set; }
 
@@ -14,9 +14,9 @@
 
         public required Department Department { get; set; }
 
-        public ICollection<Case> AssignedCases { get; set; } = [];
+        public ICollection<Case> Cases { get; set; } = [];
 
-        public required ICollection<Incident> Incidents { get; set; } = [];
+        public required ICollection<Report> Reports { get; set; } = [];
 
     }
 
