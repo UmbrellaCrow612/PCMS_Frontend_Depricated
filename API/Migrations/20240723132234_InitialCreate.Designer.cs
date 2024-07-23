@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240723131146_InitialCreate")]
+    [Migration("20240723132234_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -44,9 +44,6 @@ namespace API.Migrations
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("DepartmentID")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("DepartmentId")
                         .HasColumnType("TEXT");

@@ -163,8 +163,7 @@ namespace API.Migrations
                     DateUpdated = table.Column<DateTime>(type: "TEXT", nullable: false),
                     StatusId = table.Column<string>(type: "TEXT", nullable: false),
                     PriorityId = table.Column<string>(type: "TEXT", nullable: false),
-                    DepartmentId = table.Column<string>(type: "TEXT", nullable: true),
-                    DepartmentID = table.Column<int>(type: "INTEGER", nullable: false)
+                    DepartmentId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

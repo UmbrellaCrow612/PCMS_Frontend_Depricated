@@ -30,15 +30,12 @@
         public required Status Status { get; set; }
 
         public required string StatusId { get; set; }
-
+        
         public required Priority Priority { get; set; }
 
         public required string PriorityId { get; set; }
 
         public required Department Department { get; set; }
-
-        public int DepartmentID { get; set; }
-
 
         // one to many
 
