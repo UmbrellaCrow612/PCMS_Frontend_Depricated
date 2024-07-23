@@ -17,6 +17,9 @@ namespace PCMS.API.Models
         public required string Description { get; set; }
 
         [Required]
+        public required string LocationId { get; set; }
+
+        [Required]
         public required Location Location { get; set; }
 
         [Required]
@@ -24,5 +27,6 @@ namespace PCMS.API.Models
 
         [Required]
         public required Case Case { get; set; }
+
     }
 }

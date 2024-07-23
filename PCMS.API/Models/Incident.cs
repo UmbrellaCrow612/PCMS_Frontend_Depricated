@@ -17,7 +17,13 @@ namespace PCMS.API.Models
         public required DateTime OccurrenceDate { get; set; }
 
         [Required]
-        public required string ReportingOfficer { get; set; }
+        public required string OfficerId { get; set; }
+
+        [Required]
+        public required Officer Officer { get; set; }
+
+        [Required]
+        public required string LocationId { get; set; }
 
         [Required]
         public required Location Location { get; set; }

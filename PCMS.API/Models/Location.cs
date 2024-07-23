@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Extensions.Hosting;
+using System.ComponentModel.DataAnnotations;
 
 namespace PCMS.API.Models
 {
@@ -36,6 +37,10 @@ namespace PCMS.API.Models
 
         [Required]
         public required double Longitude { get; set; }
+
+        public ICollection<Evidence> Evidences { get; set; } = [];
+
+        public ICollection<Incident> Incidents { get; set; } = [];
 
     }
 }
