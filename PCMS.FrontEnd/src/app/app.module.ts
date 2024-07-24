@@ -22,7 +22,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HomePageComponent } from './views/home/home-page.component';
 import { NotFoundPageComponent } from './views/not-found/not-found-page.component';
 import { DashboardPageComponent } from './views/dashboard/dashboard-page.component';
-import { CasesPageComponent } from './views/dashboard/cases/cases-page.component';
 import { DashboardHomePageComponent } from './views/dashboard/home/dashboard-home-page.component';
 
 @NgModule({
@@ -33,7 +32,6 @@ import { DashboardHomePageComponent } from './views/dashboard/home/dashboard-hom
     HomePageComponent,
     NotFoundPageComponent,
     DashboardPageComponent,
-    CasesPageComponent,
     DashboardHomePageComponent,
   ],
   imports: [
