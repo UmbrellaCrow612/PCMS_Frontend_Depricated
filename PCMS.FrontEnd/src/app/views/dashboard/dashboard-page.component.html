@@ -1,5 +1,9 @@
-<p>dashboard-page works!</p>
-<div>
-    child
+<mat-drawer-container class="main">
+  <mat-drawer mode="side" opened>
+    <a mat-stroked-button routerLink="/dashboard">Home</a>
+    <a mat-stroked-button routerLink="/dashboard/cases">cases</a>
+  </mat-drawer>
+  <mat-drawer-content class="page_container">
     <router-outlet />
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

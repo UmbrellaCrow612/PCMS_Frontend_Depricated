@@ -6,6 +6,7 @@ import { HomePageComponent } from './views/home/home-page.component';
 import { NotFoundPageComponent } from './views/not-found/not-found-page.component';
 import { DashboardPageComponent } from './views/dashboard/dashboard-page.component';
 import { CasesPageComponent } from './views/dashboard/cases/cases-page.component';
+import { DashboardHomePageComponent } from './views/dashboard/home/dashboard-home-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -14,6 +15,10 @@ const routes: Routes = [
     title: 'PCMS - Dashboard',
     component: DashboardPageComponent,
     children: [
+      {
+        path: '',
+        component: DashboardHomePageComponent,
+      },
       {
         path: 'cases',
         component: CasesPageComponent,
