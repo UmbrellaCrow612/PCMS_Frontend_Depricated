@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
+
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -21,7 +22,7 @@ export class LoginPageComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.warn(this.loginForm.value);
+      console.log(this.loginForm.value);
     }
   }
 }
