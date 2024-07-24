@@ -11,11 +11,13 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   {
     path: 'dashboard',
+    title: 'PCMS - Dashboard',
     component: DashboardPageComponent,
     children: [
       {
         path: 'cases',
         component: CasesPageComponent,
+        title: 'PCMS - Dashboard - Cases',
       },
     ],
   },
