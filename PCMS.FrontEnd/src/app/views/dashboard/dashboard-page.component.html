@@ -1,7 +1,16 @@
 <mat-drawer-container class="main">
-  <mat-drawer mode="side" opened>
-    <a mat-stroked-button routerLink="/dashboard">Home</a>
-    <a mat-stroked-button routerLink="/dashboard/cases">cases</a>
+  <mat-drawer mode="side" [opened]="isSideNavOpen">
+    <div class="side_nav_container">
+      <div class="side_nav_toggle">
+        <button
+          mat-icon-button
+          aria-label="Toggle Side Nav"
+          (click)="toggleSideNav()"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </div>
+    </div>
   </mat-drawer>
   <mat-drawer-content class="page_container">
     <router-outlet />
