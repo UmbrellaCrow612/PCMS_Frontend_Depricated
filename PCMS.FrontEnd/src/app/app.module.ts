@@ -3,9 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { SearchCasesPageComponent } from './search-cases-page/search-cases-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+import { LoginPageComponent } from './views/login/login-page.component';
+import { SearchCasesPageComponent } from './views/search/search-cases-page.component';
+import { DashBoardPageComponent } from './views/dashboard/dash-board-page.component';
+import { DashBoardLayoutComponent } from './views/dashboard/dash-board-layout/dash-board-layout.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -16,9 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { DashBoardPageComponent } from './dash-board-page/dash-board-page.component';
-import { DashBoardLayoutComponent } from './dash-board-page/dash-board-layout/dash-board-layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 @NgModule({
   declarations: [

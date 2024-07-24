@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { SearchCasesPageComponent } from './search-cases-page/search-cases-page.component';
-import { DashBoardPageComponent } from './dash-board-page/dash-board-page.component';
+import { LoginPageComponent } from './views/login/login-page.component';
+import { SearchCasesPageComponent } from './views/search/search-cases-page.component';
+import { DashBoardPageComponent } from './views/dashboard/dash-board-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent, title: 'PCMS - Login' },
