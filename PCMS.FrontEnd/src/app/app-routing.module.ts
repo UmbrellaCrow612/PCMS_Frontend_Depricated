@@ -4,9 +4,21 @@ import { LoginPageComponent } from './views/login/login-page.component';
 import { SearchCasesPageComponent } from './views/search/search-cases-page.component';
 import { HomePageComponent } from './views/home/home-page.component';
 import { NotFoundPageComponent } from './views/not-found/not-found-page.component';
+import { DashboardPageComponent } from './views/dashboard/dashboard-page.component';
+import { CasesPageComponent } from './views/dashboard/cases/cases-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
+  {
+    path: 'dashboard',
+    component: DashboardPageComponent,
+    children: [
+      {
+        path: 'cases',
+        component: CasesPageComponent,
+      },
+    ],
+  },
   { path: 'login', component: LoginPageComponent, title: 'PCMS - Login' },
   {
     path: 'search',

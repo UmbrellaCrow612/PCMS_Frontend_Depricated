@@ -21,6 +21,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HomePageComponent } from './views/home/home-page.component';
 import { NotFoundPageComponent } from './views/not-found/not-found-page.component';
+import { DashboardPageComponent } from './views/dashboard/dashboard-page.component';
+import { CasesPageComponent } from './views/dashboard/cases/cases-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { NotFoundPageComponent } from './views/not-found/not-found-page.componen
     SearchCasesPageComponent,
     HomePageComponent,
     NotFoundPageComponent,
+    DashboardPageComponent,
+    CasesPageComponent,
   ],
   imports: [
     BrowserModule,
