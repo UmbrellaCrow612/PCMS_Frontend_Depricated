@@ -19,12 +19,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { HomePageComponent } from './views/home/home-page.component';
+import { NotFoundPageComponent } from './views/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     SearchCasesPageComponent,
+    HomePageComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
