@@ -13,6 +13,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   isSideNavOpen = true;
   destroyed = new Subject<void>();
   drawerMode: MatDrawerMode = 'side';
+  isLoading = true;
 
   constructor(breakpointObserver: BreakpointObserver) {
     breakpointObserver
@@ -29,6 +30,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setSideNavPrefOption();
+    this.loadDashboardData();
   }
 
   ngOnDestroy() {
@@ -49,5 +51,11 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   toggleSideNav() {
     this.isSideNavOpen = !this.isSideNavOpen;
     localStorage.setItem('sideNavOpenPref', this.isSideNavOpen.toString());
+  }
+
+  loadDashboardData() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
   }
 }
