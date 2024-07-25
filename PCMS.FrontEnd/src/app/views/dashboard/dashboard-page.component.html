@@ -23,9 +23,21 @@
 
       <span class="example_spacer"></span>
 
-      <button mat-icon-button aria-label="Profile">
+      <button
+        mat-icon-button
+        aria-label="Profile"
+        [matMenuTriggerFor]="profileMenu"
+      >
         <mat-icon>account_circle</mat-icon>
       </button>
+      <mat-menu #profileMenu="matMenu">
+        <ng-template matMenuContent>
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+          </button>
+        </ng-template>
+      </mat-menu>
     </mat-toolbar>
     <div class="page_content">
       <router-outlet></router-outlet>
