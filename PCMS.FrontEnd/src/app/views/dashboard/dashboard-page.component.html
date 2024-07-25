@@ -1,20 +1,12 @@
-<mat-drawer-container class="main">
-  <mat-drawer mode="side" [opened]="isSideNavOpen" class="mat_drawer">
-    <button
-      mat-icon-button
-      aria-label="Toggle Side Nav"
-      (click)="toggleSideNav()"
-    >
-      <mat-icon>chevron_left</mat-icon>
-    </button>
+<mat-drawer-container class="main" (backdropClick)="toggleSideNav()">
+  <mat-drawer [mode]="drawerMode" [opened]="isSideNavOpen" class="mat_drawer">
+    content
   </mat-drawer>
   <mat-drawer-content class="mat_drawer_content">
     <mat-toolbar class="mat_toolbar">
-      @if (!isSideNavOpen) {
       <button mat-icon-button aria-label="Menu icon" (click)="toggleSideNav()">
         <mat-icon>menu</mat-icon>
       </button>
-      }
 
       <span>PMCS - Dashboard</span>
 
