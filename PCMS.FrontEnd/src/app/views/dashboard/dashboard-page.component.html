@@ -1,6 +1,17 @@
 <mat-drawer-container class="main" (backdropClick)="toggleSideNav()">
   <mat-drawer [mode]="drawerMode" [opened]="isSideNavOpen" class="mat_drawer">
-    content
+    <div class="mat_drawer_side">
+      @if (drawerMode == "over") {
+      <button
+        mat-icon-button
+        aria-label="Close drawer"
+        (click)="toggleSideNav()"
+        type="button"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+    </div>
   </mat-drawer>
   <mat-drawer-content class="mat_drawer_content">
     <mat-toolbar class="mat_toolbar">

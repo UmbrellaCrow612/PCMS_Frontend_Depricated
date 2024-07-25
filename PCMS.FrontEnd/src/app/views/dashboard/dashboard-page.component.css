@@ -8,9 +8,17 @@
 
 .mat_drawer {
   width: 18em;
+}
+
+.mat_drawer_side {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding: 1em;
 }
 
 .mat_drawer_content {
