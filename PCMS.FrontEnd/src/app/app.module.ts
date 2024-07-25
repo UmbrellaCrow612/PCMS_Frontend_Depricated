@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,21 +14,6 @@ import { HomePageComponent } from './views/home/home-page.component';
 import { NotFoundPageComponent } from './views/not-found/not-found-page.component';
 import { DashboardPageComponent } from './views/dashboard/dashboard-page.component';
 import { DashboardHomePageComponent } from './views/dashboard/home/dashboard-home-page.component';
-
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -41,20 +28,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     ReactiveFormsModule,
-    MatCardModule,
-    MatIconModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatAutocompleteModule,
-    MatSidenavModule,
-    MatExpansionModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
+    MaterialModule,
   ],
   providers: [provideAnimationsAsync(), provideHttpClient(withFetch())],
   bootstrap: [AppComponent],
