@@ -1,3 +1,7 @@
-<div>
-    lorem
+@if (isLoading) {
+<div class="main_loading">
+  <mat-spinner></mat-spinner>
 </div>
+} @else {
+<div class="main_loading">page content with data</div>
+}
