@@ -21,6 +21,9 @@ export class DashboardHomePageComponent implements OnInit, OnDestroy {
         if (result.matches) {
           this.cols = 1;
           this.rowHeight = '27em';
+        } else {
+          this.cols = 3;
+          this.rowHeight = '25em';
         }
       });
   }
