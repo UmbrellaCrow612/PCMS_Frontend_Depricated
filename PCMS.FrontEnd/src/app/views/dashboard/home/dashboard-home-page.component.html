@@ -4,21 +4,35 @@
 </div>
 } @else {
 <div class="main">
-  <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
-    <mat-grid-tile>Active cases</mat-grid-tile>
-    <mat-grid-tile>Pending Cases</mat-grid-tile>
-    <mat-grid-tile> Case Breakdown: Pie or bar distribution</mat-grid-tile>
-    <mat-grid-tile>
-      Urgent Alerts: Display urgent alerts or high-priority cases
-    </mat-grid-tile>
-    <mat-grid-tile>
+  <div class="grid_container">
+    <div>Active cases</div>
+    <div>Pending Cases</div>
+    <div class="chart_container">
+      <p>Cases by status</p>
+
+      <!-- Show data for past 30 day period cases and there status -->
+      <ngx-charts-pie-chart
+        [scheme]="colorScheme"
+        [results]="statusCaseResults"
+        [gradient]="gradient"
+        [legend]="showLegend"
+        [legendPosition]="legendPosition"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+        [legendTitle]="legendTitle"
+        [explodeSlices]="explodeSlices"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+    <div>Urgent Alerts: Display urgent alerts or high-priority cases</div>
+    <div>
       Recent Activity: Show recent activities such as new case entries, updates
       to cases, and officer assignments.
-    </mat-grid-tile>
-    <mat-grid-tile>
+    </div>
+    <div>
       Latest News/Updates: Display relevant news or updates related to law
       enforcement or internal announcements.
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
 </div>
 }
