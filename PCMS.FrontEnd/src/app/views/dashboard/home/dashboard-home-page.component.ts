@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Color, LegendPosition, ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
@@ -8,17 +7,104 @@ import { Color, LegendPosition, ScaleType } from '@swimlane/ngx-charts';
   styleUrl: './dashboard-home-page.component.css',
 })
 export class DashboardHomePageComponent implements OnInit {
-  isLoading = true;
-  rowHeight: string | number = '25em';
+  isPageLoading = true;
 
-  view: [number, number] = [300, 300];
-  colorScheme: Color = {
+  multi: any[] = [
+    {
+      name: 'Germany',
+      series: [
+        {
+          name: '1990',
+          value: 62000000,
+        },
+        {
+          name: '2010',
+          value: 73000000,
+        },
+        {
+          name: '2011',
+          value: 89400000,
+        },
+      ],
+    },
+
+    {
+      name: 'USA',
+      series: [
+        {
+          name: '1990',
+          value: 250000000,
+        },
+        {
+          name: '2010',
+          value: 309000000,
+        },
+        {
+          name: '2011',
+          value: 311000000,
+        },
+      ],
+    },
+
+    {
+      name: 'France',
+      series: [
+        {
+          name: '1990',
+          value: 58000000,
+        },
+        {
+          name: '2010',
+          value: 50000020,
+        },
+        {
+          name: '2011',
+          value: 58000000,
+        },
+      ],
+    },
+    {
+      name: 'UK',
+      series: [
+        {
+          name: '1990',
+          value: 57000000,
+        },
+        {
+          name: '2010',
+          value: 62000000,
+        },
+      ],
+    },
+  ];
+  view: any[] = [700, 300];
+
+  // options
+  legend: boolean = false;
+  showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showYAxisLabel: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Year';
+  yAxisLabel: string = 'Population';
+  timeline: boolean = true;
+
+  colorScheme = {
     name: 'status',
     selectable: true,
     group: ScaleType.Linear,
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
-  statusCaseResults: any = [
+
+  CaseStatusColorScheme: Color = {
+    name: 'status',
+    selectable: true,
+    group: ScaleType.Linear,
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
+  };
+  CaseStatusResults: any = [
     {
       name: 'Open',
       value: 120,
@@ -36,19 +122,19 @@ export class DashboardHomePageComponent implements OnInit {
       value: 60,
     },
   ];
-  gradient: boolean = true;
-  showLegend: boolean = true;
-  showLabels: boolean = true;
-  isDoughnut: boolean = true;
-  explodeSlices: boolean = false;
-  legendPosition: LegendPosition = LegendPosition.Right;
-  legendTitle = 'Status';
+  CaseStatusGradient: boolean = true;
+  CaseStatusShowLegend: boolean = false;
+  CaseStatusShowLabels: boolean = true;
+  CaseStatusIsDoughnut: boolean = true;
+  CaseStatusExplodeSlices: boolean = false;
+  CaseStatusLegendPosition: LegendPosition = LegendPosition.Right;
+  CaseStatusLegendTitle = 'Status';
 
   ngOnInit(): void {
     this.loadDashboardHomePageData();
   }
 
   loadDashboardHomePageData() {
-    this.isLoading = false;
+    this.isPageLoading = false;
   }
 }

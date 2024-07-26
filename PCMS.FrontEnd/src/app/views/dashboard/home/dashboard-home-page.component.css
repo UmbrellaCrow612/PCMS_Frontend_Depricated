@@ -20,6 +20,15 @@
 
 .chart_1 {
   grid-area: 1 / 1 / 2 / 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart_1 p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
 }
 
 .chart_2 {
