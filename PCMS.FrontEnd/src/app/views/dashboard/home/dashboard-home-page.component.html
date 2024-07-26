@@ -3,5 +3,22 @@
   <mat-spinner></mat-spinner>
 </div>
 } @else {
-<div class="main_loading">page content with data</div>
+<div class="main">
+  <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
+    <mat-grid-tile>Active cases</mat-grid-tile>
+    <mat-grid-tile>Pending Cases</mat-grid-tile>
+    <mat-grid-tile> Case Breakdown: Pie or bar distribution</mat-grid-tile>
+    <mat-grid-tile>
+      Urgent Alerts: Display urgent alerts or high-priority cases
+    </mat-grid-tile>
+    <mat-grid-tile>
+      Recent Activity: Show recent activities such as new case entries, updates
+      to cases, and officer assignments.
+    </mat-grid-tile>
+    <mat-grid-tile>
+      Latest News/Updates: Display relevant news or updates related to law
+      enforcement or internal announcements.
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 }
