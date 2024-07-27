@@ -58,7 +58,7 @@ namespace API.Models
 
         public ICollection<WitnessAccount> WitnessAccounts { get; set; } = [];
 
-
+        public ICollection<CaseAction> CaseActions { get; set; } = [];
 
 
 
