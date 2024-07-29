@@ -161,7 +161,7 @@ export class DashboardHomePageComponent implements OnInit {
     },
   ];
   CasePriorityShowXAxis: boolean = true;
-  CasePriorityLegendTitle:string =  "Priority"
+  CasePriorityLegendTitle: string = 'Priority';
   CasePriorityShowYAxis: boolean = true;
   CasePriorityGradient: boolean = false;
   CasePriorityShowLegend: boolean = true;
@@ -175,6 +175,45 @@ export class DashboardHomePageComponent implements OnInit {
     group: ScaleType.Linear,
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
+
+  CaseIncidentResult = [
+    {
+      name: 'Theft',
+      value: 34,
+    },
+    {
+      name: 'Burglary',
+      value: 21,
+    },
+    {
+      name: 'Robbery',
+      value: 11,
+    },
+    {
+      name: 'Assault',
+      value: 23,
+    },
+    {
+      name: 'Homicide',
+      value: 8,
+    },
+    {
+      name: 'Sexual Assault',
+      value: 44,
+    },
+  ];
+  CaseIncidentGradient: boolean = false;
+  CaseIncidentAnimations: boolean = true;
+  CaseIncidentColorScheme: Color = {
+    name: 'CaseIncident',
+    selectable: true,
+    group: ScaleType.Linear,
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5'],
+  };
+
+  CaseIncidentLabelFormatting(c: any) {
+    return `${c.label} Incidents`;
+  }
 
   ngOnInit(): void {
     this.loadDashboardHomePageData();

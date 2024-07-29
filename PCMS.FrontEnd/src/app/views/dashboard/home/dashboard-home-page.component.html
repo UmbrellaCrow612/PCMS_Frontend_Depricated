@@ -54,8 +54,17 @@
     >
     </ngx-charts-bar-horizontal>
   </div>
-  <div class="chart_4">4</div>
-  <div class="chart_5">5</div>
+  <div class="chart_4">
+    <p>Total Incidents</p>
+    <ngx-charts-tree-map
+      [scheme]="CaseIncidentColorScheme"
+      [results]="CaseIncidentResult"
+      [gradient]="CaseIncidentGradient"
+      [animations]="CaseIncidentAnimations"
+      [labelFormatting]="CaseIncidentLabelFormatting"
+    >
+    </ngx-charts-tree-map>
+  </div>
 </div>
 
 }

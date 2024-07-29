@@ -62,11 +62,14 @@
 }
 
 .chart_4 {
-  grid-area: 2 / 2 / 3 / 3;
+  grid-area: 2 / 2 / 3 / 4;
 }
 
-.chart_5 {
-  grid-area: 2 / 3 / 3 / 4;
+.chart_4 p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
 }
 
 @media (max-width: 1250px) {
