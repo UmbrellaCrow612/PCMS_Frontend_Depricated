@@ -1,4 +1,4 @@
-using System;
+using API.Models.People;
 
 namespace API.Models
 {
@@ -13,9 +13,9 @@ namespace API.Models
         public DateTime DatePerformed { get; set; } = DateTime.Now;
         
         public required string PerformedById { get; set; }
-        public Officer PerformedBy { get; set; }
+        public required Officer PerformedBy { get; set; }
         
         public required string CaseId { get; set; }
-        public Case Case { get; set; }
+        public required Officer Case { get; set; }
     }
 }
