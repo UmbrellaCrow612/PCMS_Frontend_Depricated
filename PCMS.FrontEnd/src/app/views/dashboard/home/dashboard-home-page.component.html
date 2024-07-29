@@ -8,10 +8,6 @@
   <div class="chart_1" #ChartOneContainerRef>
     <p>Case actions over time</p>
     <ngx-charts-line-chart
-      [view]="[
-        ChartOneContainerRef.offsetWidth,
-        ChartOneContainerRef.offsetHeight
-      ]"
       [scheme]="CaseActionsColorScheme"
       [legend]="CaseActionsLegend"
       [legendTitle]="CaseActionsLegendTitle"
@@ -29,10 +25,6 @@
   <div class="chart_2" #ChartTwoContainerRef>
     <p>Total Cases grouped by status</p>
     <ngx-charts-pie-chart
-      [view]="[
-        ChartTwoContainerRef.offsetWidth,
-        ChartTwoContainerRef.offsetHeight
-      ]"
       [scheme]="CaseStatusColorScheme"
       [results]="CaseStatusResults"
       [gradient]="CaseStatusGradient"
@@ -48,10 +40,6 @@
   <div class="chart_3" #ChartThreeContainerRef>
     <p>Total Cases by Priority</p>
     <ngx-charts-bar-horizontal
-      [view]="[
-        ChartThreeContainerRef.offsetWidth,
-        ChartThreeContainerRef.offsetHeight
-      ]"
       [scheme]="CasePriorityColorScheme"
       [results]="CasePriorityResults"
       [gradient]="CasePriorityGradient"
@@ -69,10 +57,6 @@
   <div class="chart_4" #ChartFourContainerRef>
     <p>Total Incidents</p>
     <ngx-charts-tree-map
-      [view]="[
-        ChartFourContainerRef.offsetWidth,
-        ChartFourContainerRef.offsetHeight
-      ]"
       [scheme]="CaseIncidentColorScheme"
       [results]="CaseIncidentResult"
       [gradient]="CaseIncidentGradient"
