@@ -6,18 +6,19 @@
 
 <div class="container">
   <div class="chart_1">
-    <p>Case status over time</p>
+    <p>Case actions over time</p>
     <ngx-charts-line-chart
-      [scheme]="colorScheme"
-      [legend]="legend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxis]="xAxis"
-      [yAxis]="yAxis"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [timeline]="timeline"
-      [results]="multi"
+      [scheme]="CaseActionsColorScheme"
+      [legend]="CaseActionsLegend"
+      [legendTitle]="CaseActionsLegendTitle"
+      [showXAxisLabel]="CaseActionsShowXAxisLabel"
+      [showYAxisLabel]="CaseActionsShowYAxisLabel"
+      [xAxis]="CaseActionsXAxis"
+      [yAxis]="CaseActionsYAxis"
+      [xAxisLabel]="CaseActionsXAxisLabel"
+      [yAxisLabel]="CaseActionsYAxisLabel"
+      [timeline]="CaseActionsTimeline"
+      [results]="CaseActionsResults"
     >
     </ngx-charts-line-chart>
   </div>

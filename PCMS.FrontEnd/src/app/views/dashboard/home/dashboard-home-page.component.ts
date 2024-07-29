@@ -9,89 +9,105 @@ import { Color, LegendPosition, ScaleType } from '@swimlane/ngx-charts';
 export class DashboardHomePageComponent implements OnInit {
   isPageLoading = true;
 
-  multi: any[] = [
+  // Amount fo actions taken on a day per case type - each one has its own line
+  CaseActionsResults: any[] = [
     {
-      name: 'Germany',
+      name: 'Open',
       series: [
         {
-          name: '1990',
-          value: 62000000,
+          name: '2024/01/01',
+          value: 3,
         },
         {
-          name: '2010',
-          value: 73000000,
+          name: '2024/01/02',
+          value: 5,
         },
         {
-          name: '2011',
-          value: 89400000,
-        },
-      ],
-    },
-
-    {
-      name: 'USA',
-      series: [
-        {
-          name: '1990',
-          value: 250000000,
+          name: '2024/01/03',
+          value: 2,
         },
         {
-          name: '2010',
-          value: 309000000,
-        },
-        {
-          name: '2011',
-          value: 311000000,
-        },
-      ],
-    },
-
-    {
-      name: 'France',
-      series: [
-        {
-          name: '1990',
-          value: 58000000,
-        },
-        {
-          name: '2010',
-          value: 50000020,
-        },
-        {
-          name: '2011',
-          value: 58000000,
+          name: '2024/01/04',
+          value: 9,
         },
       ],
     },
     {
-      name: 'UK',
+      name: 'Closed',
       series: [
         {
-          name: '1990',
-          value: 57000000,
+          name: '2024/01/01',
+          value: 0,
         },
         {
-          name: '2010',
-          value: 62000000,
+          name: '2024/01/02',
+          value: 2,
+        },
+        {
+          name: '2024/01/03',
+          value: 9,
+        },
+        {
+          name: '2024/01/04',
+          value: 1,
+        },
+      ],
+    },
+    {
+      name: 'Pending',
+      series: [
+        {
+          name: '2024/01/01',
+          value: 5,
+        },
+        {
+          name: '2024/01/02',
+          value: 14,
+        },
+        {
+          name: '2024/01/03',
+          value: 2,
+        },
+        {
+          name: '2024/01/04',
+          value: 4,
+        },
+      ],
+    },
+    {
+      name: 'UI',
+      series: [
+        {
+          name: '2024/01/01',
+          value: 12,
+        },
+        {
+          name: '2024/01/02',
+          value: 20,
+        },
+        {
+          name: '2024/01/03',
+          value: 11,
+        },
+        {
+          name: '2024/01/04',
+          value: 7,
         },
       ],
     },
   ];
-  view: any[] = [700, 300];
-
-  // options
-  legend: boolean = false;
-  showLabels: boolean = true;
-  animations: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
-  timeline: boolean = true;
-
-  colorScheme = {
+  CaseActionsLegendTitle: string = 'Case';
+  CaseActionsLegend: boolean = true;
+  CaseActionsShowLabels: boolean = true;
+  CaseActionsAnimations: boolean = true;
+  CaseActionsXAxis: boolean = true;
+  CaseActionsYAxis: boolean = true;
+  CaseActionsShowYAxisLabel: boolean = true;
+  CaseActionsShowXAxisLabel: boolean = true;
+  CaseActionsXAxisLabel: string = 'Day';
+  CaseActionsYAxisLabel: string = 'Actions';
+  CaseActionsTimeline: boolean = true;
+  CaseActionsColorScheme = {
     name: 'status',
     selectable: true,
     group: ScaleType.Linear,
@@ -123,7 +139,7 @@ export class DashboardHomePageComponent implements OnInit {
     },
   ];
   CaseStatusGradient: boolean = true;
-  CaseStatusShowLegend: boolean = false;
+  CaseStatusShowLegend: boolean = true;
   CaseStatusShowLabels: boolean = true;
   CaseStatusIsDoughnut: boolean = true;
   CaseStatusExplodeSlices: boolean = false;
