@@ -5,9 +5,13 @@
 } @else {
 
 <div class="container">
-  <div class="chart_1">
+  <div class="chart_1" #ChartOneContainerRef>
     <p>Case actions over time</p>
     <ngx-charts-line-chart
+      [view]="[
+        ChartOneContainerRef.offsetWidth,
+        ChartOneContainerRef.offsetHeight
+      ]"
       [scheme]="CaseActionsColorScheme"
       [legend]="CaseActionsLegend"
       [legendTitle]="CaseActionsLegendTitle"
@@ -22,9 +26,13 @@
     >
     </ngx-charts-line-chart>
   </div>
-  <div class="chart_2">
+  <div class="chart_2" #ChartTwoContainerRef>
     <p>Total Cases grouped by status</p>
     <ngx-charts-pie-chart
+      [view]="[
+        ChartTwoContainerRef.offsetWidth,
+        ChartTwoContainerRef.offsetHeight
+      ]"
       [scheme]="CaseStatusColorScheme"
       [results]="CaseStatusResults"
       [gradient]="CaseStatusGradient"
@@ -37,9 +45,13 @@
     >
     </ngx-charts-pie-chart>
   </div>
-  <div class="chart_3">
+  <div class="chart_3" #ChartThreeContainerRef>
     <p>Total Cases by Priority</p>
     <ngx-charts-bar-horizontal
+      [view]="[
+        ChartThreeContainerRef.offsetWidth,
+        ChartThreeContainerRef.offsetHeight
+      ]"
       [scheme]="CasePriorityColorScheme"
       [results]="CasePriorityResults"
       [gradient]="CasePriorityGradient"
@@ -54,9 +66,13 @@
     >
     </ngx-charts-bar-horizontal>
   </div>
-  <div class="chart_4">
+  <div class="chart_4" #ChartFourContainerRef>
     <p>Total Incidents</p>
     <ngx-charts-tree-map
+      [view]="[
+        ChartFourContainerRef.offsetWidth,
+        ChartFourContainerRef.offsetHeight
+      ]"
       [scheme]="CaseIncidentColorScheme"
       [results]="CaseIncidentResult"
       [gradient]="CaseIncidentGradient"
