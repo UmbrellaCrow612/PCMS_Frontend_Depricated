@@ -34,19 +34,7 @@
 .chart_2,
 .chart_3,
 .chart_4 {
-  flex-direction: column;
-  display: flex;
   overflow: hidden;
-}
-
-.chart_1 p,
-.chart_2 p,
-.chart_3 p,
-.chart_4 p {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  margin: 0;
 }
 
 @media (max-width: 1250px) {

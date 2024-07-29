@@ -6,7 +6,6 @@
 
 <div class="container">
   <div class="chart_1" #ChartOneContainerRef>
-    <p>Case actions over time</p>
     <ngx-charts-line-chart
       [view]="CaseActionsView"
       (window:resize)="
@@ -30,7 +29,6 @@
     </ngx-charts-line-chart>
   </div>
   <div class="chart_2" #ChartTwoContainerRef>
-    <p>Total Cases grouped by status</p>
     <ngx-charts-pie-chart
       [view]="CaseStatusView"
       (window:resize)="
@@ -52,7 +50,6 @@
     </ngx-charts-pie-chart>
   </div>
   <div class="chart_3" #ChartThreeContainerRef>
-    <p>Total Cases by Priority</p>
     <ngx-charts-bar-horizontal
       [view]="CasePriorityView"
       (window:resize)="
@@ -76,15 +73,14 @@
     </ngx-charts-bar-horizontal>
   </div>
   <div class="chart_4" #ChartFourContainerRef>
-    <p>Total Incidents</p>
     <ngx-charts-tree-map
       [view]="CaseIncidentView"
       (window:resize)="
-      onCaseIncidentResize(
-        ChartFourContainerRef.offsetWidth,
-        ChartFourContainerRef.offsetHeight
-      )
-    "
+        onCaseIncidentResize(
+          ChartFourContainerRef.offsetWidth,
+          ChartFourContainerRef.offsetHeight
+        )
+      "
       [scheme]="CaseIncidentColorScheme"
       [results]="CaseIncidentResult"
       [gradient]="CaseIncidentGradient"
