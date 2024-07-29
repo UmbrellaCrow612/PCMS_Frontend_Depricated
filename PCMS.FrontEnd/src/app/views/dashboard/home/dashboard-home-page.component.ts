@@ -107,12 +107,17 @@ export class DashboardHomePageComponent implements OnInit {
   CaseActionsXAxisLabel: string = 'Day';
   CaseActionsYAxisLabel: string = 'Actions';
   CaseActionsTimeline: boolean = true;
+  CaseActionsView: any = undefined; // If left undefined it will take the width and height of the parent
   CaseActionsColorScheme = {
     name: 'status',
     selectable: true,
     group: ScaleType.Linear,
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
+
+  onCaseActionsResize(width: number, height: number) {
+    this.CaseActionsView = [width, height];
+  }
 
   CaseStatusColorScheme: Color = {
     name: 'status',
@@ -143,8 +148,13 @@ export class DashboardHomePageComponent implements OnInit {
   CaseStatusShowLabels: boolean = true;
   CaseStatusIsDoughnut: boolean = true;
   CaseStatusExplodeSlices: boolean = false;
+  CaseStatusView: any = undefined;
   CaseStatusLegendPosition: LegendPosition = LegendPosition.Right;
   CaseStatusLegendTitle = 'Status';
+
+  onCaseStatusResize(width: number, height: number) {
+    this.CaseStatusView = [width, height];
+  }
 
   CasePriorityResults = [
     {
@@ -169,12 +179,17 @@ export class DashboardHomePageComponent implements OnInit {
   CasePriorityYAxisLabel: string = 'Priority';
   CasePriorityShowYAxisLabel: boolean = true;
   CasePriorityXAxisLabel: string = 'Total';
+  CasePriorityView: any = undefined;
   CasePriorityColorScheme: Color = {
     name: 'status',
     selectable: true,
     group: ScaleType.Linear,
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
+
+  onCasePriorityResize(width: number, height: number) {
+    this.CasePriorityView = [width, height];
+  }
 
   CaseIncidentResult = [
     {
@@ -204,12 +219,17 @@ export class DashboardHomePageComponent implements OnInit {
   ];
   CaseIncidentGradient: boolean = false;
   CaseIncidentAnimations: boolean = true;
+  CaseIncidentView: any = undefined;
   CaseIncidentColorScheme: Color = {
     name: 'CaseIncident',
     selectable: true,
     group: ScaleType.Linear,
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5'],
   };
+
+  onCaseIncidentResize(width: number, height: number) {
+    this.CaseIncidentView = [width, height];
+  }
 
   CaseIncidentLabelFormatting(c: any) {
     return `${c.label} Incidents`;
