@@ -18,6 +18,10 @@
   grid-auto-flow: row;
 }
 
+.container > div {
+  height: 25rem;
+}
+
 .chart_1 {
   grid-area: 1 / 1 / 2 / 3;
   display: flex;
@@ -46,6 +50,15 @@
 
 .chart_3 {
   grid-area: 2 / 1 / 3 / 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart_3 p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
 }
 
 .chart_4 {

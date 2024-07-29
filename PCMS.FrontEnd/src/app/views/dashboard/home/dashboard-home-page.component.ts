@@ -146,6 +146,36 @@ export class DashboardHomePageComponent implements OnInit {
   CaseStatusLegendPosition: LegendPosition = LegendPosition.Right;
   CaseStatusLegendTitle = 'Status';
 
+  CasePriorityResults = [
+    {
+      name: 'Low',
+      value: 23,
+    },
+    {
+      name: 'Medium',
+      value: 34,
+    },
+    {
+      name: 'High',
+      value: 11,
+    },
+  ];
+  CasePriorityShowXAxis: boolean = true;
+  CasePriorityLegendTitle:string =  "Priority"
+  CasePriorityShowYAxis: boolean = true;
+  CasePriorityGradient: boolean = false;
+  CasePriorityShowLegend: boolean = true;
+  CasePriorityShowXAxisLabel: boolean = true;
+  CasePriorityYAxisLabel: string = 'Priority';
+  CasePriorityShowYAxisLabel: boolean = true;
+  CasePriorityXAxisLabel: string = 'Total';
+  CasePriorityColorScheme: Color = {
+    name: 'status',
+    selectable: true,
+    group: ScaleType.Linear,
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
+  };
+
   ngOnInit(): void {
     this.loadDashboardHomePageData();
   }
