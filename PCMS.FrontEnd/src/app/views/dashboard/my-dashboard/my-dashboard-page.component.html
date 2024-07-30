@@ -1,13 +1,57 @@
 <div class="main">
   <div class="section-one">
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
+    <div class="active_cases_container">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Active cases: 44</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button>View</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="closed_cases_container">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Closed cases: 12</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button>View</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="pending_cases_container">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Pending cases: 12</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button>View</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="recent_activity_container">4</div>
     <div>5</div>
   </div>
   <div class="section-two">
-    <div>one</div>
-    <div>two</div>
+    <div class="chart_1" #ChartOneContainerRef>
+      <ngx-charts-pie-chart
+        [view]="CaseStatusView"
+        (window:resize)="
+        onCaseStatusResize(
+          ChartOneContainerRef.offsetWidth,
+          ChartOneContainerRef.offsetHeight
+        )
+      "
+        [scheme]="CaseStatusColorScheme"
+        [results]="CaseStatusResults"
+        [legend]="true"
+        [legendTitle]="CaseStatusLegendTitle"
+        [labels]="true"
+        [doughnut]="true"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+    <div class="chart_2">two</div>
   </div>
 </div>

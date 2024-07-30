@@ -37,6 +37,27 @@
   grid-row: 2 / span 3;
 }
 
+.active_cases_container {
+  padding: 1em;
+}
+
+.closed_cases_container {
+  padding: 1em;
+}
+
+.pending_cases_container {
+  padding: 1em;
+}
+
+.recent_activity_container{
+  padding: 1em;
+  overflow-y: scroll;
+}
+
+.chart_1{
+  overflow: hidden;
+}
+
 .section-two {
   flex: 0 0 40%;
   height: 100%;
