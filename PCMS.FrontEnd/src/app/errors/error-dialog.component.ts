@@ -5,8 +5,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   selector: 'app-error-dialog',
   template: `
     <h2 mat-dialog-title>Error</h2>
-    <mat-dialog-content>
-      <p>{{ data.error }}</p>
+    <mat-dialog-content class="mat-typography">
+      @if (data.message) { Message: {{ data.message }} <br />} @if (data.status)
+      { Status: {{ data.status }} <br />} @if(data.error){ Error:
+      {{ data.error }} <br />
+      } @if (data.stack) { Stack:
+      {{ data.stack }}
+      }
     </mat-dialog-content>
     <mat-dialog-actions>
       <button mat-button mat-dialog-close>Close</button>
@@ -14,5 +19,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   `,
 })
 export class ErrorDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { error: string }) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      message?: string;
+      status?: number;
+      error?: string;
+      stack?: string;
+    }
+  ) {}
 }
