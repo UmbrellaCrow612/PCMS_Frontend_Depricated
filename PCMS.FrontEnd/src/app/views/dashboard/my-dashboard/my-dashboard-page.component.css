@@ -40,6 +40,21 @@
 .section-two {
   flex: 0 0 40%;
   height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.section-two div {
+  grid-column: 1;
+}
+
+.section-two div:nth-child(1) {
+  grid-row: 1;
+}
+
+.section-two div:nth-child(2) {
+  grid-row: 2;
 }
 
 @media (max-width: 1250px) {
@@ -68,5 +83,13 @@
   .section-one div:nth-child(5) {
     grid-column: auto;
     grid-row: auto;
+  }
+
+  .section-two {
+    grid-template-rows: auto;
+  }
+
+  .section-two div {
+    height: auto;
   }
 }
