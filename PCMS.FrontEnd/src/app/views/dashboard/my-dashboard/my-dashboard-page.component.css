@@ -58,6 +58,10 @@
   overflow: hidden;
 }
 
+.chart_2{
+  overflow: hidden;
+}
+
 .section-two {
   flex: 0 0 40%;
   height: 100%;

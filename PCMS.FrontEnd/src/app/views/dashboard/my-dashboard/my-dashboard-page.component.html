@@ -38,11 +38,11 @@
       <ngx-charts-pie-chart
         [view]="CaseStatusView"
         (window:resize)="
-        onCaseStatusResize(
-          ChartOneContainerRef.offsetWidth,
-          ChartOneContainerRef.offsetHeight
-        )
-      "
+          onCaseStatusResize(
+            ChartOneContainerRef.offsetWidth,
+            ChartOneContainerRef.offsetHeight
+          )
+        "
         [scheme]="CaseStatusColorScheme"
         [results]="CaseStatusResults"
         [legend]="true"
@@ -52,6 +52,19 @@
       >
       </ngx-charts-pie-chart>
     </div>
-    <div class="chart_2">two</div>
+    <div class="chart_2" #ChartTwoContainerRef>
+      <ngx-charts-gauge
+        [view]="view"
+        (window:resize)="
+          onGaugeResize(
+            ChartTwoContainerRef.offsetWidth,
+            ChartTwoContainerRef.offsetHeight
+          )
+        "
+        [results]="results"
+        [legend]="true"
+      >
+      </ngx-charts-gauge>
+    </div>
   </div>
 </div>
