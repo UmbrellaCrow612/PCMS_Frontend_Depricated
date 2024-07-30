@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
 
+  _click(){
+    throw new Error('Method not implemented.');
+  }
 }

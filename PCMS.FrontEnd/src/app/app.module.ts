@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +15,9 @@ import { HomePageComponent } from './views/home/home-page.component';
 import { NotFoundPageComponent } from './views/not-found/not-found-page.component';
 import { DashboardPageComponent } from './views/dashboard/dashboard-page.component';
 import { DashboardHomePageComponent } from './views/dashboard/home/dashboard-home-page.component';
+import { ErrorDialogComponent } from './errors/error-dialog.component';
+import { GlobalErrorHandler } from './errors/global-error-handler';
+import { errorHandlerFactory } from './errors/error-handler.factory';
 
 @NgModule({
   declarations: [
@@ -25,15 +28,25 @@ import { DashboardHomePageComponent } from './views/dashboard/home/dashboard-hom
     NotFoundPageComponent,
     DashboardPageComponent,
     DashboardHomePageComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgxChartsModule
+    NgxChartsModule,
   ],
-  providers: [provideAnimationsAsync(), provideHttpClient(withFetch())],
+  providers: [
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch()),
+    GlobalErrorHandler,
+    {
+      provide: ErrorHandler,
+      useFactory: errorHandlerFactory,
+      deps: [GlobalErrorHandler]
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
