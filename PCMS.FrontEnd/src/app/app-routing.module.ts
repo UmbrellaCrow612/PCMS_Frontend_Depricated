@@ -6,6 +6,7 @@ import { HomePageComponent } from './views/home/home-page.component';
 import { NotFoundPageComponent } from './views/not-found/not-found-page.component';
 import { DashboardPageComponent } from './views/dashboard/dashboard-page.component';
 import { DashboardHomePageComponent } from './views/dashboard/home/dashboard-home-page.component';
+import { MyDashboardPageComponent } from './views/dashboard/my-dashboard/my-dashboard-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardHomePageComponent,
+      },
+      {
+        path: 'my-dashboard',
+        component: MyDashboardPageComponent,
       },
     ],
   },
