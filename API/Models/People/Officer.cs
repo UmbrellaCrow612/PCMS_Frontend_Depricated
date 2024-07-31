@@ -17,7 +17,9 @@
 
         public ICollection<Case> Cases { get; set; } = [];
 
-        public required ICollection<Report> Reports { get; set; } = [];
+        public ICollection<Report> Reports { get; set; } = [];
+
+        public ICollection<Notification> Notifications { get; set; } = [];
 
     }
 

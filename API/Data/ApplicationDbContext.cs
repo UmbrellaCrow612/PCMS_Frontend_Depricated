@@ -30,6 +30,8 @@ namespace API.Models
 
         public DbSet<WitnessAccount> WitnessAccounts { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+
        
 
 
