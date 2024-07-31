@@ -30,13 +30,12 @@ namespace API.Models
         public required CasePriority Priority { get; set; }
 
 
-
         public required Department Department { get; set; }
 
 
-        // one to many
-
         public ICollection<Evidence> Evidences { get; set; } = [];
+
+        public ICollection<CaseAction> CaseActions { get; set; } = [];
 
         public ICollection<Officer> Officers { get; set; } = [];
 
@@ -52,7 +51,6 @@ namespace API.Models
 
         public ICollection<WitnessAccount> WitnessAccounts { get; set; } = [];
 
-        public ICollection<CaseAction> CaseActions { get; set; } = [];
 
 
 

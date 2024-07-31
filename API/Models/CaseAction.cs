@@ -13,9 +13,11 @@ namespace API.Models
         public DateTime DatePerformed { get; set; } = DateTime.Now;
         
         public required string PerformedById { get; set; }
+
         public required Officer PerformedBy { get; set; }
         
         public required string CaseId { get; set; }
+
         public required Officer Case { get; set; }
     }
 
