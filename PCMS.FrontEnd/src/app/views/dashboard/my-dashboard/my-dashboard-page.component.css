@@ -51,6 +51,13 @@
 
 .recent_activity_container{
   padding: 1em;
+}
+.recent_activity{
+  height: 100%;
+}
+
+.recent_activity_overflow{
+  height: 100%;
   overflow-y: scroll;
 }
 

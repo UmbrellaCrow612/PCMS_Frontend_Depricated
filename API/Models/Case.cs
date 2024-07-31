@@ -15,7 +15,7 @@ namespace API.Models
 
         public string? CaseNotes { get; set; }
 
-        public required string CaseType { get; set; }
+        public required CaseType Type { get; set; }
 
         public required DateTime OpenDate { get; set; }
 
@@ -25,20 +25,14 @@ namespace API.Models
 
         public DateTime DateUpdated { get; set; } = DateTime.Now;
 
-
-
-
-        // Relations one to one
-
-        public required Status Status { get; set; }
-
-        public required string StatusId { get; set; }
+        public required CaseStatus Status { get; set; }
         
-        public required Priority Priority { get; set; }
+        public required CasePriority Priority { get; set; }
 
-        public required string PriorityId { get; set; }
+
 
         public required Department Department { get; set; }
+
 
         // one to many
 
@@ -65,6 +59,21 @@ namespace API.Models
         private static string GenerateCaseNumber()
         {
             throw new NotImplementedException();
+        }
+
+        public enum CaseType
+        {
+            None = 0,
+        }
+
+        public enum  CaseStatus
+        {
+            None = 0,
+        }
+
+        public enum CasePriority
+        {
+            None = 0,
         }
     }
 }

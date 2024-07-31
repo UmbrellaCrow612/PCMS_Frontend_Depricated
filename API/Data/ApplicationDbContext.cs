@@ -22,11 +22,7 @@ namespace API.Models
 
         public DbSet<Person> Persons { get; set; }
 
-        public DbSet<Priority> Priorities { get; set; }
-
         public DbSet<Report> Reports { get; set; }
-
-        public DbSet<Status> Statuses { get; set; }
 
         public DbSet<SuspectAccount> SuspectAccounts { get; set; }
 

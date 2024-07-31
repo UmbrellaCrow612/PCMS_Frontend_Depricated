@@ -6,7 +6,7 @@ namespace API.Models
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
         
-        public required string ActionType { get; set; }
+        public required ActionType ActionType { get; set; }
         
         public required string Description { get; set; }
         
@@ -17,5 +17,10 @@ namespace API.Models
         
         public required string CaseId { get; set; }
         public required Officer Case { get; set; }
+    }
+
+    public enum ActionType
+    {
+        Action,
     }
 }
