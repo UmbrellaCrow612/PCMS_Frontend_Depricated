@@ -49,23 +49,36 @@
   padding: 1em;
 }
 
-.recent_activity_container{
+.recent_activity_container {
   padding: 1em;
 }
-.recent_activity{
+.recent_activity {
   height: 100%;
 }
 
-.recent_activity_overflow{
+.recent_activity_overflow {
   height: 100%;
   overflow-y: scroll;
 }
 
-.chart_1{
+.open_cases_container {
+  padding: 1em;
+}
+
+.open_cases{
+  height: 100%;
+}
+
+.open_cases_overflow {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.chart_1 {
   overflow: hidden;
 }
 
-.chart_2{
+.chart_2 {
   overflow: hidden;
 }
 
