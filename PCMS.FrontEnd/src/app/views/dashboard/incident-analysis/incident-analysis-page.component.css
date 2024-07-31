@@ -44,6 +44,10 @@
   overflow: hidden;
 }
 
+.chart_6 {
+  overflow: hidden;
+}
+
 .grid-container > div:nth-child(6) {
   grid-column: 2 / 4;
   grid-row: 3 / 4;

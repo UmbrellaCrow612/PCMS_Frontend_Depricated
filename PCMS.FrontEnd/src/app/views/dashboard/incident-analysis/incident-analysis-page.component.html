@@ -55,5 +55,23 @@
     >
     </ngx-charts-bar-vertical-stacked>
   </div>
-  <div>6</div>
+  <div class="chart_6" #ChartSixContainerRef>
+    <ngx-charts-line-chart
+      [view]="CrimeIncidentTimelineView"
+      [results]="CrimeIncidentTimelineResult"
+      (window:resize)="
+        onCrimeIncidentTimelineResize(
+          ChartSixContainerRef.offsetWidth,
+          ChartSixContainerRef.offsetHeight
+        )
+      "
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      xAxisLabel="Timeline"
+      yAxisLabel="Count"
+    >
+    </ngx-charts-line-chart>
+  </div>
 </div>

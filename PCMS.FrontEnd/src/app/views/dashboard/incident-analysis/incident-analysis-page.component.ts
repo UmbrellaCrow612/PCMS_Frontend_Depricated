@@ -94,4 +94,46 @@ export class IncidentAnalysisPageComponent {
   onCrimeIncidentDistrictResize(width: number, height: number) {
     this.CrimeIncidentDistrictView = [width, height];
   }
+
+  CrimeIncidentTimelineResult = [
+    {
+      name: 'Assault',
+      series: [
+        {
+          name: '2024/01/01',
+          value: 12,
+        },
+        {
+          name: '2024/01/02',
+          value: 22,
+        },
+        {
+          name: '2024/01/03',
+          value: 1,
+        },
+      ],
+    },
+    {
+      name: 'Sexual Assault',
+      series: [
+        {
+          name: '2024/01/01',
+          value: 22,
+        },
+        {
+          name: '2024/01/02',
+          value: 11,
+        },
+        {
+          name: '2024/01/03',
+          value: 2,
+        },
+      ],
+    },
+  ];
+  CrimeIncidentTimelineView: any = undefined;
+
+  onCrimeIncidentTimelineResize(width: number, height: number) {
+    this.CrimeIncidentTimelineView = [width, height];
+  }
 }
