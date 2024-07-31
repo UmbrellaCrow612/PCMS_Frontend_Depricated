@@ -58,5 +58,6 @@
   .grid-container > div {
     grid-column: 1 / 2 !important;
     grid-row: auto !important;
+    height: 22em;
   }
 }
