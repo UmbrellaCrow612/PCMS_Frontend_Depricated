@@ -45,4 +45,53 @@ export class IncidentAnalysisPageComponent {
   onCrimeIncidentBreakdownResize(width: number, height: number) {
     this.CrimeIncidentBreakdownView = [width, height];
   }
+
+  CrimeIncidentDistrictResult = [
+    {
+      name: 'S5',
+      series: [
+        {
+          name: 'Assault',
+          value: 211,
+        },
+        {
+          name: 'Robbery',
+          value: 120,
+        },
+      ],
+    },
+
+    {
+      name: 'S3',
+      series: [
+        {
+          name: 'Assault',
+          value: 322,
+        },
+        {
+          name: 'Robbery',
+          value: 120,
+        },
+      ],
+    },
+
+    {
+      name: 'S1',
+      series: [
+        {
+          name: 'Assault',
+          value: 12,
+        },
+        {
+          name: 'Robbery',
+          value: 120,
+        },
+      ],
+    },
+  ];
+  CrimeIncidentDistrictView: any = undefined;
+
+  onCrimeIncidentDistrictResize(width: number, height: number) {
+    this.CrimeIncidentDistrictView = [width, height];
+  }
 }

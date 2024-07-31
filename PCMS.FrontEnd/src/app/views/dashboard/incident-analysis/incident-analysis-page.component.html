@@ -36,6 +36,24 @@
     >
     </ngx-charts-pie-chart>
   </div>
-  <div>5</div>
+  <div class="chart_5" #ChartFiveContainerRef>
+    <ngx-charts-bar-vertical-stacked
+      [view]="CrimeIncidentDistrictView"
+      (window:resize)="
+        onCrimeIncidentDistrictResize(
+          ChartFiveContainerRef.offsetWidth,
+          ChartFiveContainerRef.offsetHeight
+        )
+      "
+      [results]="CrimeIncidentDistrictResult"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="District"
+      yAxisLabel="Count"
+    >
+    </ngx-charts-bar-vertical-stacked>
+  </div>
   <div>6</div>
 </div>
