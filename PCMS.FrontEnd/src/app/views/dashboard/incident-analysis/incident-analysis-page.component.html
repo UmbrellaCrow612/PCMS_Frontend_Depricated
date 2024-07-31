@@ -1,8 +1,41 @@
 <div class="grid-container">
-  <div>1</div>
+  <div class="chart_1" #ChartOneContainerRef>
+    <ngx-charts-bar-vertical
+      [view]="CrimeIncidentCountView"
+      (window:resize)="
+        onCrimeIncidentCountResize(
+          ChartOneContainerRef.offsetWidth,
+          ChartOneContainerRef.offsetHeight
+        )
+      "
+      [results]="CrimeIncidentCountResult"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="Incident Type"
+      yAxisLabel="Count"
+    >
+    </ngx-charts-bar-vertical>
+  </div>
   <div>2</div>
   <div>3</div>
-  <div>4</div>
+  <div class="chart_4" #ChartFourContainerRef>
+    <ngx-charts-pie-chart
+      [view]="CrimeIncidentBreakdownView"
+      (window:resize)="
+        onCrimeIncidentBreakdownResize(
+          ChartFourContainerRef.offsetWidth,
+          ChartFourContainerRef.offsetHeight
+        )
+      "
+      [results]="CrimeIncidentBreakdownResult"
+      [labels]="true"
+      [legend]="true"
+      legendTitle="Distribution"
+    >
+    </ngx-charts-pie-chart>
+  </div>
   <div>5</div>
   <div>6</div>
 </div>
