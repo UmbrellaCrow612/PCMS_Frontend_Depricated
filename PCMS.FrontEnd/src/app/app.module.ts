@@ -20,6 +20,7 @@ import { GlobalErrorHandler } from './errors/global-error-handler';
 import { errorHandlerFactory } from './errors/error-handler.factory';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MyDashboardPageComponent } from './views/dashboard/my-dashboard/my-dashboard-page.component';
+import { IncidentAnalysisPageComponent } from './views/dashboard/incident-analysis/incident-analysis-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MyDashboardPageComponent } from './views/dashboard/my-dashboard/my-dash
     ErrorDialogComponent,
     ConfirmationComponent,
     MyDashboardPageComponent,
+    IncidentAnalysisPageComponent,
   ],
   imports: [
     BrowserModule,

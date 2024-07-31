@@ -7,6 +7,7 @@ import { NotFoundPageComponent } from './views/not-found/not-found-page.componen
 import { DashboardPageComponent } from './views/dashboard/dashboard-page.component';
 import { DashboardHomePageComponent } from './views/dashboard/home/dashboard-home-page.component';
 import { MyDashboardPageComponent } from './views/dashboard/my-dashboard/my-dashboard-page.component';
+import { IncidentAnalysisPageComponent } from './views/dashboard/incident-analysis/incident-analysis-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'my-dashboard',
         component: MyDashboardPageComponent,
+      },
+      {
+        path: 'incident-analysis',
+        component: IncidentAnalysisPageComponent,
       },
     ],
   },
