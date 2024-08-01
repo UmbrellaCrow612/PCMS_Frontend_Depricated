@@ -94,3 +94,99 @@ Weekends (Friday, Saturday, Sunday) show higher crime rates overall.
 Saturday night/early Sunday morning has the highest crime rates.
   
   */
+
+
+export var bubbleData = [
+  {
+    name: 'Theft',
+    series: [
+      {
+        name: '2023',
+        x: '2023',
+        y: 25.3,
+        r: 80
+      },
+      {
+        name: '2022',
+        x: '2022',
+        y: 23.1,
+        r: 75
+      },
+      {
+        name: '2021',
+        x: '2021',
+        y: 20.4,
+        r: 70
+      }
+    ]
+  },
+  {
+    name: 'Assault',
+    series: [
+      {
+        name: '2023',
+        x: '2023',
+        y: 18.8,
+        r: 65
+      },
+      {
+        name: '2022',
+        x: '2022',
+        y: 17.9,
+        r: 60
+      },
+      {
+        name: '2021',
+        x: '2021',
+        y: 16.4,
+        r: 55
+      }
+    ]
+  },
+  {
+    name: 'Fraud',
+    series: [
+      {
+        name: '2023',
+        x: '2023',
+        y: 15.4,
+        r: 50
+      },
+      {
+        name: '2022',
+        x: '2022',
+        y: 13.1,
+        r: 45
+      },
+      {
+        name: '2021',
+        x: '2021',
+        y: 11.2,
+        r: 40
+      }
+    ]
+  },
+  {
+    name: 'Drug Offenses',
+    series: [
+      {
+        name: '2023',
+        x: '2023',
+        y: 12.2,
+        r: 40
+      },
+      {
+        name: '2022',
+        x: '2022',
+        y: 11.8,
+        r: 38
+      },
+      {
+        name: '2021',
+        x: '2021',
+        y: 10.7,
+        r: 35
+      }
+    ]
+  }
+];

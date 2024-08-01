@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LegendPosition, ScaleType } from '@swimlane/ngx-charts';
-import { heatMapData } from './test-data';
+import { bubbleData, heatMapData } from './test-data';
 
 @Component({
   selector: 'app-incident-analysis-page',
@@ -165,5 +165,12 @@ export class IncidentAnalysisPageComponent {
 
   onCrimeIncidentIntensityResize(width: number, height: number) {
     this.CrimeIncidentIntensityView = [width, height];
+  }
+
+  CrimeIncidentFrequencyResult = bubbleData;
+  CrimeIncidentFrequencyView: any = undefined;
+
+  onCrimeIncidentFrequencyResize(width: number, height: number) {
+    this.CrimeIncidentFrequencyView = [width, height];
   }
 }

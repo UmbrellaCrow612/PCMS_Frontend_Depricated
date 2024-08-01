@@ -38,7 +38,25 @@
     >
     </ngx-charts-heat-map>
   </div>
-  <div>3</div>
+  <div class="chart_3" #ChartThreeContainerRef>
+    <ngx-charts-bubble-chart
+      [view]="CrimeIncidentFrequencyView"
+      (window:resize)="
+        onCrimeIncidentFrequencyResize(
+          ChartThreeContainerRef.offsetWidth,
+          ChartThreeContainerRef.offsetHeight
+        )
+      "
+      [results]="CrimeIncidentFrequencyResult"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="Time"
+      yAxisLabel="Count"
+    >
+    </ngx-charts-bubble-chart>
+  </div>
   <div class="chart_4" #ChartFourContainerRef>
     <ngx-charts-pie-chart
       [view]="CrimeIncidentBreakdownView"
@@ -50,8 +68,6 @@
       "
       [results]="CrimeIncidentBreakdownResult"
       [labels]="true"
-      [legend]="true"
-      legendTitle="Distribution"
     >
     </ngx-charts-pie-chart>
   </div>
