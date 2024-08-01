@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LegendPosition, ScaleType } from '@swimlane/ngx-charts';
+import { heatMapData } from './test-data';
 
 @Component({
   selector: 'app-incident-analysis-page',
@@ -135,5 +137,33 @@ export class IncidentAnalysisPageComponent {
 
   onCrimeIncidentTimelineResize(width: number, height: number) {
     this.CrimeIncidentTimelineView = [width, height];
+  }
+
+  // Displaying crime intensity by day of the week and hour.
+  CrimeIncidentIntensityView: any = undefined;
+  CrimeIncidentIntensityColorScheme: any = {
+    name: 'CrimeIncidentIntensity',
+    selectable: true,
+    group: ScaleType.Linear,
+    domain: [
+      '#5AA454',
+      '#7AB74E',
+      '#9ACA48',
+      '#BBDC42',
+      '#DDF03C',
+      '#FFE436',
+      '#FFC730',
+      '#FFA92A',
+      '#FF8B24',
+      '#FF6D1E',
+      '#FF4F18',
+      '#FF3112',
+      '#A10A28',
+    ],
+  };
+  CrimeIncidentIntensityResult = heatMapData;
+
+  onCrimeIncidentIntensityResize(width: number, height: number) {
+    this.CrimeIncidentIntensityView = [width, height];
   }
 }

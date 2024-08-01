@@ -18,7 +18,26 @@
     >
     </ngx-charts-bar-vertical>
   </div>
-  <div>2</div>
+  <div class="chart_2" #ChartTwoContainerRef>
+    <ngx-charts-heat-map
+      [view]="CrimeIncidentIntensityView"
+      (window:resize)="
+        onCrimeIncidentIntensityResize(
+          ChartTwoContainerRef.offsetWidth,
+          ChartTwoContainerRef.offsetHeight
+        )
+      "
+      [scheme]="CrimeIncidentIntensityColorScheme"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      xAxisLabel="Day of Week"
+      yAxisLabel="Time of Day"
+      [results]="CrimeIncidentIntensityResult"
+    >
+    </ngx-charts-heat-map>
+  </div>
   <div>3</div>
   <div class="chart_4" #ChartFourContainerRef>
     <ngx-charts-pie-chart
