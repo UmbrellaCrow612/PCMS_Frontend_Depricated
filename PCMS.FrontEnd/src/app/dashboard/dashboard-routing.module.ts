@@ -8,19 +8,21 @@ import { IncidentAnalysisPageComponent } from './incident-analysis/incident-anal
 const routes: Routes = [
   {
     path: '',
-    title: 'PCMS - Dashboard',
     component: DashboardPageComponent,
     children: [
       {
         path: '',
+        title: 'PCMS - Dashboard',
         component: DashboardHomePageComponent,
       },
       {
         path: 'my-dashboard',
+        title: 'PCMS - My Dashboard',
         component: MyDashboardPageComponent,
       },
       {
         path: 'incident-analysis',
+        title: 'PCMS - Incident-analysis',
         component: IncidentAnalysisPageComponent,
       },
     ],
