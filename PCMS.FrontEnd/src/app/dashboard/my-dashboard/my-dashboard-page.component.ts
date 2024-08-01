@@ -1,10 +1,34 @@
 import { Component } from '@angular/core';
-import { Color, ScaleType } from '@swimlane/ngx-charts';
+import {
+  Color,
+  ScaleType,
+  PieChartModule,
+  GaugeModule,
+} from '@swimlane/ngx-charts';
+import { MatButton } from '@angular/material/button';
+import {
+  MatCard,
+  MatCardHeader,
+  MatCardTitle,
+  MatCardActions,
+  MatCardContent,
+} from '@angular/material/card';
 
 @Component({
   selector: 'app-my-dashboard-page',
   templateUrl: './my-dashboard-page.component.html',
   styleUrl: './my-dashboard-page.component.css',
+  standalone: true,
+  imports: [
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardActions,
+    MatButton,
+    MatCardContent,
+    PieChartModule,
+    GaugeModule,
+  ],
 })
 export class MyDashboardPageComponent {
   CaseStatusView: any = undefined;

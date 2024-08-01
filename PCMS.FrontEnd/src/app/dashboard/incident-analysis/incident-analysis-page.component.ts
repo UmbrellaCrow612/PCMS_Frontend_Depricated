@@ -1,11 +1,26 @@
 import { Component } from '@angular/core';
-import { LegendPosition, ScaleType } from '@swimlane/ngx-charts';
+import {
+  ScaleType,
+  BarChartModule,
+  HeatMapModule,
+  BubbleChartModule,
+  PieChartModule,
+  LineChartModule,
+} from '@swimlane/ngx-charts';
 import { bubbleData, heatMapData } from './test-data';
 
 @Component({
   selector: 'app-incident-analysis-page',
   templateUrl: './incident-analysis-page.component.html',
   styleUrl: './incident-analysis-page.component.css',
+  standalone: true,
+  imports: [
+    BarChartModule,
+    HeatMapModule,
+    BubbleChartModule,
+    PieChartModule,
+    LineChartModule,
+  ],
 })
 export class IncidentAnalysisPageComponent {
   CrimeIncidentCountResult = [

@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { provideNativeDateAdapter, MatOption } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { AsyncPipe } from '@angular/common';
+import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatDateRangeInput, MatStartDate, MatEndDate, MatDatepickerToggle, MatDateRangePicker } from '@angular/material/datepicker';
+import { MatSelect } from '@angular/material/select';
+import { MatButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel, MatHint, MatError, MatSuffix } from '@angular/material/form-field';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 interface CaseStatusOption {
   status: string;
@@ -24,10 +32,35 @@ interface DepartmentOption {
   name: string;
 }
 @Component({
-  selector: 'app-search-cases-page',
-  templateUrl: './search-cases-page.component.html',
-  styleUrl: './search-cases-page.component.css',
-  providers: [provideNativeDateAdapter()],
+    selector: 'app-search-cases-page',
+    templateUrl: './search-cases-page.component.html',
+    styleUrl: './search-cases-page.component.css',
+    providers: [provideNativeDateAdapter()],
+    standalone: true,
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        ReactiveFormsModule,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        MatHint,
+        MatError,
+        MatButton,
+        MatSelect,
+        MatOption,
+        MatDateRangeInput,
+        MatStartDate,
+        MatEndDate,
+        MatDatepickerToggle,
+        MatSuffix,
+        MatDateRangePicker,
+        MatAutocompleteTrigger,
+        MatAutocomplete,
+        AsyncPipe,
+    ],
 })
 export class SearchCasesPageComponent implements OnInit {
   ngOnInit() {

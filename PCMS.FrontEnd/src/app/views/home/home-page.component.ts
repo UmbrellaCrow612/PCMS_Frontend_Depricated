@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationDialogService } from '../../confirmation/confirmation.service';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css',
+    selector: 'app-home-page',
+    templateUrl: './home-page.component.html',
+    styleUrl: './home-page.component.css',
+    standalone: true,
 })
 export class HomePageComponent implements OnInit {
   constructor(private confirmationDialogService: ConfirmationDialogService) {}

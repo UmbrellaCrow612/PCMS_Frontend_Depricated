@@ -2,12 +2,37 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { MatDrawerMode } from '@angular/material/sidenav';
+import { MatDrawerMode, MatDrawerContainer, MatDrawer, MatDrawerContent } from '@angular/material/sidenav';
+import { MatMenuTrigger, MatMenu, MatMenuContent, MatMenuItem } from '@angular/material/menu';
+import { MatBadge } from '@angular/material/badge';
+import { MatToolbar } from '@angular/material/toolbar';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton, MatAnchor } from '@angular/material/button';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: 'app-dashboard-page',
-  templateUrl: './dashboard-page.component.html',
-  styleUrl: './dashboard-page.component.css',
+    selector: 'app-dashboard-page',
+    templateUrl: './dashboard-page.component.html',
+    styleUrl: './dashboard-page.component.css',
+    standalone: true,
+    imports: [
+        MatProgressSpinner,
+        MatDrawerContainer,
+        MatDrawer,
+        MatIconButton,
+        MatIcon,
+        MatAnchor,
+        RouterLink,
+        MatDrawerContent,
+        MatToolbar,
+        MatBadge,
+        MatMenuTrigger,
+        MatMenu,
+        MatMenuContent,
+        MatMenuItem,
+        RouterOutlet,
+    ],
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
   isSideNavOpen = true;

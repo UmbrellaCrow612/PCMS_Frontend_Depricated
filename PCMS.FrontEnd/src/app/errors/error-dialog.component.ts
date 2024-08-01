@@ -1,9 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
-  selector: 'app-error-dialog',
-  template: `
+    selector: 'app-error-dialog',
+    template: `
     <h2 mat-dialog-title>Error</h2>
     <mat-dialog-content class="mat-typography">
       @if (data.message) { Message: {{ data.message }} <br />} @if (data.status)
@@ -17,6 +19,15 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       <button mat-button mat-dialog-close>Close</button>
     </mat-dialog-actions>
   `,
+    standalone: true,
+    imports: [
+        MatDialogTitle,
+        CdkScrollable,
+        MatDialogContent,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+    ],
 })
 export class ErrorDialogComponent {
   constructor(

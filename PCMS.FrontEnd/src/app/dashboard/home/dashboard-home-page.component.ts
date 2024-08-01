@@ -1,10 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Color, LegendPosition, ScaleType } from '@swimlane/ngx-charts';
+import {
+  Color,
+  LegendPosition,
+  ScaleType,
+  LineChartModule,
+  PieChartModule,
+  BarChartModule,
+  TreeMapModule,
+} from '@swimlane/ngx-charts';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-dashboard-home-page',
   templateUrl: './dashboard-home-page.component.html',
   styleUrl: './dashboard-home-page.component.css',
+  standalone: true,
+  imports: [
+    MatProgressSpinner,
+    LineChartModule,
+    PieChartModule,
+    BarChartModule,
+    TreeMapModule,
+  ],
 })
 export class DashboardHomePageComponent implements OnInit {
   isPageLoading = true;
