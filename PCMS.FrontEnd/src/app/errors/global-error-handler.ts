@@ -11,7 +11,12 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: any): void {
     if (environment.useCustomErrorHandler) {
       this.zone.run(() => {
-        let errorData: { message?: string; status?: number; error?: string; stack?: string } = {};
+        let errorData: {
+          message?: string;
+          status?: number;
+          error?: string;
+          stack?: string;
+        } = {};
 
         if (error instanceof HttpErrorResponse) {
           // Handle HTTP error

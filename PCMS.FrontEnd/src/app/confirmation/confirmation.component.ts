@@ -1,11 +1,17 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+} from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
-    selector: 'app-confirmation',
-    template: `
+  selector: 'app-confirmation',
+  template: `
     <h1 mat-dialog-title>Confirm</h1>
     <div mat-dialog-content>
       <p>{{ data.message }}</p>
@@ -15,14 +21,14 @@ import { CdkScrollable } from '@angular/cdk/scrolling';
       <button mat-button (click)="onCancel()">Cancel</button>
     </div>
   `,
-    standalone: true,
-    imports: [
-        MatDialogTitle,
-        CdkScrollable,
-        MatDialogContent,
-        MatDialogActions,
-        MatButton,
-    ],
+  standalone: true,
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    MatDialogActions,
+    MatButton,
+  ],
 })
 export class ConfirmationComponent {
   constructor(
