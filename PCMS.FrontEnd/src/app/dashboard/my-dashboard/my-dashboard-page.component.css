@@ -134,7 +134,7 @@
     grid-template-rows: auto;
   }
 
-  .section-two div {
-    height: auto;
+  .section-two > div {
+    height: 22em;
   }
 }
