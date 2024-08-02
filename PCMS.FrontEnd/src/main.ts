@@ -1,5 +1,4 @@
 import { AppComponent } from './app/app.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { errorHandlerFactory } from './app/errors/error-handler.factory';
@@ -10,7 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(BrowserModule, AppRoutingModule, ReactiveFormsModule),
+    importProvidersFrom(BrowserModule, AppRoutingModule),
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     GlobalErrorHandler,
