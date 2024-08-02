@@ -20,6 +20,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton, MatAnchor } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -42,6 +43,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     MatMenuContent,
     MatMenuItem,
     RouterOutlet,
+    CommonModule
   ],
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
