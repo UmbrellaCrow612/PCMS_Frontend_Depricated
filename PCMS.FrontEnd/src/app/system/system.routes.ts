@@ -12,6 +12,22 @@ export const SYSTEM_ROUTES: Routes = [
         title: 'PCMS - System',
         component: SystemHomePageComponent,
       },
+      {
+        path: 'departments',
+        title: 'PCMS - Departments',
+        loadComponent: () =>
+          import('./departments/departments-page.component').then(
+            (m) => m.DepartmentsPageComponent
+          ),
+      },
+      {
+        path: 'officers',
+        title: 'PCMS - Officers',
+        loadComponent: () =>
+          import('./officers/officers-page.component').then(
+            (m) => m.OfficersPageComponent
+          ),
+      },
     ],
   },
 ];
