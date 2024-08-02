@@ -18,11 +18,18 @@ const routes: Routes = [
       {
         path: 'my-dashboard',
         title: 'PCMS - My Dashboard',
-        component: MyDashboardPageComponent,
+        loadComponent: () =>
+          import('./my-dashboard/my-dashboard-page.component').then(
+            (m) => m.MyDashboardPageComponent
+          ),
       },
       {
         path: 'incident-analysis',
         title: 'PCMS - Incident-analysis',
+        loadComponent: () =>
+          import('./incident-analysis/incident-analysis-page.component').then(
+            (m) => m.IncidentAnalysisPageComponent
+          ),
         component: IncidentAnalysisPageComponent,
       },
     ],
