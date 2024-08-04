@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { ThemeService } from './theme/theme-service.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +10,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterOutlet, CommonModule],
 })
-export class AppComponent {}
+export class AppComponent {
+  isDarkMode$
+
+  constructor(private themeService: ThemeService) {
+    this.isDarkMode$ = this.themeService.isDarkMode$;
+  }
+}
