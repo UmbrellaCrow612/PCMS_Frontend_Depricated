@@ -11,7 +11,6 @@ export class ThemeService {
 
   constructor() {
     this.darkMode.subscribe((isDarkMode) => {
-      this.applyDarkModeClass(isDarkMode);
       this.saveDarkModePreference(isDarkMode);
     });
   }
@@ -27,13 +26,5 @@ export class ThemeService {
 
   private saveDarkModePreference(isDarkMode: boolean) {
     localStorage.setItem(this.DARK_MODE_KEY, JSON.stringify(isDarkMode));
-  }
-
-  private applyDarkModeClass(isDarkMode: boolean) {
-    if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
   }
 }
