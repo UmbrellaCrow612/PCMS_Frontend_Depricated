@@ -21,7 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     RouterLink,
   ],
   templateUrl: './system-page.component.html',
-  styleUrl: './system-page.component.css',
+  styleUrl: './system-page.component.scss',
 })
 export class SystemPageComponent implements OnInit {
   isSideNavOpen = true;

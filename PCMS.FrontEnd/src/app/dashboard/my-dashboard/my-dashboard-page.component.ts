@@ -17,7 +17,7 @@ import {
 @Component({
   selector: 'app-my-dashboard-page',
   templateUrl: './my-dashboard-page.component.html',
-  styleUrl: './my-dashboard-page.component.css',
+  styleUrl: './my-dashboard-page.component.scss',
   standalone: true,
   imports: [
     MatCard,

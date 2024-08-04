@@ -13,7 +13,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-dashboard-home-page',
   templateUrl: './dashboard-home-page.component.html',
-  styleUrl: './dashboard-home-page.component.css',
+  styleUrl: './dashboard-home-page.component.scss',
   standalone: true,
   imports: [
     MatProgressSpinner,

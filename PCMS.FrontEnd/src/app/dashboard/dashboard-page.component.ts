@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-dashboard-page',
   templateUrl: './dashboard-page.component.html',
-  styleUrl: './dashboard-page.component.css',
+  styleUrl: './dashboard-page.component.scss',
   standalone: true,
   imports: [
     MatProgressSpinner,
@@ -43,7 +43,7 @@ import { CommonModule } from '@angular/common';
     MatMenuContent,
     MatMenuItem,
     RouterOutlet,
-    CommonModule
+    CommonModule,
   ],
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {

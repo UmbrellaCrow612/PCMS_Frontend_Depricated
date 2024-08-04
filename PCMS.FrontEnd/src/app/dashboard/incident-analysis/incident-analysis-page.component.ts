@@ -12,7 +12,7 @@ import { bubbleData, heatMapData } from './test-data';
 @Component({
   selector: 'app-incident-analysis-page',
   templateUrl: './incident-analysis-page.component.html',
-  styleUrl: './incident-analysis-page.component.css',
+  styleUrl: './incident-analysis-page.component.scss',
   standalone: true,
   imports: [
     BarChartModule,
