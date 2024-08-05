@@ -15,4 +15,12 @@ export const DEPARTMENT_ROUTES: Routes = [
       ),
     title: 'PCMS - Create A Department',
   },
+  {
+    path: ':id',
+    loadComponent: () =>
+      import('./id/department-id-page.component').then(
+        (m) => m.DepartmentIdPageComponent
+      ),
+    title: `PCMS - Department`,
+  },
 ];
