@@ -21,6 +21,5 @@ export const DEPARTMENT_ROUTES: Routes = [
       import('./id/department-id-page.component').then(
         (m) => m.DepartmentIdPageComponent
       ),
-    title: `PCMS - Department`,
   },
 ];
