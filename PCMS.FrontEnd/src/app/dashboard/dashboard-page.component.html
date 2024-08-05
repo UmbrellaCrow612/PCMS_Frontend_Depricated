@@ -20,13 +20,13 @@
 
       }
       <div class="drawer_btns_container">
-        <a routerLink="/dashboard" mat-raised-button
+        <a [routerLink]="['./']" mat-raised-button
           ><mat-icon>home</mat-icon>Home</a
         >
-        <a routerLink="/dashboard/my-dashboard" mat-raised-button
+        <a [routerLink]="['./my-dashboard']" mat-raised-button
           ><mat-icon>person</mat-icon>My Dashboard</a
         >
-        <a routerLink="/dashboard/incident-analysis" mat-raised-button
+        <a [routerLink]="['./incident-analysis']" mat-raised-button
           ><mat-icon>query_stats</mat-icon>Incident Analysis</a
         >
       </div>
