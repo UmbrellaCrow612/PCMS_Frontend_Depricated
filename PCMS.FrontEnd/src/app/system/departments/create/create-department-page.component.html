@@ -1,1 +1,48 @@
-<p>create-department-page works!</p>
+<h3>Create a Department</h3>
+
+<form [formGroup]="departmentForm" class="main_form_field" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+    @if (departmentForm.get("name")?.hasError("required")) {
+    <mat-error>Required field</mat-error>
+    } @else if (departmentForm.get("name")?.hasError("minlength")) {
+    <mat-error>To Short</mat-error>
+    } @else if (departmentForm.get("name")?.hasError("maxlength")) {
+    <mat-error>To Long</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+    @if (departmentForm.get("description")?.hasError("required")) {
+    <mat-error>Required field</mat-error>
+    } @else if (departmentForm.get("description")?.hasError("minlength")) {
+    <mat-error>To Short</mat-error>
+    } @else if (departmentForm.get("description")?.hasError("maxlength")) {
+    <mat-error>To Long</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Short Code</mat-label>
+    <input matInput formControlName="shortCode" />
+    @if (departmentForm.get("shortCode")?.hasError("required")) {
+    <mat-error>Required field</mat-error>
+    } @else if (departmentForm.get("shortCode")?.hasError("minlength")) {
+    <mat-error>To Short</mat-error>
+    } @else if (departmentForm.get("shortCode")?.hasError("maxlength")) {
+    <mat-error>To Long</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="btns_container">
+    <button
+      mat-stroked-button
+      type="submit"
+      [disabled]="departmentForm.invalid"
+    >
+      Create
+    </button>
+    <button mat-flat-button type="button" (click)="clearForm()">Clear</button>
+  </div>
+</form>
