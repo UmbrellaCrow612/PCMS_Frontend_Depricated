@@ -21,11 +21,11 @@
       }
       <div class="drawer_btns_container">
         <a routerLink="/system/departments" mat-raised-button
-        ><mat-icon>group</mat-icon>Departments</a
-      >
-      <a routerLink="/system/officers" mat-raised-button
-      ><mat-icon>local_police</mat-icon>Officers</a
-    >
+          ><mat-icon>group</mat-icon>Departments</a
+        >
+        <a routerLink="/system/officers" mat-raised-button
+          ><mat-icon>local_police</mat-icon>Officers</a
+        >
       </div>
     </div>
   </mat-drawer>
@@ -35,7 +35,7 @@
         <mat-icon>menu</mat-icon>
       </button>
 
-      <span>PCMS - System</span>
+      <span>PCMS - Dashboard</span>
 
       <span class="example_spacer"></span>
 
@@ -47,6 +47,21 @@
       >
         <mat-icon>notifications</mat-icon>
       </button>
+      <button
+        mat-icon-button
+        aria-label="Profile"
+        [matMenuTriggerFor]="profileMenu"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #profileMenu="matMenu">
+        <ng-template matMenuContent>
+          <a routerLink="/dashboard" mat-menu-item>
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+          </a>
+        </ng-template>
+      </mat-menu>
     </mat-toolbar>
     <div class="page_content">
       <router-outlet></router-outlet>
