@@ -14,10 +14,9 @@ export const SYSTEM_ROUTES: Routes = [
       },
       {
         path: 'departments',
-        title: 'PCMS - Departments',
-        loadComponent: () =>
-          import('./departments/departments-page.component').then(
-            (m) => m.DepartmentsPageComponent
+        loadChildren: () =>
+          import('./departments/departments.routes').then(
+            (m) => m.DEPARTMENT_ROUTES
           ),
       },
       {

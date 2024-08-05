@@ -2,11 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ColDef } from 'ag-grid-community';
 import { GridComponent } from '../../grid/grid.component';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-departments-page',
   standalone: true,
-  imports: [MatProgressSpinnerModule, GridComponent],
+  imports: [
+    MatProgressSpinnerModule,
+    GridComponent,
+    MatButtonModule,
+    RouterLink,
+  ],
   templateUrl: './departments-page.component.html',
   styleUrl: './departments-page.component.scss',
 })

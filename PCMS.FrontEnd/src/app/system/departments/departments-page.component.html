@@ -3,5 +3,13 @@
   <mat-spinner></mat-spinner>
 </div>
 } @else {
-<app-grid [rowData]="rowData" [columnDefs]="columnDefs"></app-grid>
+<div class="main_container">
+  <div class="section_one">
+    <app-grid [rowData]="rowData" [columnDefs]="columnDefs"></app-grid>
+  </div>
+  <div class="section_two">
+    <a routerLink="/system/departments/create" mat-raised-button>Create</a>
+  </div>
+</div>
+
 }
