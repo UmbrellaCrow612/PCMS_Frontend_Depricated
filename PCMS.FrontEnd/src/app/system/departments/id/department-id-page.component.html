@@ -1,5 +1,58 @@
 @if (isPageLoading) {
 <p>Loading</p>
 } @else {
-{{ departmentId }}
+<h2>Department: Name</h2>
+<form
+  action=""
+  [formGroup]="editedDepartmentForm"
+  class="main_form_field"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+    @if (editedDepartmentForm.get("name")?.hasError("required")) {
+    <mat-error>Required field</mat-error>
+    } @else if (editedDepartmentForm.get("name")?.hasError("minlength")) {
+    <mat-error>To Short</mat-error>
+    } @else if (editedDepartmentForm.get("name")?.hasError("maxlength")) {
+    <mat-error>To Long</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+    @if (editedDepartmentForm.get("description")?.hasError("required")) {
+    <mat-error>Required field</mat-error>
+    } @else if (editedDepartmentForm.get("description")?.hasError("minlength"))
+    {
+    <mat-error>To Short</mat-error>
+    } @else if (editedDepartmentForm.get("description")?.hasError("maxlength"))
+    {
+    <mat-error>To Long</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Short Code</mat-label>
+    <input matInput formControlName="shortCode" />
+    @if (editedDepartmentForm.get("shortCode")?.hasError("required")) {
+    <mat-error>Required field</mat-error>
+    } @else if (editedDepartmentForm.get("shortCode")?.hasError("minlength")) {
+    <mat-error>To Short</mat-error>
+    } @else if (editedDepartmentForm.get("shortCode")?.hasError("maxlength")) {
+    <mat-error>To Long</mat-error>
+    }
+  </mat-form-field>
+
+  <h3>Assigned Officers</h3>
+  <div class="officers_container">
+   
+  </div>
+
+  <div class="btns_container">
+    <button mat-stroked-button disabled="true" type="submit">Save</button>
+    <button mat-flat-button disabled="true" type="button">Cancel</button>
+    <button mat-raised-button type="button">Delete</button>
+  </div>
+</form>
 }
