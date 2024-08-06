@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { GridComponent } from '../../../grid/grid.component';
+import { ColDef } from 'ag-grid-community';
 
 @Component({
   selector: 'app-department-id-page',
@@ -48,6 +49,13 @@ export class DepartmentIdPageComponent implements OnInit {
       Validators.required,
     ]),
   });
+
+  defaultColDef: ColDef = {
+    sortable: true,
+    filter: true,
+    resizable: true,
+    flex: 1,
+  };
 
   officers = [
     { id: 1, name: 'John Doe', badgeNumber: '12345' },
