@@ -1,1 +1,21 @@
-<p>{{ departmentId }}</p>
+<div class="container">
+  <h3>Assign Officer for department: {{ departmentId }}</h3>
+
+  <div class="unassigned_officers_container">
+    <app-grid
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [pagination]="true"
+      [rowSelection]="'multiple'"
+      [suppressRowClickSelection]="true"
+      (selectionChanged)="handleSelectionChanged($event)"
+    >
+    </app-grid>
+  </div>
+
+  <div class="btns_container">
+    <button mat-stroked-button [disabled]="selectedOfficers.length === 0">
+      Save
+    </button>
+  </div>
+</div>
