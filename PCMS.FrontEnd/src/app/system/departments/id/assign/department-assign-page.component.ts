@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { GridComponent } from '../../../../grid/grid.component';
 import { ColDef } from 'ag-grid-community';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-department-assign-page',
   standalone: true,
-  imports: [GridComponent, MatButtonModule],
+  imports: [GridComponent, MatButtonModule, RouterLink, MatIconModule],
   templateUrl: './department-assign-page.component.html',
   styleUrl: './department-assign-page.component.scss',
 })
@@ -34,7 +35,7 @@ export class DepartmentAssignPageComponent implements OnInit {
     this.selectedOfficers = selectedOfficers;
     console.log('Selected Officers:', this.selectedOfficers);
   }
-  
+
   constructor(private route: ActivatedRoute, private titleService: Title) {}
 
   ngOnInit(): void {

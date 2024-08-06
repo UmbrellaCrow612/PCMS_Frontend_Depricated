@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ColDef } from 'ag-grid-community';
 import { GridComponent } from '../../../../grid/grid.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-department-unassign-page',
   standalone: true,
-  imports: [GridComponent, MatButtonModule],
+  imports: [GridComponent, MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './department-unassign-page.component.html',
   styleUrl: './department-unassign-page.component.scss',
 })
