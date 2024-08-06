@@ -20,6 +20,7 @@ import { RouterLink } from '@angular/router';
 export class DepartmentsPageComponent implements OnInit {
   isPageLoading: boolean = true;
 
+
   columnDefs: ColDef[] = [
     { field: 'make' },
     { field: 'model' },
@@ -37,8 +38,6 @@ export class DepartmentsPageComponent implements OnInit {
   }
 
   loadDepartmentsPageData() {
-    setTimeout(() => {
-      this.isPageLoading = false;
-    }, 2000);
+    this.isPageLoading = false;
   }
 }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ColDef, GridOptions } from 'ag-grid-community';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ColDef, SelectionChangedEvent, IRowNode  } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ThemeService } from '../theme/theme-service.service';
 import { Subscription } from 'rxjs';
@@ -14,13 +14,19 @@ import 'ag-grid-community/styles/ag-theme-material.css';
   standalone: true,
   imports: [AgGridAngular],
   template: `
-    <ag-grid-angular
+     <ag-grid-angular
       [rowData]="rowData"
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
       [class]="themeClass"
       [pagination]="pagination"
       [style]="gridStyles"
+      [rowSelection]="rowSelection"
+      [rowMultiSelectWithClick]="rowMultiSelectWithClick"
+      [suppressRowDeselection]="suppressRowDeselection"
+      [suppressRowClickSelection]="suppressRowClickSelection"
+      (selectionChanged)="onSelectionChanged($event)"
+      [isRowSelectable]="isRowSelectable"
     >
     </ag-grid-angular>
   `,
@@ -41,6 +47,13 @@ export class GridComponent implements OnInit {
     height: '100%',
   };
   @Input() pagination: boolean = true;
+  @Input() rowSelection: 'single' | 'multiple' = 'single';
+  @Input() rowMultiSelectWithClick = false;
+  @Input() suppressRowDeselection = false;
+  @Input() suppressRowClickSelection = false;
+  @Input() isRowSelectable: (params: IRowNode<any>) => boolean = () => true;
+
+  @Output() selectionChanged = new EventEmitter<any[]>();
 
   themeClass: string = 'ag-theme-material';
   private themeSubscription: Subscription | undefined;
@@ -62,5 +75,10 @@ export class GridComponent implements OnInit {
     if (this.themeSubscription) {
       this.themeSubscription.unsubscribe();
     }
+  }
+
+  onSelectionChanged(event: SelectionChangedEvent) {
+    const selectedRows = event.api.getSelectedRows();
+    this.selectionChanged.emit(selectedRows);
   }
 }
