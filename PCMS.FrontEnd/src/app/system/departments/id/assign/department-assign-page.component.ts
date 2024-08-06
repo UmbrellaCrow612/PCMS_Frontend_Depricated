@@ -34,6 +34,7 @@ export class DepartmentAssignPageComponent implements OnInit {
     this.selectedOfficers = selectedOfficers;
     console.log('Selected Officers:', this.selectedOfficers);
   }
+  
   constructor(private route: ActivatedRoute, private titleService: Title) {}
 
   ngOnInit(): void {
