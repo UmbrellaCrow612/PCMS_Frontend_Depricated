@@ -44,9 +44,19 @@
     }
   </mat-form-field>
 
-  <h3>Assigned Officers</h3>
+  <div class="assigned_officers_heading">
+    <h3>Assigned Officers</h3>
+    <div class="assigned_officers_heading_btns">
+      <button mat-stroked-button type="button">Assign</button>
+      <button mat-flat-button type="button">Unassign</button>
+    </div>
+  </div>
   <div class="officers_container">
-   
+    <app-grid
+      [rowData]="officers"
+      [columnDefs]="columns"
+      [suppressRowClickSelection]="true"
+    />
   </div>
 
   <div class="btns_container">

@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { GridComponent } from '../../../grid/grid.component';
 
 @Component({
   selector: 'app-department-id-page',
@@ -19,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    GridComponent,
   ],
   templateUrl: './department-id-page.component.html',
   styleUrl: './department-id-page.component.scss',
@@ -46,6 +48,18 @@ export class DepartmentIdPageComponent implements OnInit {
       Validators.required,
     ]),
   });
+
+  officers = [
+    { id: 1, name: 'John Doe', badgeNumber: '12345' },
+    { id: 2, name: 'Jane Smith', badgeNumber: '67890' },
+    // Add more officer data as needed
+  ];
+
+  columns = [
+    { headerName: 'ID', field: 'id' },
+    { headerName: 'Name', field: 'name' },
+    { headerName: 'Badge Number', field: 'badgeNumber' },
+  ];
 
   constructor(private route: ActivatedRoute, private titleService: Title) {}
 

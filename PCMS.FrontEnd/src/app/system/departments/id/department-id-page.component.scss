@@ -13,3 +13,15 @@
 .officers_container{
    height: 22em;
 }
+
+.assigned_officers_heading{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.assigned_officers_heading_btns{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
