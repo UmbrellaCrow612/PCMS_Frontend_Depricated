@@ -18,6 +18,6 @@ export class DepartmentAssignPageComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.departmentId = params.get('id');
     });
-    this.titleService.setTitle(this.departmentId);
+    this.titleService.setTitle("PCMS - Assign Officers for " +this.departmentId);
   }
 }

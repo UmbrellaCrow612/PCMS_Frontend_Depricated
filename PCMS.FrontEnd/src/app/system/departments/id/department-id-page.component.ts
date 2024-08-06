@@ -22,7 +22,7 @@ import { ColDef } from 'ag-grid-community';
     MatInputModule,
     MatButtonModule,
     GridComponent,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './department-id-page.component.html',
   styleUrl: './department-id-page.component.scss',
@@ -77,7 +77,9 @@ export class DepartmentIdPageComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.departmentId = params.get('id');
     });
-    this.titleService.setTitle(this.departmentId);
+    this.titleService.setTitle(
+      'PCMS - Department details for ' + this.departmentId
+    );
   }
 
   onSubmit() {}
