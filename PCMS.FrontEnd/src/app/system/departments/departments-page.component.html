@@ -5,7 +5,12 @@
 } @else {
 <div class="main_container">
   <div class="section_one">
-    <app-grid [rowData]="rowData" [columnDefs]="columnDefs"></app-grid>
+    <app-grid
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [rowSelection]="'single'"
+      (rowClicked)="onRowClicked($event)"
+    ></app-grid>
   </div>
   <div class="section_two">
     <a [routerLink]="['./create']" mat-raised-button>Create</a>

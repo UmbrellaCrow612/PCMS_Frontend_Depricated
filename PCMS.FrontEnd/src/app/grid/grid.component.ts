@@ -1,5 +1,17 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { ColDef, SelectionChangedEvent, IRowNode  } from 'ag-grid-community';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  OnDestroy,
+} from '@angular/core';
+import {
+  ColDef,
+  SelectionChangedEvent,
+  RowClickedEvent,
+  IRowNode,
+} from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ThemeService } from '../theme/theme-service.service';
 import { Subscription } from 'rxjs';
@@ -14,7 +26,7 @@ import 'ag-grid-community/styles/ag-theme-material.css';
   standalone: true,
   imports: [AgGridAngular],
   template: `
-     <ag-grid-angular
+    <ag-grid-angular
       [rowData]="rowData"
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
@@ -26,13 +38,14 @@ import 'ag-grid-community/styles/ag-theme-material.css';
       [suppressRowDeselection]="suppressRowDeselection"
       [suppressRowClickSelection]="suppressRowClickSelection"
       (selectionChanged)="onSelectionChanged($event)"
+      (rowClicked)="onRowClicked($event)"
       [isRowSelectable]="isRowSelectable"
     >
     </ag-grid-angular>
   `,
-  styleUrl: './grid.component.scss',
+  styleUrls: ['./grid.component.scss'],
 })
-export class GridComponent implements OnInit {
+export class GridComponent implements OnInit, OnDestroy {
   @Input() rowData: any[] = [];
   @Input() columnDefs: ColDef[] = [];
   @Input() defaultColDef: ColDef = {
@@ -54,6 +67,7 @@ export class GridComponent implements OnInit {
   @Input() isRowSelectable: (params: IRowNode<any>) => boolean = () => true;
 
   @Output() selectionChanged = new EventEmitter<any[]>();
+  @Output() rowClicked = new EventEmitter<any>();
 
   themeClass: string = 'ag-theme-material';
   private themeSubscription: Subscription | undefined;
@@ -77,8 +91,12 @@ export class GridComponent implements OnInit {
     }
   }
 
-  onSelectionChanged(event: SelectionChangedEvent) {
+  onSelectionChanged(event: SelectionChangedEvent): void {
     const selectedRows = event.api.getSelectedRows();
     this.selectionChanged.emit(selectedRows);
+  }
+
+  onRowClicked(event: RowClickedEvent): void {
+    this.rowClicked.emit(event.data);
   }
 }

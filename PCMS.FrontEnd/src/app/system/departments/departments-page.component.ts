@@ -3,7 +3,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ColDef } from 'ag-grid-community';
 import { GridComponent } from '../../grid/grid.component';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-departments-page',
@@ -20,7 +20,6 @@ import { RouterLink } from '@angular/router';
 export class DepartmentsPageComponent implements OnInit {
   isPageLoading: boolean = true;
 
-
   columnDefs: ColDef[] = [
     { field: 'make' },
     { field: 'model' },
@@ -32,6 +31,12 @@ export class DepartmentsPageComponent implements OnInit {
     { make: 'Ford', model: 'Mondeo', price: 32000 },
     { make: 'Porsche', model: 'Boxster', price: 72000 },
   ];
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  onRowClicked(rowData: any): void {
+    this.router.navigate([rowData.make], { relativeTo: this.route });
+  }
 
   ngOnInit(): void {
     this.loadDepartmentsPageData();
