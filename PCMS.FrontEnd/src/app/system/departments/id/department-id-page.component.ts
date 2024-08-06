@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { GridComponent } from '../../../grid/grid.component';
 import { ColDef } from 'ag-grid-community';
 
@@ -22,6 +22,7 @@ import { ColDef } from 'ag-grid-community';
     MatInputModule,
     MatButtonModule,
     GridComponent,
+    RouterLink
   ],
   templateUrl: './department-id-page.component.html',
   styleUrl: './department-id-page.component.scss',

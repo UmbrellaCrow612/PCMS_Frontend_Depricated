@@ -47,8 +47,10 @@
   <div class="assigned_officers_heading">
     <h3>Assigned Officers</h3>
     <div class="assigned_officers_heading_btns">
-      <button mat-stroked-button type="button">Assign</button>
-      <button mat-flat-button type="button">Unassign</button>
+      <a mat-stroked-button type="button" [routerLink]="['./assign']">Assign</a>
+      <a mat-flat-button type="button" [routerLink]="['./unassign']"
+        >Unassign</a
+      >
     </div>
   </div>
   <div class="officers_container">

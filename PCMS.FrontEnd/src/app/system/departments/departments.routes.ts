@@ -17,9 +17,7 @@ export const DEPARTMENT_ROUTES: Routes = [
   },
   {
     path: ':id',
-    loadComponent: () =>
-      import('./id/department-id-page.component').then(
-        (m) => m.DepartmentIdPageComponent
-      ),
+    loadChildren: () =>
+      import('./id/id-routes.routes').then((m) => m.DEPARTMENT_ID_ROUTES),
   },
 ];
