@@ -1,0 +1,21 @@
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  
+  .main_form_field{
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+  }
+  
+  .btns_container{
+      display: flex;
+      align-items: center;
+      gap: 1em;
+  }
