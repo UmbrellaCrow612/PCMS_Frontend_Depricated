@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -33,7 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './create-officer-page.component.scss',
   providers: [provideNativeDateAdapter()],
 })
-export class CreateOfficerPageComponent {
+export class CreateOfficerPageComponent implements OnDestroy {
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   get isMobile() {
@@ -57,9 +57,9 @@ export class CreateOfficerPageComponent {
     phoneNumber: new FormControl('', [
       Validators.maxLength(15),
       Validators.required,
-      this.noLettersValidator()
+      this.noLettersValidator(),
     ]),
-    profileImgUrl: new FormControl('', [Validators.required]),
+    profileImgUrl: new FormControl<any>(null, [Validators.required]),
     address: new FormControl('', [
       Validators.required,
       Validators.minLength(10),
@@ -94,6 +94,8 @@ export class CreateOfficerPageComponent {
     accessLevel: new FormControl('', Validators.required),
     departmentId: new FormControl('', Validators.required),
   });
+
+  selectedImageUrl: string | null = null;
 
   private readonly _currentDate = new Date();
   readonly minDateOfBirth = new Date(
@@ -182,21 +184,35 @@ export class CreateOfficerPageComponent {
     };
   }
 
-
   noLettersValidator(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} | null => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
       const hasLetters = /[a-zA-Z]/.test(control.value);
-      return hasLetters ? { 'hasLetters': {value: control.value} } : null;
+      return hasLetters ? { hasLetters: { value: control.value } } : null;
     };
   }
 
   clearForm() {
     this.officerForm.reset();
+    this.selectedImageUrl = null;
   }
 
   onSubmit() {
     if (this.officerForm.valid) {
       console.log(this.officerForm.value);
+    }
+  }
+
+  onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.selectedImageUrl = URL.createObjectURL(file);
+      this.officerForm.get('profileImgUrl')?.setValue(this.selectedImageUrl);
+    }
+  }
+  
+  ngOnDestroy() {
+    if (this.selectedImageUrl) {
+      URL.revokeObjectURL(this.selectedImageUrl);
     }
   }
 }

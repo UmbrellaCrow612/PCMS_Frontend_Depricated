@@ -84,6 +84,29 @@
     }
   </mat-form-field>
 
+  <div class="img_picker">
+    <button type="button" mat-raised-button (click)="fileInput.click()">
+      Choose File
+    </button>
+    <input
+      hidden
+      (change)="onFileSelected($event)"
+      #fileInput
+      type="file"
+      accept="image/*"
+    @if (officerForm.get('profileImgUrl')?.hasError('required')) {
+    <span> Profile image is required </span>
+    }
+  </div>
+
+  @if (selectedImageUrl) {
+  <div class="image-preview">
+    <img [src]="selectedImageUrl" alt="Image Preview" />
+  </div>
+  }
+
+  {{officerForm.value | json}}
+
   <div class="btns_container">
     <button mat-stroked-button type="submit" [disabled]="officerForm.invalid">
       Create
