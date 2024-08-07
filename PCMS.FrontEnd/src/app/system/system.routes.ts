@@ -21,11 +21,8 @@ export const SYSTEM_ROUTES: Routes = [
       },
       {
         path: 'officers',
-        title: 'PCMS - Officers',
-        loadComponent: () =>
-          import('./officers/officers-page.component').then(
-            (m) => m.OfficersPageComponent
-          ),
+        loadChildren: () =>
+          import('./officers/officers.routes').then((m) => m.OFFICERS_ROUTES),
       },
     ],
   },
