@@ -149,6 +149,16 @@
     </mat-select>
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Birth Place</mat-label>
+    <input required matInput formControlName="birthPlace" />
+    @if (officerForm.get("birthPlace")?.hasError("required")) {
+    <mat-error>Required</mat-error>
+    } @else if (officerForm.get("birthPlace")?.hasError("maxlength")) {
+    <mat-error>To Long</mat-error>
+    }
+  </mat-form-field>
+
   {{ officerForm.value | json }}
 
   <div class="btns_container">
