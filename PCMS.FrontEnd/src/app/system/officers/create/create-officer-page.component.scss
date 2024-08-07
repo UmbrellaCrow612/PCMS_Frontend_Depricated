@@ -13,6 +13,12 @@
   gap: 1em;
 }
 
+.nested_address_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
 .btns_container {
   display: flex;
   align-items: center;

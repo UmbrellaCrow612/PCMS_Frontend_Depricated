@@ -86,7 +86,7 @@
 
   <div class="img_picker">
     <button type="button" mat-raised-button (click)="fileInput.click()">
-      Choose File
+      Choose Face Image
     </button>
     <input
       hidden
@@ -96,7 +96,7 @@
       accept="image/*"
     />
     @if (officerForm.get('profileImgUrl')?.hasError('required')) {
-    <span> Profile image is required </span>
+    <mat-error> Profile image is required </mat-error>
     }
   </div>
 
@@ -106,7 +106,41 @@
   </div>
   }
 
-  {{officerForm.value | json}}
+  <div formGroupName="address" class="nested_address_form">
+    <mat-form-field appearance="outline">
+      <mat-label>House Number</mat-label>
+      <input required matInput formControlName="houseNumber" />
+      @if (officerForm.get("address")?.get("houseNumber")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Street Name</mat-label>
+      <input required matInput formControlName="streetName" />
+      @if (officerForm.get("address")?.get("streetName")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Town</mat-label>
+      <input required matInput formControlName="town" />
+      @if (officerForm.get("address")?.get("town")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Postcode</mat-label>
+      <input required matInput formControlName="postcode" />
+      @if (officerForm.get("address")?.get("postcode")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  {{ officerForm.value | json }}
 
   <div class="btns_container">
     <button mat-stroked-button type="submit" [disabled]="officerForm.invalid">

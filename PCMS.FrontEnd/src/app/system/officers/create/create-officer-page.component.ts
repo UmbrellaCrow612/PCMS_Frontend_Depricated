@@ -59,12 +59,13 @@ export class CreateOfficerPageComponent implements OnDestroy {
       Validators.required,
       this.noLettersValidator(),
     ]),
-    profileImgUrl: new FormControl<any>(null, [Validators.required]),
-    address: new FormControl('', [
-      Validators.required,
-      Validators.minLength(10),
-      Validators.maxLength(60),
-    ]),
+    profileImgUrl: new FormControl<string>('', [Validators.required]),
+    address: new FormGroup({
+      houseNumber: new FormControl('', [Validators.required]),
+      streetName: new FormControl('', [Validators.required]),
+      town: new FormControl('', [Validators.required]),
+      postcode: new FormControl('', [Validators.required]),
+    }),
     gender: new FormControl('', [Validators.required]),
     birthPlace: new FormControl('', [
       Validators.required,
@@ -209,7 +210,7 @@ export class CreateOfficerPageComponent implements OnDestroy {
       this.officerForm.get('profileImgUrl')?.setValue(this.selectedImageUrl);
     }
   }
-  
+
   ngOnDestroy() {
     if (this.selectedImageUrl) {
       URL.revokeObjectURL(this.selectedImageUrl);
