@@ -159,6 +159,17 @@
     }
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Height</mat-label>
+    <input required matInput formControlName="height" />
+    <mat-hint>Measured in feat</mat-hint>
+    @if (officerForm.get("height")?.hasError("required")) {
+    <mat-error>Required</mat-error>
+    } @else if (officerForm.get("height")?.hasError("hasLetters")) {
+    <mat-error>Can't have letters in height</mat-error>
+    }
+  </mat-form-field>
+
   {{ officerForm.value | json }}
 
   <div class="btns_container">

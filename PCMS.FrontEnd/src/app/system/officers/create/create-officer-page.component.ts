@@ -77,7 +77,10 @@ export class CreateOfficerPageComponent implements OnDestroy {
       Validators.minLength(1),
       Validators.maxLength(50),
     ]),
-    height: new FormControl('', [Validators.required]),
+    height: new FormControl('', [
+      Validators.required,
+      this.noLettersValidator(),
+    ]),
     race: new FormControl('', [Validators.required]),
     ethnicity: new FormControl('', [Validators.required]),
     nationality: new FormControl('', [Validators.required]),
