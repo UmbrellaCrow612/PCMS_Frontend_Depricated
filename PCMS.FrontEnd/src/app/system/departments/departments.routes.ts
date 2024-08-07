@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { DepartmentsPageComponent } from './departments-page.component';
 
-export const DEPARTMENT_ROUTES: Routes = [
+export const DEPARTMENTS_ROUTES: Routes = [
   {
     path: '',
     component: DepartmentsPageComponent,

@@ -58,8 +58,8 @@ export class CreateOfficerPageComponent {
     race: new FormControl('', [Validators.required]),
     ethnicity: new FormControl('', [Validators.required]),
     nationality: new FormControl('', [Validators.required]),
-    physicalDescription: new FormControl(''),
-    generalDescription: new FormControl(''),
+    physicalDescription: new FormControl('', [Validators.maxLength(200)]),
+    generalDescription: new FormControl('', [Validators.maxLength(200)]),
     driversLicenseNumber: new FormControl('', [
       Validators.required,
       this.ukDriversLicenseValidator(),

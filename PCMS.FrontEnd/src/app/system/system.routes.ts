@@ -16,7 +16,7 @@ export const SYSTEM_ROUTES: Routes = [
         path: 'departments',
         loadChildren: () =>
           import('./departments/departments.routes').then(
-            (m) => m.DEPARTMENT_ROUTES
+            (m) => m.DEPARTMENTS_ROUTES
           ),
       },
       {
