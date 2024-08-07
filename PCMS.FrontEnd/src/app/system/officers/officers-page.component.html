@@ -1,1 +1,21 @@
-<p>officers-page works!</p>
+@if (isPageLoading) {
+    <div class="main_loading">
+      <mat-spinner></mat-spinner>
+    </div>
+    } @else {
+    <div class="main_container">
+      <div class="section_one">
+        <app-grid
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [rowSelection]="'single'"
+          (rowClicked)="onRowClicked($event)"
+        ></app-grid>
+      </div>
+      <div class="section_two">
+        <a [routerLink]="['./create']" mat-raised-button>Create</a>
+      </div>
+    </div>
+    
+    }
+    
