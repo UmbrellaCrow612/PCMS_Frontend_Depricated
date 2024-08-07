@@ -140,6 +140,15 @@
     </mat-form-field>
   </div>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender">
+      @for (gender of genders; track gender) {
+      <mat-option [value]="gender">{{ gender }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
   {{ officerForm.value | json }}
 
   <div class="btns_container">

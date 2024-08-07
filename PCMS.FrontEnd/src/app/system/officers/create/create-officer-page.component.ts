@@ -16,6 +16,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-create-officer-page',
@@ -28,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatDatepickerModule,
     CommonModule,
     MatIconModule,
+    MatSelectModule,
   ],
   templateUrl: './create-officer-page.component.html',
   styleUrl: './create-officer-page.component.scss',
@@ -39,6 +41,9 @@ export class CreateOfficerPageComponent implements OnDestroy {
   get isMobile() {
     return this.breakpointObserver.isMatched('(max-width: 767px)');
   }
+
+  selectedImageUrl: string | null = null;
+  genders = ['Male', 'Female'];
 
   officerForm = new FormGroup({
     firstName: new FormControl('', [
@@ -66,7 +71,7 @@ export class CreateOfficerPageComponent implements OnDestroy {
       town: new FormControl('', [Validators.required]),
       postcode: new FormControl('', [Validators.required]),
     }),
-    gender: new FormControl('', [Validators.required]),
+    gender: new FormControl(this.genders[0], [Validators.required]),
     birthPlace: new FormControl('', [
       Validators.required,
       Validators.minLength(1),
@@ -95,8 +100,6 @@ export class CreateOfficerPageComponent implements OnDestroy {
     accessLevel: new FormControl('', Validators.required),
     departmentId: new FormControl('', Validators.required),
   });
-
-  selectedImageUrl: string | null = null;
 
   private readonly _currentDate = new Date();
   readonly minDateOfBirth = new Date(
