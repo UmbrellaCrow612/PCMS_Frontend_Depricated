@@ -10,6 +10,9 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-create-officer-page',
@@ -19,21 +22,26 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatDatepickerModule,
   ],
   templateUrl: './create-officer-page.component.html',
   styleUrl: './create-officer-page.component.scss',
+  providers: [provideNativeDateAdapter()],
 })
 export class CreateOfficerPageComponent {
+  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  get isMobile() {
+    return this.breakpointObserver.isMatched('(max-width: 767px)');
+  }
+
   officerForm = new FormGroup({
     firstName: new FormControl('', [
       Validators.minLength(1),
       Validators.maxLength(50),
       Validators.required,
     ]),
-    middleName: new FormControl('', [
-      Validators.minLength(1),
-      Validators.maxLength(50),
-    ]),
+    middleName: new FormControl('', [Validators.maxLength(50)]),
     lastName: new FormControl('', [
       Validators.minLength(1),
       Validators.maxLength(50),
@@ -77,6 +85,14 @@ export class CreateOfficerPageComponent {
     accessLevel: new FormControl('', Validators.required),
     departmentId: new FormControl('', Validators.required),
   });
+
+  private readonly _currentDate = new Date();
+  readonly minDateOfBirth = new Date(
+    this._currentDate.getFullYear() - 120,
+    0,
+    1
+  );
+  readonly maxDateOfBirth = new Date(this._currentDate);
 
   ninoValidator(): (control: AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
