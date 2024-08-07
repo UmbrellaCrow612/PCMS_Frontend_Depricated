@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -17,6 +17,9 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { races } from './test-data';
+import { map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-create-officer-page',
@@ -30,13 +33,21 @@ import { MatSelectModule } from '@angular/material/select';
     CommonModule,
     MatIconModule,
     MatSelectModule,
+    MatAutocompleteModule,
   ],
   templateUrl: './create-officer-page.component.html',
   styleUrl: './create-officer-page.component.scss',
   providers: [provideNativeDateAdapter()],
 })
-export class CreateOfficerPageComponent implements OnDestroy {
+export class CreateOfficerPageComponent implements OnInit, OnDestroy {
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  ngOnInit(): void {
+    this.filteredRaces = this.officerForm?.get('race')?.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._raceFilter(value || ''))
+    );
+  }
 
   get isMobile() {
     return this.breakpointObserver.isMatched('(max-width: 767px)');
@@ -44,6 +55,8 @@ export class CreateOfficerPageComponent implements OnDestroy {
 
   selectedImageUrl: string | null = null;
   genders = ['Male', 'Female'];
+  races = races;
+  filteredRaces: Observable<string[]> | undefined;
 
   officerForm = new FormGroup({
     firstName: new FormControl('', [
@@ -215,6 +228,22 @@ export class CreateOfficerPageComponent implements OnDestroy {
       this.selectedImageUrl = URL.createObjectURL(file);
       this.officerForm.get('profileImgUrl')?.setValue(this.selectedImageUrl);
     }
+  }
+
+  private _raceFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    const values = this.races.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+
+    if (values.length === 0) {
+      this.officerForm.get('race')?.setErrors({
+        invalidOption: true,
+      });
+    }
+
+    return values;
   }
 
   ngOnDestroy() {

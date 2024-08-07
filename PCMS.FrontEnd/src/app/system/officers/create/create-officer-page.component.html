@@ -170,6 +170,25 @@
     }
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Race</mat-label>
+    <input
+      matInput
+      formControlName="race"
+      [matAutocomplete]="raceAuto"
+    />
+    @if (officerForm.get("race")?.hasError("required")) {
+    <mat-error> Required </mat-error>
+    } @else if (officerForm.get("race")?.hasError("invalidOption")) {
+    <mat-error>Pick a valid option </mat-error>
+    }
+    <mat-autocomplete autoActiveFirstOption #raceAuto="matAutocomplete">
+      @for (option of filteredRaces | async; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+
   {{ officerForm.value | json }}
 
   <div class="btns_container">
