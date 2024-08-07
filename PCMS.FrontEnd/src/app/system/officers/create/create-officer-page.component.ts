@@ -5,6 +5,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-create-officer-page',
@@ -23,6 +26,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
+    CommonModule,
+    MatIconModule,
   ],
   templateUrl: './create-officer-page.component.html',
   styleUrl: './create-officer-page.component.scss',
@@ -49,7 +54,11 @@ export class CreateOfficerPageComponent {
     ]),
     dateOfBirth: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [
+      Validators.maxLength(15),
+      Validators.required,
+      this.noLettersValidator()
+    ]),
     profileImgUrl: new FormControl('', [Validators.required]),
     address: new FormControl('', [
       Validators.required,
@@ -170,6 +179,14 @@ export class CreateOfficerPageComponent {
       }
 
       return null;
+    };
+  }
+
+
+  noLettersValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const hasLetters = /[a-zA-Z]/.test(control.value);
+      return hasLetters ? { 'hasLetters': {value: control.value} } : null;
     };
   }
 

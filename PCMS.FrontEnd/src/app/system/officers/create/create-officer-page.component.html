@@ -53,10 +53,35 @@
     <mat-error>Date of birth to long in the past</mat-error>
     }
     <mat-datepicker-toggle
-      matIconSuffix
+      matIconPrefix
       [for]="dateOfBirthPicker"
     ></mat-datepicker-toggle>
     <mat-datepicker [touchUi]="isMobile" #dateOfBirthPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input required matInput formControlName="email" />
+    <mat-icon matPrefix>email</mat-icon>
+    @if (officerForm.get("email")?.hasError("required")) {
+    <mat-error>Required</mat-error>
+    } @else if (officerForm.get("email")?.hasError("email")) {
+    <mat-error>Invalid email</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Phone Number</mat-label>
+    <input required matInput type="tel" formControlName="phoneNumber" />
+    <mat-hint>Don't need to add country code</mat-hint>
+    <mat-icon matPrefix>call</mat-icon>
+    @if (officerForm.get("phoneNumber")?.hasError("required")) {
+    <mat-error>Required</mat-error>
+    } @else if (officerForm.get("phoneNumber")?.hasError("maxlength")) {
+    <mat-error>Phone number to long</mat-error>
+    } @else if (officerForm.get("phoneNumber")?.hasError("hasLetters")) {
+    <mat-error>Phone number should not contain letters</mat-error>
+    }
   </mat-form-field>
 
   <div class="btns_container">
