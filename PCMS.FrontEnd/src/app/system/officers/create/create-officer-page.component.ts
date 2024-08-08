@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { ethnicGroups, races } from './test-data';
+import { ethnicGroups, nationalities, races } from './test-data';
 import { map, Observable, startWith } from 'rxjs';
 
 @Component({
@@ -54,6 +54,13 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
         startWith(''),
         map((value) => this._ethnicGroupFilter(value || ''))
       );
+
+    this.filteredNationalities = this.officerForm
+      ?.get('nationality')
+      ?.valueChanges.pipe(
+        startWith(''),
+        map((value) => this._nationalityFilter(value || ''))
+      );
   }
 
   get isMobile() {
@@ -66,6 +73,8 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
   filteredRaces: Observable<string[]> | undefined;
   ethnicGroups = ethnicGroups;
   filteredEthnicGroups: Observable<string[]> | undefined;
+  nationalities = nationalities;
+  filteredNationalities: Observable<string[]> | undefined;
 
   officerForm = new FormGroup({
     firstName: new FormControl('', [
@@ -259,6 +268,22 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
 
     if (values.length === 0) {
       this.officerForm.get('ethnicity')?.setErrors({
+        invalidOption: true,
+      });
+    }
+
+    return values;
+  }
+
+  private _nationalityFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    const values = this.nationalities.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+
+    if (values.length === 0) {
+      this.officerForm.get('nationality')?.setErrors({
         invalidOption: true,
       });
     }

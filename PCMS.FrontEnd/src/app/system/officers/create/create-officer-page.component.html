@@ -203,6 +203,26 @@
       }
     </mat-autocomplete>
   </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nationality</mat-label>
+    <input
+      matInput
+      formControlName="nationality"
+      [matAutocomplete]="nationalityAuto"
+    />
+    @if (officerForm.get("nationality")?.hasError("required")) {
+    <mat-error> Required </mat-error>
+    } @else if (officerForm.get("nationality")?.hasError("invalidOption")) {
+    <mat-error>Pick a valid option </mat-error>
+    }
+    <mat-autocomplete autoActiveFirstOption #nationalityAuto="matAutocomplete">
+      @for (option of filteredNationalities | async; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+
   {{ officerForm.value | json }}
 
   <div class="btns_container">
