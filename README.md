@@ -2,4 +2,4 @@
 
 Police Case Management System
 
-![Logo](./PCMS.FrontEnd/public/logo.png)
+![Logo](./Frontend/public/logo.png)
