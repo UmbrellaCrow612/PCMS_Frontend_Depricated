@@ -16,11 +16,6 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { ThemeService } from '../theme/theme-service.service';
 import { Subscription } from 'rxjs';
 
-/* Core Data Grid CSS */
-import 'ag-grid-community/styles/ag-grid.css';
-/* Quartz Theme Specific CSS */
-import 'ag-grid-community/styles/ag-theme-material.css';
-
 @Component({
   selector: 'app-grid',
   standalone: true,
@@ -79,8 +74,8 @@ export class GridComponent implements OnInit, OnDestroy {
     this.themeSubscription = this.themeService.isDarkMode$.subscribe(
       (isDarkMode) => {
         this.themeClass = isDarkMode
-          ? 'ag-theme-material-dark'
-          : 'ag-theme-material';
+          ? 'ag-theme-alpine-dark'
+          : 'ag-theme-alpine';
       }
     );
   }
