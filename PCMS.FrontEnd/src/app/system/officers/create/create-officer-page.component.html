@@ -241,6 +241,14 @@
     }
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Drivers License Number</mat-label>
+    <input matInput formControlName="driversLicenseNumber" />
+    @if (officerForm.get("driversLicenseNumber")?.hasError("required")) {
+    <mat-error>Required</mat-error>
+    }
+  </mat-form-field>
+
   <span>
     {{ officerForm.value | json }}
   </span>

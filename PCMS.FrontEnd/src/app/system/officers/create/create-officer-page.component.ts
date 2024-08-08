@@ -117,10 +117,7 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
     nationality: new FormControl('', [Validators.required]),
     physicalDescription: new FormControl('', [Validators.maxLength(200)]),
     generalDescription: new FormControl('', [Validators.maxLength(200)]),
-    driversLicenseNumber: new FormControl('', [
-      Validators.required,
-      this.ukDriversLicenseValidator(),
-    ]),
+    driversLicenseNumber: new FormControl('', [Validators.required]),
     nationalInsuranceNumber: new FormControl('', [
       Validators.required,
       this.ninoValidator(),
@@ -171,46 +168,6 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
 
       if (invalidPrefixes.includes(prefix)) {
         return { invalidNinoPrefix: true };
-      }
-
-      return null;
-    };
-  }
-
-  ukDriversLicenseValidator(): (
-    control: AbstractControl
-  ) => ValidationErrors | null {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value: string = control.value;
-
-      // Remove any spaces from the input
-      const cleanedValue = value.replace(/\s/g, '');
-
-      // Regular expression to match the UK driver's license format
-      const dlPattern = /^[A-Z]{5}[0-9]{6}[A-Z]{2}[0-9]{2}$/;
-
-      if (!dlPattern.test(cleanedValue)) {
-        return { invalidDriversLicense: true };
-      }
-
-      // Check if the date of birth encoded in the license is valid
-      const dobDigits = cleanedValue.substring(5, 11);
-      const decade = parseInt(dobDigits.substring(0, 2));
-      let year = decade < 50 ? 2000 + decade : 1900 + decade;
-      const month = parseInt(dobDigits.substring(2, 4));
-      const day = parseInt(dobDigits.substring(4, 6));
-
-      // Adjust for the century addition in months for people born before 2000
-      const adjustedMonth = month > 20 && year < 2000 ? month - 20 : month;
-      const adjustedYear = month > 20 && year < 2000 ? year + 100 : year;
-
-      const dob = new Date(adjustedYear, adjustedMonth - 1, day);
-      if (
-        isNaN(dob.getTime()) ||
-        dob > new Date() ||
-        dob < new Date(1900, 0, 1)
-      ) {
-        return { invalidDriversLicenseDate: true };
       }
 
       return null;
