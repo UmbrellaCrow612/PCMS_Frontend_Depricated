@@ -223,7 +223,27 @@
     </mat-autocomplete>
   </mat-form-field>
 
-  {{ officerForm.value | json }}
+  <mat-form-field appearance="outline">
+    <mat-label>Physical Description</mat-label>
+    <textarea matInput formControlName="physicalDescription"></textarea>
+    <mat-hint>Optional</mat-hint>
+    @if (officerForm.get("physicalDescription")?.hasError("maxlength")) {
+    <mat-error>To Long </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>General Description</mat-label>
+    <textarea matInput formControlName="generalDescription"></textarea>
+    <mat-hint>Optional</mat-hint>
+    @if (officerForm.get("generalDescription")?.hasError("maxlength")) {
+    <mat-error>To Long </mat-error>
+    }
+  </mat-form-field>
+
+  <span>
+    {{ officerForm.value | json }}
+  </span>
 
   <div class="btns_container">
     <button mat-stroked-button type="submit" [disabled]="officerForm.invalid">
