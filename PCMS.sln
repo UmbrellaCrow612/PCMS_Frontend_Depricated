@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "PCMS.FrontEnd", "PCMS.FrontEnd\PCMS.FrontEnd.esproj", "{04C9DA32-0D68-4215-8292-00C9A950D369}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Frontend", "PCMS.FrontEnd\Frontend.esproj", "{04C9DA32-0D68-4215-8292-00C9A950D369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{6C88152B-E7E5-4DBE-BE4F-71BF5E3E7C08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{6C88152B-E7E5-4DBE-BE4F-71BF5E3E7C08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
