@@ -84,6 +84,17 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Hide scroll bars */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 // Optional: Custom styles for better contrast and readability
 .dark-theme {
   background-color: #121212;
