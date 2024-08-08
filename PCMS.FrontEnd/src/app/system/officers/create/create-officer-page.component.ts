@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { races } from './test-data';
+import { ethnicGroups, races } from './test-data';
 import { map, Observable, startWith } from 'rxjs';
 
 @Component({
@@ -47,6 +47,13 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
       startWith(''),
       map((value) => this._raceFilter(value || ''))
     );
+
+    this.filteredEthnicGroups = this.officerForm
+      ?.get('ethnicity')
+      ?.valueChanges.pipe(
+        startWith(''),
+        map((value) => this._ethnicGroupFilter(value || ''))
+      );
   }
 
   get isMobile() {
@@ -57,6 +64,8 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
   genders = ['Male', 'Female'];
   races = races;
   filteredRaces: Observable<string[]> | undefined;
+  ethnicGroups = ethnicGroups;
+  filteredEthnicGroups: Observable<string[]> | undefined;
 
   officerForm = new FormGroup({
     firstName: new FormControl('', [
@@ -108,11 +117,6 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
       this.ninoValidator(),
     ]),
     badgeNumber: new FormControl('', Validators.required),
-    username: new FormControl('', [
-      Validators.required,
-      Validators.minLength(10),
-      Validators.minLength(50),
-    ]),
     accessLevel: new FormControl('', Validators.required),
     departmentId: new FormControl('', Validators.required),
   });
@@ -239,6 +243,22 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
 
     if (values.length === 0) {
       this.officerForm.get('race')?.setErrors({
+        invalidOption: true,
+      });
+    }
+
+    return values;
+  }
+
+  private _ethnicGroupFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    const values = this.ethnicGroups.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+
+    if (values.length === 0) {
+      this.officerForm.get('ethnicity')?.setErrors({
         invalidOption: true,
       });
     }
