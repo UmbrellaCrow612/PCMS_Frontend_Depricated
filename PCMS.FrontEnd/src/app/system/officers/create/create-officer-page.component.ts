@@ -135,39 +135,32 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
   );
   readonly maxDateOfBirth = new Date(this._currentDate);
 
-  ninoValidator(): (control: AbstractControl) => ValidationErrors | null {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value: string = control.value;
+  ninoValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const nino = control.value?.trim();
 
-      // Remove any spaces from the input
-      const cleanedValue = value.replace(/\s/g, '');
-
-      // Regular expression to match the basic NINO format
-      const ninoPattern = /^[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z][0-9]{6}[A-D]$/;
-
-      if (!ninoPattern.test(cleanedValue)) {
-        return { invalidNino: true };
+      // Check format
+      const ninoRegex = /^[A-CEGHJ-NPR-TW-Z]{2}\d{6}[A-D]$/;
+      if (!ninoRegex.test(nino)) {
+        return { invalidNINO: true };
       }
 
-      // Check for invalid prefixes
-      const invalidPrefixes = [
-        'BG',
-        'GB',
-        'KN',
-        'NK',
-        'NT',
-        'TN',
-        'ZZ',
-        'OO',
-        'FY',
-        'NC',
-        'PP',
-        'PZ',
-      ];
-      const prefix = cleanedValue.substring(0, 2);
+      // Check prefix
+      const prefix = nino.substr(0, 2);
+      const invalidPrefixes = ['BG', 'GB', 'KN', 'NK', 'NT', 'TN', 'ZZ'];
+      const invalidFirstOrSecondLetters = ['D', 'F', 'I', 'O', 'Q', 'U', 'V'];
+      if (
+        invalidPrefixes.includes(prefix) ||
+        invalidFirstOrSecondLetters.includes(prefix.charAt(0)) ||
+        invalidFirstOrSecondLetters.includes(prefix.charAt(1))
+      ) {
+        return { invalidNINO: true };
+      }
 
-      if (invalidPrefixes.includes(prefix)) {
-        return { invalidNinoPrefix: true };
+      // Check suffix
+      const suffix = nino.charAt(nino.length - 1);
+      if (!['A', 'B', 'C', 'D'].includes(suffix)) {
+        return { invalidNINO: true };
       }
 
       return null;

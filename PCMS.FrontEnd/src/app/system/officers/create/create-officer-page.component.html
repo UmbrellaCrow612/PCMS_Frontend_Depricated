@@ -249,6 +249,17 @@
     }
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>National Insurance Number</mat-label>
+    <input matInput formControlName="nationalInsuranceNumber" />
+    @if (officerForm.get("nationalInsuranceNumber")?.hasError("required")) {
+    <mat-error>Required</mat-error>
+    } @else if
+    (officerForm.get("nationalInsuranceNumber")?.hasError("invalidNINO")) {
+    <mat-error>Invalid Number</mat-error>
+    }
+  </mat-form-field>
+
   <span>
     {{ officerForm.value | json }}
   </span>
