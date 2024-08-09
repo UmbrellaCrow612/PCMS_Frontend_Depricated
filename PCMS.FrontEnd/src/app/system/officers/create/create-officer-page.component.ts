@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { ethnicGroups, nationalities, races } from './test-data';
+import { AccessLevel, ethnicGroups, nationalities, races } from './test-data';
 import { map, Observable, startWith } from 'rxjs';
 import { ninoValidator, noLettersValidator } from '../../../validators';
 
@@ -73,6 +73,7 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
   filteredEthnicGroups: Observable<string[]> | undefined;
   nationalities = nationalities;
   filteredNationalities: Observable<string[]> | undefined;
+  accessLevels = Object.values(AccessLevel).filter(value => typeof value === 'number');
 
   officerForm = new FormGroup({
     firstName: new FormControl('', [

@@ -268,6 +268,15 @@
     }
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Access Level</mat-label>
+    <mat-select formControlName="accessLevel">
+      @for (option of accessLevels; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
   <span>
     {{ officerForm.value | json }}
   </span>
