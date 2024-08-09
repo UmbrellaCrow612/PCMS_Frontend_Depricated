@@ -275,6 +275,9 @@
       <mat-option [value]="option">{{ option }}</mat-option>
       }
     </mat-select>
+    @if (officerForm.get("accessLevel")?.hasError("required")) {
+      <mat-error>Required</mat-error>
+      }
   </mat-form-field>
 
   <span>
