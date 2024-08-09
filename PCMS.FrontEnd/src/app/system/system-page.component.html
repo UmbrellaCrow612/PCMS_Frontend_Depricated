@@ -20,13 +20,24 @@
 
       }
       <div class="drawer_btns_container">
-        <a [routerLink]="['./']" mat-raised-button
+        <a
+          [routerLink]="['./']"
+          mat-raised-button
+          router
+          routerLinkActive="mat-primary"
+          [routerLinkActiveOptions]="{ exact: true }"
           ><mat-icon>home</mat-icon>Home</a
         >
-        <a [routerLink]="['./departments']" mat-raised-button
+        <a
+          [routerLink]="['./departments']"
+          mat-raised-button
+          routerLinkActive="mat-primary"
           ><mat-icon>group</mat-icon>Departments</a
         >
-        <a [routerLink]="['./officers']" mat-raised-button
+        <a
+          [routerLink]="['./officers']"
+          mat-raised-button
+          routerLinkActive="mat-primary"
           ><mat-icon>local_police</mat-icon>Officers</a
         >
       </div>

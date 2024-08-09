@@ -1,69 +1,235 @@
 @use "@angular/material" as mat;
 
-// Define custom color palettes
-$custom-light-primary: mat.m2-define-palette(mat.$m2-indigo-palette, 500);
-$custom-light-accent: mat.m2-define-palette(
+// Define the default (light) theme.
+$candy-app-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+$candy-app-accent: mat.m2-define-palette(
   mat.$m2-pink-palette,
   A200,
   A100,
   A400
 );
-$custom-light-warn: mat.m2-define-palette(mat.$m2-red-palette);
-
-$custom-dark-primary: mat.m2-define-palette(mat.$m2-blue-grey-palette, 200);
-$custom-dark-accent: mat.m2-define-palette(
-  mat.$m2-amber-palette,
-  A200,
-  A100,
-  A400
-);
-$custom-dark-warn: mat.m2-define-palette(mat.$m2-deep-orange-palette);
-
-// Define the light theme
-$light-theme: mat.m2-define-light-theme(
+$candy-app-theme: mat.m2-define-light-theme(
   (
-    color: (
-      primary: $custom-light-primary,
-      accent: $custom-light-accent,
-      warn: $custom-light-warn,
-    ),
+    // Define the default colors for our app.
+    color:
+      (
+        primary: $candy-app-primary,
+        accent: $candy-app-accent,
+      ),
+    // Define the default typography for our app.
     typography: mat.m2-define-typography-config(),
-    density: 0,
+    // Define the default density level for our app.
+    density: 0
   )
 );
 
-// Define the dark theme
-$dark-theme: mat.m2-define-dark-theme(
-  (
-    color: (
-      primary: $custom-dark-primary,
-      accent: $custom-dark-accent,
-      warn: $custom-dark-warn,
-    ),
-    typography: mat.m2-define-typography-config(),
-    density: 0,
-  )
-);
-
-// Include core Material styles
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
 @include mat.core();
 
-// Apply the light theme by default
-@include mat.all-component-themes($light-theme);
+// Include the default theme styles.
+@include mat.all-component-themes($candy-app-theme);
+@include mat.typography-hierarchy($candy-app-theme);
 
-// Apply the dark theme to the .dark-theme class
-.dark-theme {
-  @include mat.all-component-colors($dark-theme);
+.demo-strong-focus {
+  // Note: we can theme the indicators directly through `strong-focus-indicators` as well.
+  // Use the theme so we have some coverage over the entire API surface.
+  @include mat.strong-focus-indicators();
+  @include mat.strong-focus-indicators-theme($candy-app-theme);
 }
 
-// Density classes
-$density-scales: (-1, -2, -3, -4, minimum, maximum);
-@each $density in $density-scales {
-  .density-#{$density} {
-    @include mat.all-component-densities($density);
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.demo-unicorn-dark-theme` will be affected by this alternate dark theme instead of the
+// default theme.
+.demo-unicorn-dark-theme {
+  // Create the color palettes used in our dark theme.
+  $dark-primary: mat.m2-define-palette(mat.$m2-blue-grey-palette);
+  $dark-accent: mat.m2-define-palette(mat.$m2-amber-palette, A200, A100, A400);
+  $dark-warn: mat.m2-define-palette(mat.$m2-deep-orange-palette);
+  $dark-colors: mat.m2-define-dark-theme(
+    (
+      color: (
+        primary: $dark-primary,
+        accent: $dark-accent,
+        warn: $dark-warn,
+      ),
+      density: 0,
+      typography: mat.m2-define-typography-config(),
+    )
+  );
+
+  // Include the dark theme color styles.
+  @include mat.all-component-colors($dark-colors);
+
+  // Include the dark theme colors for focus indicators.
+  &.demo-strong-focus {
+    @include mat.strong-focus-indicators-color($dark-colors);
+  }
+
+  /**
+     * Backgrounds
+     */
+  $color-bg-darkest: #13141b;
+  $color-bg-darker: #1b1e27;
+  $color-bg-dark: #232837;
+  $color-bg-med: #2f3646;
+  $color-bg-light: #455066;
+  $color-bg-lighter: #5b6882;
+
+  /**
+        * Text
+        */
+  $color-text-dark: #72809b;
+  $color-text-med-dark: #919db5;
+  $color-text-med: #a0aabe;
+  $color-text-med-light: #d9dce1;
+  $color-text-light: #f0f1f6;
+  $color-text-lighter: #fff;
+
+  .ngx-charts {
+    text {
+      fill: $color-text-med;
+    }
+
+    .tooltip-anchor {
+      fill: rgb(255, 255, 255);
+    }
+
+    .gridline-path {
+      stroke: $color-bg-med;
+    }
+
+    .refline-path {
+      stroke: $color-bg-light;
+    }
+
+    .reference-area {
+      fill: #fff;
+    }
+
+    .grid-panel {
+      &.odd {
+        rect {
+          fill: rgba(255, 255, 255, 0.05);
+        }
+      }
+    }
+
+    .force-directed-graph {
+      .edge {
+        stroke: $color-bg-light;
+      }
+    }
+
+    .number-card {
+      p {
+        color: $color-text-light;
+      }
+    }
+
+    .gauge {
+      .background-arc {
+        path {
+          fill: $color-bg-med;
+        }
+      }
+
+      .gauge-tick {
+        path {
+          stroke: $color-text-med;
+        }
+
+        text {
+          fill: $color-text-med;
+        }
+      }
+    }
+
+    .linear-gauge {
+      .background-bar {
+        path {
+          fill: $color-bg-med;
+        }
+      }
+
+      .units {
+        fill: $color-text-dark;
+      }
+    }
+
+    .timeline {
+      .brush-background {
+        fill: rgba(255, 255, 255, 0.05);
+      }
+
+      .brush {
+        .selection {
+          fill: rgba(255, 255, 255, 0.1);
+          stroke: #aaa;
+        }
+      }
+    }
+
+    .polar-chart .polar-chart-background {
+      fill: rgb(30, 34, 46);
+    }
+  }
+
+  .chart-legend {
+    .legend-labels {
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .legend-item {
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .legend-label {
+      &:hover {
+        color: #fff !important;
+      }
+
+      .active {
+        .legend-label-text {
+          color: #fff !important;
+        }
+      }
+    }
+
+    .scale-legend-label {
+      color: $color-text-med;
+    }
+  }
+
+  .advanced-pie-legend {
+    color: $color-text-med;
+
+    .legend-item {
+      &:hover {
+        color: #fff !important;
+      }
+    }
+  }
+
+  .number-card .number-card-label {
+    font-size: 0.8em;
+    color: $color-text-med;
   }
 }
 
+// Create classes for all density scales which are supported by all MDC-based components.
+// The classes are applied conditionally based on the selected density in the dev-app layout
+// component.
+$density-scales: (-1, -2, -3, -4, minimum, maximum);
+@each $density in $density-scales {
+  .demo-density-#{$density} {
+    @include mat.all-component-densities($density);
+  }
+}
 // Global styles
 * {
   margin: 0;
@@ -79,9 +245,11 @@ audio {
   display: block;
 }
 
-// Add smooth transitions for theme changes
+
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 
 /* Hide scroll bars */
@@ -93,332 +261,4 @@ body {
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
-}
-
-// Optional: Custom styles for better contrast and readability
-.dark-theme {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-// Optional: Accessibility improvements
-:focus {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
-// Optional: Custom scrollbar for better theme integration
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.dark-theme {
-  ::-webkit-scrollbar-track {
-    background: #2c2c2c;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #666;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #888;
-  }
-}
-
-// NGX Charts styles
-.ngx-charts {
-  text {
-    fill: mat.m2-get-color-from-palette($custom-light-primary, 900);
-  }
-
-  .tooltip-anchor {
-    fill: mat.m2-get-color-from-palette($custom-light-primary, 50);
-  }
-
-  .gridline-path {
-    stroke: mat.m2-get-color-from-palette($custom-light-primary, 100);
-  }
-
-  .refline-path {
-    stroke: mat.m2-get-color-from-palette($custom-light-primary, 200);
-  }
-
-  .reference-area {
-    fill: mat.m2-get-color-from-palette($custom-light-primary, 50);
-  }
-
-  .grid-panel {
-    &.odd {
-      rect {
-        fill: rgba(0, 0, 0, 0.05);
-      }
-    }
-  }
-
-  .force-directed-graph {
-    .edge {
-      stroke: mat.m2-get-color-from-palette($custom-light-primary, 200);
-    }
-  }
-
-  .number-card {
-    p {
-      color: mat.m2-get-color-from-palette($custom-light-primary, 900);
-    }
-  }
-
-  .gauge {
-    .background-arc {
-      path {
-        fill: mat.m2-get-color-from-palette($custom-light-primary, 100);
-      }
-    }
-
-    .gauge-tick {
-      path {
-        stroke: mat.m2-get-color-from-palette($custom-light-primary, 500);
-      }
-
-      text {
-        fill: mat.m2-get-color-from-palette($custom-light-primary, 500);
-      }
-    }
-  }
-
-  .linear-gauge {
-    .background-bar {
-      path {
-        fill: mat.m2-get-color-from-palette($custom-light-primary, 100);
-      }
-    }
-
-    .units {
-      fill: mat.m2-get-color-from-palette($custom-light-primary, 500);
-    }
-  }
-
-  .timeline {
-    .brush-background {
-      fill: rgba(0, 0, 0, 0.05);
-    }
-
-    .brush {
-      .selection {
-        fill: rgba(0, 0, 0, 0.1);
-        stroke: mat.m2-get-color-from-palette($custom-light-primary, 500);
-      }
-    }
-  }
-
-  .polar-chart .polar-chart-background {
-    fill: mat.m2-get-color-from-palette($custom-light-primary, 50);
-  }
-}
-
-.chart-legend {
-  .legend-labels {
-    background: rgba(0, 0, 0, 0.05) !important;
-  }
-
-  .legend-item {
-    &:hover {
-      color: mat.m2-get-color-from-palette($custom-light-primary, 900);
-    }
-  }
-
-  .legend-label {
-    &:hover {
-      color: mat.m2-get-color-from-palette(
-        $custom-light-primary,
-        900
-      ) !important;
-    }
-
-    .active {
-      .legend-label-text {
-        color: mat.m2-get-color-from-palette(
-          $custom-light-primary,
-          900
-        ) !important;
-      }
-    }
-  }
-
-  .scale-legend-label {
-    color: mat.m2-get-color-from-palette($custom-light-primary, 500);
-  }
-}
-
-.advanced-pie-legend {
-  color: mat.m2-get-color-from-palette($custom-light-primary, 500);
-
-  .legend-item {
-    &:hover {
-      color: mat.m2-get-color-from-palette(
-        $custom-light-primary,
-        900
-      ) !important;
-    }
-  }
-}
-
-.number-card .number-card-label {
-  font-size: 0.8em;
-  color: mat.m2-get-color-from-palette($custom-light-primary, 500);
-}
-
-// Dark theme overrides for NGX Charts
-.dark-theme {
-  .ngx-charts {
-    text {
-      fill: mat.m2-get-color-from-palette($custom-dark-primary, 100);
-    }
-
-    .tooltip-anchor {
-      fill: mat.m2-get-color-from-palette($custom-dark-primary, 900);
-    }
-
-    .gridline-path {
-      stroke: mat.m2-get-color-from-palette($custom-dark-primary, 700);
-    }
-
-    .refline-path {
-      stroke: mat.m2-get-color-from-palette($custom-dark-primary, 500);
-    }
-
-    .reference-area {
-      fill: mat.m2-get-color-from-palette($custom-dark-primary, 900);
-    }
-
-    .grid-panel {
-      &.odd {
-        rect {
-          fill: rgba(255, 255, 255, 0.05);
-        }
-      }
-    }
-
-    .force-directed-graph {
-      .edge {
-        stroke: mat.m2-get-color-from-palette($custom-dark-primary, 500);
-      }
-    }
-
-    .number-card {
-      p {
-        color: mat.m2-get-color-from-palette($custom-dark-primary, 100);
-      }
-    }
-
-    .gauge {
-      .background-arc {
-        path {
-          fill: mat.m2-get-color-from-palette($custom-dark-primary, 700);
-        }
-      }
-
-      .gauge-tick {
-        path {
-          stroke: mat.m2-get-color-from-palette($custom-dark-primary, 300);
-        }
-
-        text {
-          fill: mat.m2-get-color-from-palette($custom-dark-primary, 300);
-        }
-      }
-    }
-
-    .linear-gauge {
-      .background-bar {
-        path {
-          fill: mat.m2-get-color-from-palette($custom-dark-primary, 700);
-        }
-      }
-
-      .units {
-        fill: mat.m2-get-color-from-palette($custom-dark-primary, 300);
-      }
-    }
-
-    .timeline {
-      .brush-background {
-        fill: rgba(255, 255, 255, 0.05);
-      }
-
-      .brush {
-        .selection {
-          fill: rgba(255, 255, 255, 0.1);
-          stroke: mat.m2-get-color-from-palette($custom-dark-primary, 300);
-        }
-      }
-    }
-
-    .polar-chart .polar-chart-background {
-      fill: mat.m2-get-color-from-palette($custom-dark-primary, 900);
-    }
-  }
-
-  .chart-legend {
-    .legend-labels {
-      background: rgba(255, 255, 255, 0.05) !important;
-    }
-
-    .legend-item {
-      &:hover {
-        color: mat.m2-get-color-from-palette($custom-dark-primary, 100);
-      }
-    }
-
-    .legend-label {
-      &:hover {
-        color: mat.m2-get-color-from-palette(
-          $custom-dark-primary,
-          100
-        ) !important;
-      }
-
-      .active {
-        .legend-label-text {
-          color: mat.m2-get-color-from-palette(
-            $custom-dark-primary,
-            100
-          ) !important;
-        }
-      }
-    }
-
-    .scale-legend-label {
-      color: mat.m2-get-color-from-palette($custom-dark-primary, 300);
-    }
-  }
-
-  .advanced-pie-legend {
-    color: mat.m2-get-color-from-palette($custom-dark-primary, 300);
-
-    .legend-item {
-      &:hover {
-        color: mat.m2-get-color-from-palette(
-          $custom-dark-primary,
-          100
-        ) !important;
-      }
-    }
-  }
-
-  .number-card .number-card-label {
-    color: mat.m2-get-color-from-palette($custom-dark-primary, 300);
-  }
 }

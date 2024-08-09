@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subject, takeUntil } from 'rxjs';
@@ -22,7 +22,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatProgressSpinnerModule,
     RouterLink,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    RouterLinkActive
   ],
   templateUrl: './system-page.component.html',
   styleUrl: './system-page.component.scss',

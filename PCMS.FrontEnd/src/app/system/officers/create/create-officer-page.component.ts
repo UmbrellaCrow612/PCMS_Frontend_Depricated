@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ethnicGroups, nationalities, races } from './test-data';
 import { map, Observable, startWith } from 'rxjs';
+import { ninoValidator, noLettersValidator } from '../../../validators';
 
 @Component({
   selector: 'app-create-officer-page',
@@ -93,7 +91,7 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
     phoneNumber: new FormControl('', [
       Validators.maxLength(15),
       Validators.required,
-      this.noLettersValidator(),
+      noLettersValidator(),
     ]),
     profileImgUrl: new FormControl<string>('', [Validators.required]),
     address: new FormGroup({
@@ -108,10 +106,7 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
       Validators.minLength(1),
       Validators.maxLength(50),
     ]),
-    height: new FormControl('', [
-      Validators.required,
-      this.noLettersValidator(),
-    ]),
+    height: new FormControl('', [Validators.required, noLettersValidator()]),
     race: new FormControl('', [Validators.required]),
     ethnicity: new FormControl('', [Validators.required]),
     nationality: new FormControl('', [Validators.required]),
@@ -120,7 +115,7 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
     driversLicenseNumber: new FormControl('', [Validators.required]),
     nationalInsuranceNumber: new FormControl('', [
       Validators.required,
-      this.ninoValidator(),
+      ninoValidator(),
     ]),
     badgeNumber: new FormControl('', Validators.required),
     accessLevel: new FormControl('', Validators.required),
@@ -134,45 +129,6 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
     1
   );
   readonly maxDateOfBirth = new Date(this._currentDate);
-
-  ninoValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: boolean } | null => {
-      const nino = control.value?.trim();
-
-      // Check format
-      const ninoRegex = /^[A-CEGHJ-NPR-TW-Z]{2}\d{6}[A-D]$/;
-      if (!ninoRegex.test(nino)) {
-        return { invalidNINO: true };
-      }
-
-      // Check prefix
-      const prefix = nino.substr(0, 2);
-      const invalidPrefixes = ['BG', 'GB', 'KN', 'NK', 'NT', 'TN', 'ZZ'];
-      const invalidFirstOrSecondLetters = ['D', 'F', 'I', 'O', 'Q', 'U', 'V'];
-      if (
-        invalidPrefixes.includes(prefix) ||
-        invalidFirstOrSecondLetters.includes(prefix.charAt(0)) ||
-        invalidFirstOrSecondLetters.includes(prefix.charAt(1))
-      ) {
-        return { invalidNINO: true };
-      }
-
-      // Check suffix
-      const suffix = nino.charAt(nino.length - 1);
-      if (!['A', 'B', 'C', 'D'].includes(suffix)) {
-        return { invalidNINO: true };
-      }
-
-      return null;
-    };
-  }
-
-  noLettersValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const hasLetters = /[a-zA-Z]/.test(control.value);
-      return hasLetters ? { hasLetters: { value: control.value } } : null;
-    };
-  }
 
   clearForm() {
     this.officerForm.reset();
