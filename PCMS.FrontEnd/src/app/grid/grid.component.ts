@@ -74,8 +74,8 @@ export class GridComponent implements OnInit, OnDestroy {
     this.themeSubscription = this.themeService.isDarkMode$.subscribe(
       (isDarkMode) => {
         this.themeClass = isDarkMode
-          ? 'ag-theme-alpine-dark'
-          : 'ag-theme-alpine';
+          ? 'ag-theme-material-dark'
+          : 'ag-theme-material';
       }
     );
   }
