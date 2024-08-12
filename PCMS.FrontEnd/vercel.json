@@ -1,0 +1,7 @@
+{
+    "rewrites": [
+      { "source": "/cy/(.*)", "destination": "/cy/$1" },
+      { "source": "/(.*)", "destination": "/en-US/$1" }
+    ]
+  }
+  
