@@ -1,42 +1,64 @@
 <div class="main">
-    <div>
-      <div class="logo"></div>
-  
-      <!-- Login form -->
-      <form action="" class="login_form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput type="text" formControlName="username" />
-          @if (loginForm.get("username")?.hasError("required") ||
-          loginForm.get("username")?.dirty) {
-          <mat-error>Username is required</mat-error>
-          }
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input
-            matInput
-            [type]="showPassword ? 'text' : 'password'"
-            formControlName="password"
-          />
-          <button
-            mat-icon-button
-            matSuffix
-            (click)="clickShowPassword($event)"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="showPassword"
-          >
-            <mat-icon>{{
-              showPassword ? "visibility" : "visibility_off"
-            }}</mat-icon>
-          </button>
-  
-          @if (loginForm.get("password")?.hasError("required") ||
-          loginForm.get("password")?.dirty) {
-          <mat-error>Password is required</mat-error>
-          }
-        </mat-form-field>
-        <button mat-stroked-button type="submit" [disabled]="loginForm.invalid">Login</button>
-      </form>
-    </div>
+  <div>
+    <div class="logo"></div>
+
+    <!-- Login form -->
+    <form
+      class="login_form"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label i18n>Username</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="username"
+          i18n-placeholder
+          placeholder="Enter your username"
+        />
+        @if (loginForm.get("username")?.hasError("required") ||
+        loginForm.get("username")?.dirty) {
+        <mat-error i18n>Username is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label i18n>Password</mat-label>
+        <input
+          matInput
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          i18n-placeholder
+          placeholder="Enter your password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickShowPassword($event)"
+          i18n-aria-label="
+            Hide password button|An ARIA label for the hide password button
+          "
+          aria-label="Hide password"
+          [attr.aria-pressed]="showPassword"
+        >
+          <mat-icon>{{
+            showPassword ? "visibility" : "visibility_off"
+          }}</mat-icon>
+        </button>
+
+        @if (loginForm.get("password")?.hasError("required") ||
+        loginForm.get("password")?.dirty) {
+        <mat-error i18n>Password is required</mat-error>
+        }
+      </mat-form-field>
+      <button
+        mat-stroked-button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        i18n
+      >
+        Login
+      </button>
+    </form>
   </div>
+</div>

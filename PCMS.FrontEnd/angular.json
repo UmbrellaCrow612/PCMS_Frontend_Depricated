@@ -4,6 +4,15 @@
   "newProjectRoot": "projects",
   "projects": {
     "PCMS.FrontEnd": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "cy": {
+            "translation": "src/locale/messages.cy.xlf",
+             "baseHref": ""
+          }
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,6 +33,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize": ["cy"],
             "outputPath": "dist",
             "index": "src/index.html",
             "browser": "src/main.ts",
