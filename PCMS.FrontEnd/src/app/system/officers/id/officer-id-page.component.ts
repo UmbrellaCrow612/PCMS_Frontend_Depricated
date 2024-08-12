@@ -3,11 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ninoValidator, noLettersValidator } from '../../../validators';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-officer-id-page',
   standalone: true,
-  imports: [],
+  imports: [MatTabsModule],
   templateUrl: './officer-id-page.component.html',
   styleUrl: './officer-id-page.component.scss',
 })
