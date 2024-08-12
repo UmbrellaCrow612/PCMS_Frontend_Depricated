@@ -9,7 +9,7 @@
         "locales": {
           "cy": {
             "translation": "src/locale/messages.cy.xlf",
-            "baseHref": "cy"
+            "baseHref": ""
           }
         }
       },
