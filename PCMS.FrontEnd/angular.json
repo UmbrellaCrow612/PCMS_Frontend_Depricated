@@ -7,10 +7,6 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "en": {
-            "translation": "src/locale/messages.xlf",
-            "baseHref": "en"
-          },
           "cy": {
             "translation": "src/locale/messages.cy.xlf",
             "baseHref": "cy"
@@ -56,9 +52,6 @@
             "scripts": []
           },
           "configurations": {
-            "en": {
-              "localize": ["en"]
-            },
             "cy": {
               "localize": ["cy"]
             },
@@ -94,9 +87,6 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "en": {
-              "buildTarget": "PCMS.FrontEnd:build:development,en"
-            },
             "cy": {
               "buildTarget": "PCMS.FrontEnd:build:development,cy"
             },
