@@ -1,6 +1,6 @@
 [build]
   command = "ng build --localize"
-  publish = "dist/PCMS.FrontEnd"
+  publish = "dist"
 
 [[redirects]]
   from = "/cy/*"
