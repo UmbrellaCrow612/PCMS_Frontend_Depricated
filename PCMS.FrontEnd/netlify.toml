@@ -1,0 +1,13 @@
+[build]
+  command = "ng build --localize"
+  publish = "dist/PCMS.FrontEnd"
+
+[[redirects]]
+  from = "/cy/*"
+  to = "/cy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/en-US/index.html"
+  status = 200
