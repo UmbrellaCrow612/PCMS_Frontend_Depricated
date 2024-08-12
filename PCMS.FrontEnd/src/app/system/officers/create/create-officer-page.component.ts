@@ -19,6 +19,11 @@ import { AccessLevel, ethnicGroups, nationalities, races } from './test-data';
 import { map, Observable, startWith } from 'rxjs';
 import { ninoValidator, noLettersValidator } from '../../../validators';
 
+interface Department {
+  name: string;
+  id: string;
+}
+
 @Component({
   selector: 'app-create-officer-page',
   standalone: true,
@@ -59,6 +64,13 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
         startWith(''),
         map((value) => this._nationalityFilter(value || ''))
       );
+
+    this.filteredDepartments = this.officerForm
+      ?.get('departmentId')
+      ?.valueChanges.pipe(
+        startWith(''),
+        map((value) => this._departmentFilter(value || ''))
+      );
   }
 
   get isMobile() {
@@ -73,7 +85,20 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
   filteredEthnicGroups: Observable<string[]> | undefined;
   nationalities = nationalities;
   filteredNationalities: Observable<string[]> | undefined;
-  accessLevels = Object.values(AccessLevel).filter(value => typeof value === 'number');
+  accessLevels = Object.values(AccessLevel).filter(
+    (value) => typeof value === 'number'
+  );
+  departments = [
+    {
+      name: 'dep one',
+      id: 'dep one',
+    },
+    {
+      name: 'dep two',
+      id: 'dep two',
+    },
+  ];
+  filteredDepartments: Observable<Department[]> | undefined;
 
   officerForm = new FormGroup({
     firstName: new FormControl('', [
@@ -191,6 +216,22 @@ export class CreateOfficerPageComponent implements OnInit, OnDestroy {
 
     if (values.length === 0) {
       this.officerForm.get('nationality')?.setErrors({
+        invalidOption: true,
+      });
+    }
+
+    return values;
+  }
+
+  private _departmentFilter(value: string): Department[] {
+    const filterValue = value.toLowerCase();
+
+    const values = this.departments.filter((option) =>
+      option.name.toLowerCase().includes(filterValue)
+    );
+
+    if (values.length === 0) {
+      this.officerForm.get('departmentId')?.setErrors({
         invalidOption: true,
       });
     }

@@ -276,8 +276,27 @@
       }
     </mat-select>
     @if (officerForm.get("accessLevel")?.hasError("required")) {
-      <mat-error>Required</mat-error>
+    <mat-error>Required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Department</mat-label>
+    <input
+      matInput
+      formControlName="departmentId"
+      [matAutocomplete]="departmentAuto"
+    />
+    @if (officerForm.get("departmentId")?.hasError("required")) {
+    <mat-error> Required </mat-error>
+    } @else if (officerForm.get("departmentId")?.hasError("invalidOption")) {
+    <mat-error> Invalid Option </mat-error>
+    }
+    <mat-autocomplete autoActiveFirstOption #departmentAuto="matAutocomplete">
+      @for (option of filteredDepartments | async; track option) {
+      <mat-option [value]="option.id">{{ option.name }}</mat-option>
       }
+    </mat-autocomplete>
   </mat-form-field>
 
   <span>
