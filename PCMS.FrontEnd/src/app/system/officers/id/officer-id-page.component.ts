@@ -103,38 +103,40 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
   });
 
   advancedOfficerForm = new FormGroup({
-    firstName: new FormControl('', [
+    firstName: new FormControl('joe', [
       Validators.minLength(1),
       Validators.maxLength(50),
       Validators.required,
     ]),
-    middleName: new FormControl('', [Validators.maxLength(50)]),
-    lastName: new FormControl('', [
+    middleName: new FormControl('ee', [Validators.maxLength(50)]),
+    lastName: new FormControl('doe', [
       Validators.minLength(1),
       Validators.maxLength(50),
       Validators.required,
     ]),
-    dateOfBirth: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    birthPlace: new FormControl('', [
+    dateOfBirth: new FormControl('01/20/2000', [Validators.required]),
+    gender: new FormControl('male', [Validators.required]),
+    birthPlace: new FormControl('ed', [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(50),
     ]),
-    race: new FormControl('', [Validators.required]),
-    ethnicity: new FormControl('', [Validators.required]),
-    nationality: new FormControl('', [Validators.required]),
-    driversLicenseNumber: new FormControl('', [Validators.required]),
-    nationalInsuranceNumber: new FormControl('', [
+    race: new FormControl('ed', [Validators.required]),
+    ethnicity: new FormControl('ed', [Validators.required]),
+    nationality: new FormControl('ed', [Validators.required]),
+    driversLicenseNumber: new FormControl('ded2', [Validators.required]),
+    nationalInsuranceNumber: new FormControl('ed', [
       Validators.required,
       ninoValidator(),
     ]),
-    badgeNumber: new FormControl('', Validators.required),
+    badgeNumber: new FormControl('123', Validators.required),
   });
 
   onBasicFormSubmit() {
     throw new Error('Method not implemented.');
   }
+
+  onBasicOfficerFormCancel() {}
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];

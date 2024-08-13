@@ -23,6 +23,11 @@ const routes: Routes = [
       import('./system/system.routes').then((m) => m.SYSTEM_ROUTES),
   },
   {
+    path: 'settings',
+    loadChildren: () =>
+      import('./settings/settings.routes').then((m) => m.SETTINGS_ROUTES),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./not-found/not-found-page.component').then(
