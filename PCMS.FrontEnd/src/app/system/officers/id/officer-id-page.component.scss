@@ -1,0 +1,34 @@
+.basic_form {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.basic_form_nested_address_form {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    gap: 1em; 
+}
+
+.btns_container {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.img_picker {
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.image-preview {
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    display: block;
+  }
+}

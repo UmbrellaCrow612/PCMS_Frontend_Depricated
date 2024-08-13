@@ -1,4 +1,171 @@
 <mat-tab-group mat-stretch-tabs="true" mat-align-tabs="start" dynamicHeight>
-  <mat-tab label="Basic"> lorem10000</mat-tab>
-  <mat-tab label="Advanced">Content 2</mat-tab>
+  <mat-tab label="Basic">
+    <form
+      class="basic_form"
+      [formGroup]="basicOfficerForm"
+      (ngSubmit)="onBasicFormSubmit()"
+    >
+      <div class="img_picker">
+        <button type="button" mat-raised-button (click)="fileInput.click()">
+          Choose Face Image
+        </button>
+        <input
+          hidden
+          (change)="onFileSelected($event)"
+          #fileInput
+          type="file"
+          accept="image/*"
+        />
+        @if (basicOfficerForm.get('profileImgUrl')?.hasError('required')) {
+        <mat-error> Profile image is required </mat-error>
+        }
+      </div>
+
+      @if (selectedImageUrl) {
+      <div class="image-preview">
+        <img [src]="selectedImageUrl" alt="Image Preview" />
+      </div>
+      }
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input required matInput formControlName="email" />
+        <mat-icon matPrefix>email</mat-icon>
+        @if (basicOfficerForm.get("email")?.hasError("required")) {
+        <mat-error>Required</mat-error>
+        } @else if (basicOfficerForm.get("email")?.hasError("email")) {
+        <mat-error>Invalid email</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input required matInput type="tel" formControlName="phoneNumber" />
+        <mat-hint>Don't need to add country code</mat-hint>
+        <mat-icon matPrefix>call</mat-icon>
+        @if (basicOfficerForm.get("phoneNumber")?.hasError("required")) {
+        <mat-error>Required</mat-error>
+        } @else if (basicOfficerForm.get("phoneNumber")?.hasError("maxlength"))
+        {
+        <mat-error>Phone number to long</mat-error>
+        } @else if (basicOfficerForm.get("phoneNumber")?.hasError("hasLetters"))
+        {
+        <mat-error>Phone number should not contain letters</mat-error>
+        }
+      </mat-form-field>
+
+      <div formGroupName="address" class="basic_form_nested_address_form">
+        <mat-form-field appearance="outline">
+          <mat-label>House Number</mat-label>
+          <input required matInput formControlName="houseNumber" />
+          @if (basicOfficerForm.get("address")?.get("houseNumber")) {
+          <mat-error>Required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Street Name</mat-label>
+          <input required matInput formControlName="streetName" />
+          @if (basicOfficerForm.get("address")?.get("streetName")) {
+          <mat-error>Required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Town</mat-label>
+          <input required matInput formControlName="town" />
+          @if (basicOfficerForm.get("address")?.get("town")) {
+          <mat-error>Required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Postcode</mat-label>
+          <input required matInput formControlName="postcode" />
+          @if (basicOfficerForm.get("address")?.get("postcode")) {
+          <mat-error>Required</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Physical Description</mat-label>
+        <textarea matInput formControlName="physicalDescription"></textarea>
+        <mat-hint>Optional</mat-hint>
+        @if (basicOfficerForm.get("physicalDescription")?.hasError("maxlength"))
+        {
+        <mat-error>To Long </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>General Description</mat-label>
+        <textarea matInput formControlName="generalDescription"></textarea>
+        <mat-hint>Optional</mat-hint>
+        @if (basicOfficerForm.get("generalDescription")?.hasError("maxlength"))
+        {
+        <mat-error>To Long </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <input
+          matInput
+          formControlName="departmentId"
+          [matAutocomplete]="departmentAuto"
+        />
+        @if (basicOfficerForm.get("departmentId")?.hasError("required")) {
+        <mat-error> Required </mat-error>
+        } @else if
+        (basicOfficerForm.get("departmentId")?.hasError("invalidOption")) {
+        <mat-error> Invalid Option </mat-error>
+        }
+        <mat-autocomplete
+          autoActiveFirstOption
+          #departmentAuto="matAutocomplete"
+        >
+          @for (option of filteredDepartments | async; track option) {
+          <mat-option [value]="option.id">{{ option.name }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Access Level</mat-label>
+        <mat-select formControlName="accessLevel">
+          @for (option of accessLevels; track option) {
+          <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-select>
+        @if (basicOfficerForm.get("accessLevel")?.hasError("required")) {
+        <mat-error>Required</mat-error>
+        }
+      </mat-form-field>
+
+      <span>
+        {{ basicOfficerForm.value | json }}
+      </span>
+
+      <span> Valid {{ basicOfficerForm.valid | json }} </span>
+      <div class="btns_container">
+        <button
+          mat-stroked-button
+          [disabled]="basicOfficerForm.pristine || basicOfficerForm.invalid"
+          type="submit"
+        >
+          Save
+        </button>
+        <button
+          mat-flat-button
+          [disabled]="basicOfficerForm.pristine"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Advanced">
+    <ng-template matTabContent> Content 1 - Loaded: </ng-template></mat-tab
+  >
 </mat-tab-group>
