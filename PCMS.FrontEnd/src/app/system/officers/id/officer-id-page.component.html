@@ -166,6 +166,23 @@
     </form>
   </mat-tab>
   <mat-tab label="Advanced">
-    <ng-template matTabContent> Content 1 - Loaded: </ng-template></mat-tab
-  >
+    @if (acknowledgedAdvancedInfoPageLock) {
+    <p>Open</p>
+    } @else {
+    <div class="advanced_warning_screen">
+      <h2>
+        This is private and confidential data, by pressing view you acknowledged
+        you understand the risk and punishments that come with sharing and or
+        changing the data without good reason blah blah blah
+      </h2>
+      <button
+        mat-raised-button
+        (click)="acknowledgedAdvancedInfoPageLock = true"
+      >
+        <mat-icon>visibility</mat-icon>
+        View
+      </button>
+    </div>
+    }
+  </mat-tab>
 </mat-tab-group>

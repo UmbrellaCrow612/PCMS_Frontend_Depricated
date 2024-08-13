@@ -59,6 +59,7 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
       );
   }
 
+  acknowledgedAdvancedInfoPageLock: boolean = false;
   selectedImageUrl: string | null = null;
   departments = [
     {
