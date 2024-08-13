@@ -1,11 +1,17 @@
 import { Routes } from '@angular/router';
 import { SettingsPageComponent } from './settings-page.component';
+import { ProfilePageComponent } from './profile/profile-page.component';
 
 export const SETTINGS_ROUTES: Routes = [
   {
     path: '',
     component: SettingsPageComponent,
-    title: 'PCMS - Settings',
+    children: [
+      {
+        path: '',
+        component: ProfilePageComponent,
+        title: 'PCMS - Profile',
+      },
+    ],
   },
-  // This will be the wrapper around every page and render children inside
 ];

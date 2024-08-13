@@ -1,1 +1,44 @@
-<p>settings-page works!</p>
+<div class="main">
+  <mat-toolbar class="toolbar">
+    <span>PCMS - Settings</span>
+    <span class="example-spacer"></span>
+    <button
+      mat-icon-button
+      aria-label="Profile"
+      [matMenuTriggerFor]="profileMenu"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #profileMenu="matMenu">
+      <ng-template matMenuContent>
+        <a routerLink="/dashboard" mat-menu-item>
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </a>
+        <a routerLink="/system" mat-menu-item>
+          <mat-icon>settings_applications</mat-icon>
+          <span>System</span>
+        </a>
+      </ng-template>
+    </mat-menu>
+  </mat-toolbar>
+  <div class="page_container">
+    <div class="container">
+      <div class="container_links">
+        <a
+          [routerLink]="['./']"
+          routerLinkActive="mat-primary"
+          [routerLinkActiveOptions]="{ exact: true }"
+          mat-raised-button
+        >
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </a>
+      </div>
+      <div class="container_page">
+        gg
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
