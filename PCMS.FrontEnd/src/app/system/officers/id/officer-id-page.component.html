@@ -276,6 +276,52 @@
         </mat-autocomplete>
       </mat-form-field>
 
+      <mat-form-field appearance="outline">
+        <mat-label>Ethnicity</mat-label>
+        <input
+          matInput
+          formControlName="ethnicity"
+          [matAutocomplete]="ethnicityAuto"
+        />
+        @if (advancedOfficerForm.get("ethnicity")?.hasError("required")) {
+        <mat-error> Required </mat-error>
+        } @else if
+        (advancedOfficerForm.get("ethnicity")?.hasError("invalidOption")) {
+        <mat-error>Pick a valid option </mat-error>
+        }
+        <mat-autocomplete
+          autoActiveFirstOption
+          #ethnicityAuto="matAutocomplete"
+        >
+          @for (option of filteredEthnicGroups | async; track option) {
+          <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nationality</mat-label>
+        <input
+          matInput
+          formControlName="nationality"
+          [matAutocomplete]="nationalityAuto"
+        />
+        @if (advancedOfficerForm.get("nationality")?.hasError("required")) {
+        <mat-error> Required </mat-error>
+        } @else if
+        (advancedOfficerForm.get("nationality")?.hasError("invalidOption")) {
+        <mat-error>Pick a valid option </mat-error>
+        }
+        <mat-autocomplete
+          autoActiveFirstOption
+          #nationalityAuto="matAutocomplete"
+        >
+          @for (option of filteredNationalities | async; track option) {
+          <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
       <span>
         {{ advancedOfficerForm.value | json }}
       </span>
@@ -297,6 +343,7 @@
         >
           Cancel
         </button>
+        <button mat-raised-button type="button">Delete</button>
       </div>
     </form>
     } @else {

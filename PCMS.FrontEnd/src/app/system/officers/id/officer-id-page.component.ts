@@ -18,7 +18,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
-import { AccessLevel, races } from '../create/test-data';
+import {
+  AccessLevel,
+  ethnicGroups,
+  nationalities,
+  races,
+} from '../create/test-data';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
@@ -82,12 +87,28 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
         startWith(''),
         map((value) => this._raceFilter(value || ''))
       );
+    this.filteredEthnicGroups = this.advancedOfficerForm
+      ?.get('ethnicity')
+      ?.valueChanges.pipe(
+        startWith(''),
+        map((value) => this._ethnicGroupFilter(value || ''))
+      );
+    this.filteredNationalities = this.advancedOfficerForm
+      ?.get('nationality')
+      ?.valueChanges.pipe(
+        startWith(''),
+        map((value) => this._nationalityFilter(value || ''))
+      );
   }
 
   acknowledgedAdvancedInfoPageLock: boolean = false;
   genders = ['Male', 'Female'];
   races = races;
   filteredRaces: Observable<string[]> | undefined;
+  ethnicGroups = ethnicGroups;
+  filteredEthnicGroups: Observable<string[]> | undefined;
+  nationalities = nationalities;
+  filteredNationalities: Observable<string[]> | undefined;
   selectedImageUrl: string | null = null;
   departments = [
     {
@@ -150,8 +171,8 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
       Validators.maxLength(50),
     ]),
     race: new FormControl(this.races[0], [Validators.required]),
-    ethnicity: new FormControl('ed', [Validators.required]),
-    nationality: new FormControl('ed', [Validators.required]),
+    ethnicity: new FormControl(this.ethnicGroups[0], [Validators.required]),
+    nationality: new FormControl(this.nationalities[0], [Validators.required]),
     driversLicenseNumber: new FormControl('ded2', [Validators.required]),
     nationalInsuranceNumber: new FormControl('ed', [
       Validators.required,
@@ -205,6 +226,38 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
 
     if (values.length === 0) {
       this.advancedOfficerForm.get('race')?.setErrors({
+        invalidOption: true,
+      });
+    }
+
+    return values;
+  }
+
+  private _ethnicGroupFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    const values = this.ethnicGroups.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+
+    if (values.length === 0) {
+      this.advancedOfficerForm.get('ethnicity')?.setErrors({
+        invalidOption: true,
+      });
+    }
+
+    return values;
+  }
+
+  private _nationalityFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    const values = this.nationalities.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+
+    if (values.length === 0) {
+      this.advancedOfficerForm.get('nationality')?.setErrors({
         invalidOption: true,
       });
     }
