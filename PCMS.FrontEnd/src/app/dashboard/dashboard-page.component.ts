@@ -92,8 +92,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   }
 
   loadDashboardData() {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2500);
+    this.isLoading = false;
   }
 }

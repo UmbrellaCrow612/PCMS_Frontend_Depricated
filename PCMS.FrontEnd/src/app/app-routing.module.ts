@@ -8,6 +8,11 @@ const routes: Routes = [
       import('./login/login.routes').then((m) => m.LOGIN_ROUTES),
   },
   {
+    path: 'cases',
+    loadChildren: () =>
+      import('./cases/cases.routes').then((m) => m.CASES_ROUTES),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.routes').then((m) => m.LOGIN_ROUTES),
