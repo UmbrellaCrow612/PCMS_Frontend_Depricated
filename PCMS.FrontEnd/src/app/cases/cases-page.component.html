@@ -1,0 +1,63 @@
+<div class="main">
+  <mat-toolbar class="toolbar">
+    <div class="left">
+      <span>PCMS - Cases</span>
+      <a
+        [routerLink]="['./']"
+        mat-raised-button
+        routerLinkActive="mat-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>home</mat-icon>
+        Home
+      </a>
+      <a
+        [routerLink]="['./reports']"
+        mat-raised-button
+        routerLinkActive="mat-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>report</mat-icon>
+        Reports
+      </a>
+      <a
+        [routerLink]="['./search']"
+        mat-raised-button
+        routerLinkActive="mat-primary"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>search</mat-icon>
+        Search
+      </a>
+    </div>
+    <span class="example-spacer"></span>
+
+    <button
+      mat-icon-button
+      aria-label="Profile"
+      [matMenuTriggerFor]="profileMenu"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #profileMenu="matMenu">
+      <ng-template matMenuContent>
+        <a routerLink="/dashboard" mat-menu-item>
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </a>
+        <a routerLink="/system" mat-menu-item>
+          <mat-icon>settings_applications</mat-icon>
+          <span>System</span>
+        </a>
+        <a routerLink="/settings" mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </a>
+      </ng-template>
+    </mat-menu>
+  </mat-toolbar>
+
+  <div class="page_content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

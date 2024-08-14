@@ -1,0 +1,26 @@
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .toolbar {
+    flex-shrink: 0;
+  }
+  
+  .page_content {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+  
