@@ -1,1 +1,11 @@
-<p>profile-page works!</p>
+<h2>Profile</h2>
+
+<mat-divider></mat-divider>
+
+<div class="personal_info">
+  <span> Name: Joe Doe </span>
+  <span> Email: Joe_gmail.com </span>
+  <mat-slide-toggle [checked]="isDarkMode" (change)="toggleDarkMode()">
+    Dark Mode
+  </mat-slide-toggle>
+</div>

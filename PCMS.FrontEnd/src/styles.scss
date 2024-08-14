@@ -68,6 +68,8 @@ $candy-app-theme: mat.m2-define-light-theme(
     @include mat.strong-focus-indicators-color($dark-colors);
   }
 
+  background-color: black;
+  color: white;
   /**
      * Backgrounds
      */
@@ -244,7 +246,6 @@ audio {
   height: auto;
   display: block;
 }
-
 
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
