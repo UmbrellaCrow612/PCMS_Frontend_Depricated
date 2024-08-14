@@ -323,6 +323,34 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
+        <mat-label>Drivers License Number</mat-label>
+        <input
+          matInput
+          formControlName="driversLicenseNumber"
+          [type]="showDrivingLicenseNumber ? 'text' : 'password'"
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Show"
+          (click)="showDrivingLicenseNumber = !showDrivingLicenseNumber"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            [fontIcon]="
+              showDrivingLicenseNumber ? 'visibility_off' : 'visibility'
+            "
+          ></mat-icon>
+        </button>
+        @if
+        (advancedOfficerForm.get("driversLicenseNumber")?.hasError("required"))
+        {
+        <mat-error>Required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
         <mat-label>National Insurance Number</mat-label>
         <input
           matInput
@@ -351,6 +379,14 @@
         (advancedOfficerForm.get("nationalInsuranceNumber")?.hasError("invalidNINO"))
         {
         <mat-error>Invalid Number</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Badge Number</mat-label>
+        <input matInput formControlName="badgeNumber" />
+        @if (advancedOfficerForm.get("badgeNumber")?.hasError("required")) {
+        <mat-error>Required</mat-error>
         }
       </mat-form-field>
 

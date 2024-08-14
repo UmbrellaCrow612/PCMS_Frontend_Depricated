@@ -103,6 +103,7 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
 
   acknowledgedAdvancedInfoPageLock: boolean = false;
   showNationalInsuranceNumber: boolean = false;
+  showDrivingLicenseNumber: boolean = false;
   genders = ['Male', 'Female'];
   races = races;
   filteredRaces: Observable<string[]> | undefined;
