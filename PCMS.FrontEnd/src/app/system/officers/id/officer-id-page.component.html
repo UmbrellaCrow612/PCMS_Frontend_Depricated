@@ -322,6 +322,38 @@
         </mat-autocomplete>
       </mat-form-field>
 
+      <mat-form-field appearance="outline">
+        <mat-label>National Insurance Number</mat-label>
+        <input
+          matInput
+          formControlName="nationalInsuranceNumber"
+          [type]="showNationalInsuranceNumber ? 'text' : 'password'"
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Show"
+          (click)="showNationalInsuranceNumber = !showNationalInsuranceNumber"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            [fontIcon]="
+              showNationalInsuranceNumber ? 'visibility_off' : 'visibility'
+            "
+          ></mat-icon>
+        </button>
+        @if
+        (advancedOfficerForm.get("nationalInsuranceNumber")?.hasError("required"))
+        {
+        <mat-error>Required</mat-error>
+        } @else if
+        (advancedOfficerForm.get("nationalInsuranceNumber")?.hasError("invalidNINO"))
+        {
+        <mat-error>Invalid Number</mat-error>
+        }
+      </mat-form-field>
+
       <span>
         {{ advancedOfficerForm.value | json }}
       </span>

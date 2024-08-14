@@ -102,6 +102,7 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
   }
 
   acknowledgedAdvancedInfoPageLock: boolean = false;
+  showNationalInsuranceNumber: boolean = false;
   genders = ['Male', 'Female'];
   races = races;
   filteredRaces: Observable<string[]> | undefined;
@@ -174,7 +175,7 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
     ethnicity: new FormControl(this.ethnicGroups[0], [Validators.required]),
     nationality: new FormControl(this.nationalities[0], [Validators.required]),
     driversLicenseNumber: new FormControl('ded2', [Validators.required]),
-    nationalInsuranceNumber: new FormControl('ed', [
+    nationalInsuranceNumber: new FormControl('SK052384B', [
       Validators.required,
       ninoValidator(),
     ]),
