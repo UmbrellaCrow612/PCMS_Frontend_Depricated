@@ -168,7 +168,137 @@
   </mat-tab>
   <mat-tab label="Advanced">
     @if (acknowledgedAdvancedInfoPageLock) {
-    <p>Open</p>
+    <form
+      class="advanced_form"
+      [formGroup]="advancedOfficerForm"
+      (ngSubmit)="onAdvancedFormSubmit()"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input required matInput formControlName="firstName" />
+        @if (advancedOfficerForm.get("firstName")?.hasError("required")) {
+        <mat-error>Required</mat-error>
+        } @else if (advancedOfficerForm.get("firstName")?.hasError("minlength"))
+        {
+        <mat-error>To Short</mat-error>
+        } @else if (advancedOfficerForm.get("firstName")?.hasError("maxlength"))
+        {
+        <mat-error>To Long</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Middle Name</mat-label>
+        <input matInput formControlName="middleName" />
+        <mat-hint>Optional</mat-hint>
+        @if (advancedOfficerForm.get("middleName")?.hasError("maxlength")) {
+        <mat-error>To Long</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input required matInput formControlName="lastName" />
+        @if (advancedOfficerForm.get("lastName")?.hasError("required")) {
+        <mat-error>Required</mat-error>
+        } @else if (advancedOfficerForm.get("lastName")?.hasError("minlength"))
+        {
+        <mat-error>To Short</mat-error>
+        } @else if (advancedOfficerForm.get("lastName")?.hasError("maxlength"))
+        {
+        <mat-error>To Long</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Date Of Birth</mat-label>
+        <input
+          required
+          matInput
+          [matDatepicker]="dateOfBirthPicker"
+          [min]="minDateOfBirth"
+          [max]="maxDateOfBirth"
+          formControlName="dateOfBirth"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        @if (advancedOfficerForm.get("dateOfBirth")?.hasError("required")) {
+        <mat-error>Required</mat-error>
+        } @else if
+        (advancedOfficerForm.get("dateOfBirth")?.hasError("matDatepickerMax")) {
+        <mat-error>Date of birth in the future</mat-error>
+        } @else if
+        (advancedOfficerForm.get("dateOfBirth")?.hasError("matDatepickerMin")) {
+        <mat-error>Date of birth to long in the past</mat-error>
+        }
+        <mat-datepicker-toggle
+          matIconPrefix
+          [for]="dateOfBirthPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker
+          [touchUi]="isMobile"
+          #dateOfBirthPicker
+        ></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          @for (gender of genders; track gender) {
+          <mat-option [value]="gender">{{ gender }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Birth Place</mat-label>
+        <input required matInput formControlName="birthPlace" />
+        @if (advancedOfficerForm.get("birthPlace")?.hasError("required")) {
+        <mat-error>Required</mat-error>
+        } @else if
+        (advancedOfficerForm.get("birthPlace")?.hasError("maxlength")) {
+        <mat-error>To Long</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Race</mat-label>
+        <input matInput formControlName="race" [matAutocomplete]="raceAuto" />
+        @if (advancedOfficerForm.get("race")?.hasError("required")) {
+        <mat-error> Required </mat-error>
+        } @else if (advancedOfficerForm.get("race")?.hasError("invalidOption"))
+        {
+        <mat-error>Pick a valid option </mat-error>
+        }
+        <mat-autocomplete autoActiveFirstOption #raceAuto="matAutocomplete">
+          @for (option of filteredRaces | async; track option) {
+          <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <span>
+        {{ advancedOfficerForm.value | json }}
+      </span>
+      <div class="btns_container">
+        <button
+          mat-stroked-button
+          [disabled]="
+            advancedOfficerForm.pristine || advancedOfficerForm.invalid
+          "
+          type="submit"
+        >
+          Save
+        </button>
+        <button
+          mat-flat-button
+          [disabled]="advancedOfficerForm.pristine"
+          type="button"
+          (click)="onAdvancedFormCancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
     } @else {
     <div class="advanced_warning_screen">
       <h2>

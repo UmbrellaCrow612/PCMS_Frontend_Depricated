@@ -5,11 +5,18 @@
   gap: 1em;
 }
 
+.advanced_form {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
 .basic_form_nested_address_form {
-    display: flex;
-    flex-direction: row; 
-    flex-wrap: wrap; 
-    gap: 1em; 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 
 .btns_container {
@@ -33,8 +40,7 @@
   }
 }
 
-
-.advanced_warning_screen{
+.advanced_warning_screen {
   padding: 2em;
   display: flex;
   flex-direction: column;

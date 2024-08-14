@@ -18,7 +18,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
-import { AccessLevel } from '../create/test-data';
+import { AccessLevel, races } from '../create/test-data';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 interface Department {
   name: string;
@@ -42,10 +44,27 @@ interface Department {
   ],
   templateUrl: './officer-id-page.component.html',
   styleUrl: './officer-id-page.component.scss',
+  providers: [provideNativeDateAdapter()],
 })
 export class OfficerIdPageComponent implements OnInit, OnDestroy {
   OfficerId: any = '';
-  constructor(private route: ActivatedRoute, private titleService: Title) {}
+  private readonly _currentDate = new Date();
+  readonly minDateOfBirth = new Date(
+    this._currentDate.getFullYear() - 120,
+    0,
+    1
+  );
+  readonly maxDateOfBirth = new Date(this._currentDate);
+
+  constructor(
+    private route: ActivatedRoute,
+    private titleService: Title,
+    private breakpointObserver: BreakpointObserver
+  ) {}
+
+  get isMobile() {
+    return this.breakpointObserver.isMatched('(max-width: 767px)');
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -57,9 +76,18 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
         startWith(''),
         map((value) => this._departmentFilter(value || ''))
       );
+    this.filteredRaces = this.advancedOfficerForm
+      ?.get('race')
+      ?.valueChanges.pipe(
+        startWith(''),
+        map((value) => this._raceFilter(value || ''))
+      );
   }
 
   acknowledgedAdvancedInfoPageLock: boolean = false;
+  genders = ['Male', 'Female'];
+  races = races;
+  filteredRaces: Observable<string[]> | undefined;
   selectedImageUrl: string | null = null;
   departments = [
     {
@@ -114,14 +142,14 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
       Validators.maxLength(50),
       Validators.required,
     ]),
-    dateOfBirth: new FormControl('01/20/2000', [Validators.required]),
-    gender: new FormControl('male', [Validators.required]),
-    birthPlace: new FormControl('ed', [
+    dateOfBirth: new FormControl(new Date('1990-01-01'), [Validators.required]),
+    gender: new FormControl(this.genders[0], [Validators.required]),
+    birthPlace: new FormControl('ty', [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(50),
     ]),
-    race: new FormControl('ed', [Validators.required]),
+    race: new FormControl(this.races[0], [Validators.required]),
     ethnicity: new FormControl('ed', [Validators.required]),
     nationality: new FormControl('ed', [Validators.required]),
     driversLicenseNumber: new FormControl('ded2', [Validators.required]),
@@ -137,6 +165,10 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
   }
 
   onBasicOfficerFormCancel() {}
+
+  onAdvancedFormSubmit() {}
+
+  onAdvancedFormCancel() {}
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
@@ -157,6 +189,22 @@ export class OfficerIdPageComponent implements OnInit, OnDestroy {
 
     if (values.length === 0) {
       this.basicOfficerForm.get('departmentId')?.setErrors({
+        invalidOption: true,
+      });
+    }
+
+    return values;
+  }
+
+  private _raceFilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    const values = this.races.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+
+    if (values.length === 0) {
+      this.advancedOfficerForm.get('race')?.setErrors({
         invalidOption: true,
       });
     }
