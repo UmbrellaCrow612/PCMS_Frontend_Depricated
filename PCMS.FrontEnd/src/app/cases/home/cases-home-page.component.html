@@ -1,4 +1,33 @@
 <div class="container">
-  <div class="left">left</div>
-  <div class="right">right</div>
+  <div class="left">
+    <a routerLink="./create" mat-raised-button> Create A Case</a>
+
+    <form
+      [formGroup]="quickSearchForm"
+      class="quick_search_form"
+      (ngSubmit)="onQuickSearchFormSubmit()"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>Quick search</mat-label>
+        <input matInput required formControlName="caseNumber" />
+        <mat-hint> Search by Case Number </mat-hint>
+        @if (quickSearchForm.get("caseNumber")?.hasError("required")) {
+        <mat-error> Required case number</mat-error>
+        }
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-stroked-button
+        [disabled]="quickSearchForm.invalid"
+      >
+        Search
+      </button>
+    </form>
+
+    <a routerLink="./create" mat-raised-button> My Work </a>
+  </div>
+  <div class="right">
+    grid with recent open cases added to the system that are unassigned
+  </div>
 </div>
