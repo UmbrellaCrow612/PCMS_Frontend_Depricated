@@ -28,6 +28,10 @@
     <a routerLink="./create" mat-raised-button> My Work </a>
   </div>
   <div class="right">
-    grid with recent open cases added to the system that are unassigned
+    <app-grid
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [rowSelection]="'single'"
+    ></app-grid>
   </div>
 </div>
