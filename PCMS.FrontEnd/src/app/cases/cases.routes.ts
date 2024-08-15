@@ -28,8 +28,8 @@ export const CASES_ROUTES: Routes = [
       {
         path: 'create',
         loadComponent: () =>
-          import('./create/create-page.component').then(
-            (m) => m.CreatePageComponent
+          import('./create/create-case-page.component').then(
+            (m) => m.CreateCasePageComponent
           ),
         title: 'PCMS - Create A Case',
       },

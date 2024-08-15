@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { ReportsPageComponent } from './reports-page.component';
-import { CreatePageComponent } from './create/create-page.component';
 
 export const REPORT_ROUTES: Routes = [
   {
@@ -10,7 +9,10 @@ export const REPORT_ROUTES: Routes = [
   },
   {
     path: 'create',
-    component: CreatePageComponent,
+    loadComponent: () =>
+      import('./create/create-report-page.component').then(
+        (m) => m.CreateReportPageComponent
+      ),
     title: 'PCMS - Create A Report',
   },
 ];

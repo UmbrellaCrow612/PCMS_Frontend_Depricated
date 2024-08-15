@@ -1,0 +1,14 @@
+<mat-nav-list>
+  <a [routerLink]="['./']" [relativeTo]="data.parentRoute" mat-list-item>
+    <mat-icon matListItemIcon>home</mat-icon>
+    <span matListItemTitle>Home</span>
+  </a>
+  <a [routerLink]="['./reports']" [relativeTo]="data.parentRoute" mat-list-item>
+    <mat-icon matListItemIcon>report</mat-icon>
+    <span matListItemTitle>Reports</span>
+  </a>
+  <a [routerLink]="['./search']" [relativeTo]="data.parentRoute" mat-list-item>
+    <mat-icon matListItemIcon>search</mat-icon>
+    <span matListItemTitle>Search</span>
+  </a>
+</mat-nav-list>
