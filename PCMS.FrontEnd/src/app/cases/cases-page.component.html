@@ -29,6 +29,15 @@
         <mat-icon>search</mat-icon>
         Search
       </a>
+      <a
+      [routerLink]="['./my-work']"
+      mat-raised-button
+      routerLinkActive="mat-primary"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <mat-icon>assignment_ind</mat-icon>
+      My Work
+    </a>
     </div>
 
     <div class="left_mobile">

@@ -11,4 +11,8 @@
     <mat-icon matListItemIcon>search</mat-icon>
     <span matListItemTitle>Search</span>
   </a>
+  <a [routerLink]="['./my-work']" [relativeTo]="data.parentRoute" mat-list-item>
+    <mat-icon matListItemIcon>assignment_ind</mat-icon>
+    <span matListItemTitle>My Work</span>
+  </a>
 </mat-nav-list>
