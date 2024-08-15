@@ -1,1 +1,66 @@
-<p>create-page works! cases</p>
+<div class="main">
+  <h2>Create a case</h2>
+  <form class="case_form" [formGroup]="caseForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+      @if (caseForm.get("title")?.hasError("required")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      @if (caseForm.get("description")?.hasError("required")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notes"></textarea>
+      @if (caseForm.get("notes")?.hasError("required")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        @for (option of caseTypes; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-select>
+      @if (caseForm.get("type")?.hasError("required")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        @for (option of casePriorityList; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-select>
+      @if (caseForm.get("priority")?.hasError("required")) {
+      <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="btns_container">
+      <button type="submit" mat-raised-button [disabled]="caseForm.invalid">
+        Create
+      </button>
+      <button
+        type="button"
+        mat-stroked-button
+        [disabled]="caseForm.pristine"
+        (click)="onClear()"
+      >
+        Clear
+      </button>
+    </div>
+  </form>
+</div>

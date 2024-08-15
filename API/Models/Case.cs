@@ -29,10 +29,6 @@ namespace API.Models
         
         public required CasePriority Priority { get; set; }
 
-
-        public required Department Department { get; set; }
-
-
         public ICollection<Evidence> Evidences { get; set; } = [];
 
         public ICollection<CaseAction> CaseActions { get; set; } = [];
