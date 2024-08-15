@@ -26,12 +26,27 @@ export const CASES_ROUTES: Routes = [
         title: 'PCMS - Search',
       },
       {
+        path: 'my-work',
+        loadComponent: () =>
+          import('./my-work/my-work-page.component').then(
+            (m) => m.MyWorkPageComponent
+          ),
+        title: 'PCMS - Search',
+      },
+      {
         path: 'create',
         loadComponent: () =>
           import('./create/create-case-page.component').then(
             (m) => m.CreateCasePageComponent
           ),
         title: 'PCMS - Create A Case',
+      },
+      {
+        path: ':id',
+        loadComponent: () =>
+          import('./id/case-id-page-component.component').then(
+            (m) => m.CaseIdPageComponentComponent
+          ),
       },
     ],
   },

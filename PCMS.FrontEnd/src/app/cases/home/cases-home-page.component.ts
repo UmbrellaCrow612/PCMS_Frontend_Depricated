@@ -9,7 +9,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ColDef } from 'ag-grid-community';
 import { GridComponent } from '../../grid/grid.component';
 
@@ -29,13 +29,15 @@ import { GridComponent } from '../../grid/grid.component';
   styleUrl: './cases-home-page.component.scss',
 })
 export class CasesHomePageComponent {
+  constructor(private router: Router, private route: ActivatedRoute) {}
   quickSearchForm = new FormGroup({
     caseNumber: new FormControl('', [Validators.required]),
   });
 
   onQuickSearchFormSubmit() {
     if (this.quickSearchForm.valid) {
-      console.log(this.quickSearchForm.value);
+      let caseNumber = this.quickSearchForm.get('caseNumber')?.value;
+      this.router.navigate([caseNumber], { relativeTo: this.route });
     }
   }
 
