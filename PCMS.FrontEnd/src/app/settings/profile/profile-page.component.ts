@@ -17,10 +17,13 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   constructor(private themeService: ThemeService) {}
 
   ngOnInit() {
-    this.subscription = this.themeService.isDarkMode$.subscribe(
-      (isDarkMode) => (this.isDarkMode = isDarkMode)
-    );
+    this.subscription = this.themeService
+      .getDarkMode()
+      .subscribe((isDarkMode) => {
+        this.isDarkMode = isDarkMode;
+      });
   }
+
 
   ngOnDestroy() {
     if (this.subscription) {

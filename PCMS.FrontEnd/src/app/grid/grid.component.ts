@@ -15,11 +15,12 @@ import {
 import { AgGridAngular } from 'ag-grid-angular';
 import { ThemeService } from '../theme/theme-service.service';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-grid',
   standalone: true,
-  imports: [AgGridAngular],
+  imports: [AgGridAngular, CommonModule],
   template: `
     <ag-grid-angular
       [rowData]="rowData"
@@ -65,26 +66,30 @@ export class GridComponent implements OnInit, OnDestroy {
   @Output() rowClicked = new EventEmitter<any>();
 
   themeClass: string = 'ag-theme-material';
-  private themeSubscription: Subscription | undefined;
+
+  isDarkMode: boolean = false;
+  private subscription: Subscription | undefined;
+
 
   constructor(private themeService: ThemeService) {}
 
-  ngOnInit(): void {
-    // Subscribe to the theme service to apply the correct theme
-    this.themeSubscription = this.themeService.isDarkMode$.subscribe(
-      (isDarkMode) => {
-        this.themeClass = isDarkMode
-          ? 'ag-theme-material-dark'
-          : 'ag-theme-material';
+  ngOnInit() {
+    this.subscription = this.themeService.getDarkMode().subscribe(isDarkMode => {
+      this.isDarkMode = isDarkMode;
+      if (isDarkMode) {
+        this.themeClass = 'ag-theme-material-dark'
+      } else {
+         this.themeClass = 'ag-theme-material'
       }
-    );
+    });
   }
 
-  ngOnDestroy(): void {
-    if (this.themeSubscription) {
-      this.themeSubscription.unsubscribe();
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
+
 
   onSelectionChanged(event: SelectionChangedEvent): void {
     const selectedRows = event.api.getSelectedRows();

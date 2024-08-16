@@ -25,7 +25,7 @@ import {
   races,
 } from '../create/test-data';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 
 interface Department {
   name: string;
@@ -41,6 +41,7 @@ interface Department {
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     CommonModule,
     MatIconModule,
     MatSelectModule,

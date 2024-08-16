@@ -6,10 +6,12 @@ import { ErrorHandler, importProvidersFrom } from '@angular/core';
 import { GlobalErrorHandler } from './app/errors/global-error-handler';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(BrowserModule, AppRoutingModule),
+    provideNativeDateAdapter(),
+    importProvidersFrom(BrowserModule, AppRoutingModule, MatNativeDateModule),
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     GlobalErrorHandler,
