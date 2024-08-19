@@ -47,12 +47,12 @@
       <mat-card-content class="case_filter_form_item_wrapper">
         <mat-form-field appearance="outline">
           <mat-label>Case Status</mat-label>
-          <mat-select formControlName="caseStatus">
+          <mat-select formControlName="status">
             @for (option of caseStatusOptions; track option) {
             <mat-option [value]="option">{{ option }}</mat-option>
             }
           </mat-select>
-          @if (caseFilterForm.get("caseStatus")?.hasError("required")) {
+          @if (caseFilterForm.get("status")?.hasError("required")) {
           <mat-error> Required </mat-error>
           }
         </mat-form-field>
@@ -105,6 +105,43 @@
             #dateRangePicker
             [touchUi]="isMobile"
           ></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority">
+            @for (option of casePriorityOptions; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+            }
+          </mat-select>
+          @if (caseFilterForm.controls.priority.hasError("required")) {
+          <mat-error> Required </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Incident Type</mat-label>
+          <input
+            #incidentTypeInput
+            type="text"
+            matInput
+            formControlName="incidentType"
+            [matAutocomplete]="incidentTypeAuto"
+            (input)="incidentTypeFilter()"
+            (focus)="incidentTypeFilter()"
+          />
+          <mat-autocomplete
+            requireSelection
+            autoActiveFirstOption
+            #incidentTypeAuto="matAutocomplete"
+          >
+            @for (option of filteredIncidentTypeOptions; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+            }
+          </mat-autocomplete>
+          @if (caseFilterForm.controls.incidentType.hasError("required")) {
+          <mat-error> Required valid option </mat-error>
+          }
         </mat-form-field>
       </mat-card-content>
 

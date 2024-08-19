@@ -1,4 +1,10 @@
-import { Component, inject, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +22,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Subject, takeUntil } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @Component({
   selector: 'app-search-page',
   standalone: true,
@@ -30,12 +37,16 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     FormsModule,
     MatDatepickerModule,
     CommonModule,
+    MatAutocompleteModule,
   ],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss',
   providers: [provideNativeDateAdapter()],
 })
 export class SearchPageComponent implements OnDestroy {
+  @ViewChild('incidentTypeInput')
+  incidentTypeInput!: ElementRef<HTMLInputElement>;
+
   constructor() {
     inject(BreakpointObserver)
       .observe([Breakpoints.XSmall, Breakpoints.Small])
@@ -47,6 +58,8 @@ export class SearchPageComponent implements OnDestroy {
           this.isMobile = false;
         }
       });
+
+    this.filteredIncidentTypeOptions = this.incidentTypeOptions.slice();
   }
   isMobile = false;
   destroyed = new Subject<void>();
@@ -69,6 +82,7 @@ export class SearchPageComponent implements OnDestroy {
     'Homicide',
     'Sexual Assault',
   ];
+  filteredIncidentTypeOptions: string[];
 
   cityOptions = ['Any', 'Sheffield', 'London'];
 
@@ -77,7 +91,7 @@ export class SearchPageComponent implements OnDestroy {
   });
 
   caseFilterForm = new FormGroup({
-    caseStatus: new FormControl<string>(this.caseStatusOptions[0], [
+    status: new FormControl<string>(this.caseStatusOptions[0], [
       Validators.required,
     ]),
     dateRange: new FormGroup({
@@ -101,6 +115,14 @@ export class SearchPageComponent implements OnDestroy {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     return yesterday;
+  }
+
+  incidentTypeFilter(): void {
+    const filterValue =
+      this.incidentTypeInput.nativeElement.value.toLowerCase();
+    this.filteredIncidentTypeOptions = this.incidentTypeOptions.filter((o) =>
+      o.toLowerCase().includes(filterValue)
+    );
   }
 
   private readonly _currentDate = new Date();

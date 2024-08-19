@@ -19,7 +19,7 @@
 }
 
 .case_filter_form {
-  width: 45em;
+  width: 80%;
 }
 
 .case_filter_form_item_wrapper {
@@ -35,8 +35,3 @@
   gap: 1em;
 }
 
-@media only screen and (max-width: 850px) {
-  .case_filter_form {
-    width: 80%;
-  }
-}
