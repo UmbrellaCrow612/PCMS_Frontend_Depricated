@@ -13,14 +13,91 @@
           }
         </mat-form-field>
       </mat-card-content>
-      <mat-card-actions [align]="'end'" >
-        <button mat-stroked-button type="reset">Clear</button>
-        <button mat-raised-button color="accent" type="submit">Search</button>
+      <mat-card-actions [align]="'end'">
+        <div class="case_number_form__btns">
+          <button mat-stroked-button type="reset">Clear</button>
+          <button mat-raised-button color="accent" type="submit">Search</button>
+        </div>
       </mat-card-actions>
     </mat-card>
   </form>
 
-  <mat-card appearance="outlined">
-    <mat-card-content>Simple two</mat-card-content>
-  </mat-card>
+  <form
+    class="case_filter_form"
+    [formGroup]="caseFilterForm"
+    (ngSubmit)="onCaseFilterFormSubmit()"
+  >
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Search For Cases Based On Filters</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="case_filter_form_item_wrapper">
+        <mat-form-field appearance="outline">
+          <mat-label>Case Status</mat-label>
+          <mat-select formControlName="caseStatus">
+            @for (option of caseStatusOptions; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+            }
+          </mat-select>
+          @if (caseFilterForm.get("caseStatus")?.hasError("required")) {
+          <mat-error> Required </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" formGroupName="dateRange">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input
+            [rangePicker]="dateRangePicker"
+            [min]="dateRangeMinDate"
+            [max]="dateRangeMaxDate"
+          >
+            <input
+              matStartDate
+              formControlName="start"
+              placeholder="Start date"
+            />
+            <input matEndDate formControlName="end" placeholder="End date" />
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          @if
+          (caseFilterForm.controls.dateRange.controls.start.hasError("required"))
+          {
+          <mat-error>Required Start Date</mat-error>
+          } @else if
+          (caseFilterForm.controls.dateRange.controls.start.hasError("matDatepickerMin"))
+          {
+          <mat-error>To Far In The Past</mat-error>
+          } @else if
+          (caseFilterForm.controls.dateRange.controls.start.hasError("matDatepickerMax"))
+          {
+          <mat-error>Start Date Is In The Future</mat-error>
+          } @else if
+          (caseFilterForm.controls.dateRange.controls.end.hasError("required"))
+          {
+          <mat-error>Required End Date</mat-error>
+          } @else if
+          (caseFilterForm.controls.dateRange.controls.end.hasError("matDatepickerMin"))
+          {
+          <mat-error>To Far In The Past</mat-error>
+          } @else if
+          (caseFilterForm.controls.dateRange.controls.end.hasError("matDatepickerMax"))
+          {
+          <mat-error>End Date Is In The Future</mat-error>
+          }
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="dateRangePicker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #dateRangePicker></mat-date-range-picker>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions [align]="'end'">
+        <div class="case_filter_form__btns">
+          <button mat-stroked-button>Clear</button>
+          <button mat-raised-button color="accent" type="submit">Search</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 </div>

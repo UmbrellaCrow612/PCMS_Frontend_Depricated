@@ -20,3 +20,10 @@
   align-items: center;
   gap: 1em;
 }
+
+
+@media only screen and (max-width: 750px) {
+ .case_form{
+  width: 80%;
+ }
+}

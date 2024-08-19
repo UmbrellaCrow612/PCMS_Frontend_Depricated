@@ -11,3 +11,32 @@
 .search_case_number_form {
   padding: 1em;
 }
+
+.case_number_form__btns {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.case_filter_form {
+  width: 45em;
+}
+
+.case_filter_form_item_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 1em;
+}
+
+.case_filter_form__btns{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+@media only screen and (max-width: 850px) {
+  .case_filter_form {
+    width: 80%;
+  }
+}
