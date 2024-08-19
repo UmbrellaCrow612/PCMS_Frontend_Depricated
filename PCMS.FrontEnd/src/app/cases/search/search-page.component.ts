@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { Subject, takeUntil } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 @Component({
   selector: 'app-search-page',
   standalone: true,
@@ -33,7 +35,21 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
   styleUrl: './search-page.component.scss',
   providers: [provideNativeDateAdapter()],
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements OnDestroy {
+  constructor() {
+    inject(BreakpointObserver)
+      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      .pipe(takeUntil(this.destroyed))
+      .subscribe((result) => {
+        if (result.matches) {
+          this.isMobile = true;
+        } else {
+          this.isMobile = false;
+        }
+      });
+  }
+  isMobile = false;
+  destroyed = new Subject<void>();
   caseStatusOptions = [
     'Any',
     'Open',
@@ -94,4 +110,9 @@ export class SearchPageComponent {
     this._currentDate.getDate()
   );
   readonly dateRangeMaxDate = new Date(this._currentDate);
+
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
+  }
 }

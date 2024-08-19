@@ -15,8 +15,21 @@
       </mat-card-content>
       <mat-card-actions [align]="'end'">
         <div class="case_number_form__btns">
-          <button mat-stroked-button type="reset">Clear</button>
-          <button mat-raised-button color="accent" type="submit">Search</button>
+          <button
+            mat-stroked-button
+            type="reset"
+            [disabled]="caseNumberForm.pristine"
+          >
+            Clear
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            type="submit"
+            [disabled]="caseNumberForm.invalid"
+          >
+            Search
+          </button>
         </div>
       </mat-card-actions>
     </mat-card>
@@ -88,14 +101,26 @@
             matIconSuffix
             [for]="dateRangePicker"
           ></mat-datepicker-toggle>
-          <mat-date-range-picker #dateRangePicker></mat-date-range-picker>
+          <mat-date-range-picker
+            #dateRangePicker
+            [touchUi]="isMobile"
+          ></mat-date-range-picker>
         </mat-form-field>
       </mat-card-content>
 
       <mat-card-actions [align]="'end'">
         <div class="case_filter_form__btns">
-          <button mat-stroked-button>Clear</button>
-          <button mat-raised-button color="accent" type="submit">Search</button>
+          <button mat-stroked-button [disabled]="caseFilterForm.pristine">
+            Clear
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            type="submit"
+            [disabled]="caseFilterForm.invalid"
+          >
+            Search
+          </button>
         </div>
       </mat-card-actions>
     </mat-card>
