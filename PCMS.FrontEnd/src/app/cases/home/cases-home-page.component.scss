@@ -1,16 +1,19 @@
 .container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
   width: 100%;
   height: 100%;
-  padding: 2em;
-  display: flex;
+  gap: 1em;
 }
 
 .left {
-  flex: 0 0 20%;
+  grid-column: 1 / 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
-  gap: 1em;
   align-items: start;
+  gap: 2em;
 }
 
 .quick_search_form {
@@ -18,19 +21,27 @@
   flex-direction: column;
   gap: 1em;
 }
+
 .right {
-  padding: 0.5em;
-  flex: 1;
+  grid-column: 2 / 6;
+  grid-row: 1;
 }
 
-@media only screen and (max-width: 900px) {
+@media (max-width: 950px) {
   .container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
   }
 
-  .left,
+  .left {
+    grid-column: 1 / 2;
+    grid-row: auto;
+    height: 20em;
+  }
+
   .right {
-    width: 100%;
-    height: auto;
+    grid-column: 1 / 2;
+    grid-row: auto;
+    height: 34em;
   }
 }

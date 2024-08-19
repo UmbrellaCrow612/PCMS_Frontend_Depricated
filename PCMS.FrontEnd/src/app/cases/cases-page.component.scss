@@ -6,13 +6,13 @@
 }
 
 .toolbar {
-  flex-shrink: 0;
   position: sticky;
 }
 
 .page_content {
   flex-grow: 1;
   overflow-y: auto;
+  padding: 1em;
 }
 
 .example-spacer {
