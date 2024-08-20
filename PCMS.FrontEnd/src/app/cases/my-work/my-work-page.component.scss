@@ -1,8 +1,10 @@
 .parent {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
-  height: 100%;
 }
 
 .child {

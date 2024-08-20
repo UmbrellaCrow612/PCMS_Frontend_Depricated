@@ -7,11 +7,11 @@
 
 .toolbar {
   position: sticky;
+  flex-shrink: 0;
 }
 
 .page_content {
   flex-grow: 1;
-  overflow-y: auto;
   padding: 1em;
 }
 
