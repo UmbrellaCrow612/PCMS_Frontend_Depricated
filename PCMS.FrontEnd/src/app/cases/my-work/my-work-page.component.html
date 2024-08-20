@@ -1,1 +1,46 @@
-<p>my-work-page works!</p>
+<div class="parent">
+  <div class="child">
+    <div class="title">Open cases</div>
+    <div class="content">
+      <app-grid
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [rowSelection]="'single'"
+        [pagination]="false"
+      ></app-grid>
+    </div>
+  </div>
+  <div class="child">
+    <div class="title">Closed cases</div>
+    <div class="content">
+      <app-grid
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [rowSelection]="'single'"
+        [pagination]="false"
+      ></app-grid>
+    </div>
+  </div>
+  <div class="child">
+    <div class="title">Pending Cases</div>
+    <div class="content">
+      <app-grid
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [rowSelection]="'single'"
+        [pagination]="false"
+      ></app-grid>
+    </div>
+  </div>
+  <div class="child">
+    <div class="title">Under Investigation</div>
+    <div class="content">
+      <app-grid
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [rowSelection]="'single'"
+        [pagination]="false"
+      ></app-grid>
+    </div>
+  </div>
+</div>
