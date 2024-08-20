@@ -47,6 +47,9 @@ export class SearchPageComponent implements OnDestroy {
   @ViewChild('incidentTypeInput')
   incidentTypeInput!: ElementRef<HTMLInputElement>;
 
+  @ViewChild('cityInput')
+  cityInput!: ElementRef<HTMLInputElement>;
+
   constructor() {
     inject(BreakpointObserver)
       .observe([Breakpoints.XSmall, Breakpoints.Small])
@@ -60,6 +63,7 @@ export class SearchPageComponent implements OnDestroy {
       });
 
     this.filteredIncidentTypeOptions = this.incidentTypeOptions.slice();
+    this.filteredCityOptions = this.cityOptions.slice();
   }
   isMobile = false;
   destroyed = new Subject<void>();
@@ -85,6 +89,7 @@ export class SearchPageComponent implements OnDestroy {
   filteredIncidentTypeOptions: string[];
 
   cityOptions = ['Any', 'Sheffield', 'London'];
+  filteredCityOptions: string[];
 
   caseNumberForm = new FormGroup({
     caseNumber: new FormControl('', [Validators.required]),
@@ -111,6 +116,19 @@ export class SearchPageComponent implements OnDestroy {
 
   onCaseFilterFormSubmit() {}
 
+  onResetCaseFilterForm() {
+    this.caseFilterForm.reset({
+      status: this.caseStatusOptions[0],
+      dateRange: {
+        start: this.getYesterday(),
+        end: new Date(),
+      },
+      priority: this.casePriorityOptions[0],
+      incidentType: this.incidentTypeOptions[0],
+      city: this.cityOptions[0],
+    });
+  }
+
   private getYesterday(): Date {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
@@ -121,6 +139,13 @@ export class SearchPageComponent implements OnDestroy {
     const filterValue =
       this.incidentTypeInput.nativeElement.value.toLowerCase();
     this.filteredIncidentTypeOptions = this.incidentTypeOptions.filter((o) =>
+      o.toLowerCase().includes(filterValue)
+    );
+  }
+
+  cityFilter(): void {
+    const filterValue = this.cityInput.nativeElement.value.toLowerCase();
+    this.filteredCityOptions = this.cityOptions.filter((o) =>
       o.toLowerCase().includes(filterValue)
     );
   }
