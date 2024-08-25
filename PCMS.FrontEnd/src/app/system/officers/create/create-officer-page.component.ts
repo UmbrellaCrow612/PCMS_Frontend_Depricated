@@ -18,7 +18,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AccessLevel, ethnicGroups, nationalities, races } from './test-data';
 import { map, Observable, startWith } from 'rxjs';
 import { ninoValidator, noLettersValidator } from '../../../validators';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 
 interface Department {
   name: string;
@@ -34,6 +34,7 @@ interface Department {
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatDateRangePicker,
     CommonModule,
     MatIconModule,
@@ -42,7 +43,6 @@ interface Department {
   ],
   templateUrl: './create-officer-page.component.html',
   styleUrl: './create-officer-page.component.scss',
-  providers: [provideNativeDateAdapter()],
 })
 export class CreateOfficerPageComponent implements OnInit, OnDestroy {
   constructor(private breakpointObserver: BreakpointObserver) {}

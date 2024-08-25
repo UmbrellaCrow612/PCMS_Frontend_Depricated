@@ -18,11 +18,11 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
-import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Subject, takeUntil } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatNativeDateModule } from '@angular/material/core';
 @Component({
   selector: 'app-search-page',
   standalone: true,
@@ -36,12 +36,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSelectModule,
     FormsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     CommonModule,
     MatAutocompleteModule,
   ],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss',
-  providers: [provideNativeDateAdapter()],
 })
 export class SearchPageComponent implements OnDestroy {
   @ViewChild('incidentTypeInput')

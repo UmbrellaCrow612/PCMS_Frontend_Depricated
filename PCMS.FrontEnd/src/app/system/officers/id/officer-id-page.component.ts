@@ -25,7 +25,7 @@ import {
   races,
 } from '../create/test-data';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 
 interface Department {
   name: string;
@@ -50,7 +50,6 @@ interface Department {
   ],
   templateUrl: './officer-id-page.component.html',
   styleUrl: './officer-id-page.component.scss',
-  providers: [provideNativeDateAdapter()],
 })
 export class OfficerIdPageComponent implements OnInit, OnDestroy {
   OfficerId: any = '';
