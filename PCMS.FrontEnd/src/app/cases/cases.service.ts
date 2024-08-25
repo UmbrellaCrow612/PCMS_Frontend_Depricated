@@ -1,46 +1,39 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
-import { environment } from '../environments/environment';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface Case {
   id: number;
   name: string;
-  // Add other properties as needed
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CasesService {
+  
   constructor(private http: HttpClient) {}
 
   getCases(): Observable<Case[]> {
-    const url = new URL('/cases', environment.apiUrl);
-    // Add query parameters if needed
-    url.searchParams.set('filter', 'active');
+    const url = new URL('/cases', environment.apiUrl).toString();
 
-    return this.http.get(url.toString())
-      .pipe(
-        catchError(error => {
-          console.error('Error fetching cases:', error);
-          return throwError(() => new Error('Failed to fetch cases'));
-        }),
-        map((cases: any[]) => {
-          // Validate each case object against the Case interface
-          const validatedCases = cases.filter(caseData => {
-            const caseObject = caseData as Case;
-            return !!caseObject &&
-              typeof caseObject.id === 'number' &&
-              typeof caseObject.name === 'string';
-          });
+    return this.http.get<Case[]>(url).pipe(
+      map((response: Case[]) => response),
+      catchError(this.handleError)
+    );
+  }
 
-          if (validatedCases.length !== cases.length) {
-            throw new Error('Invalid case data received');
-          }
-
-          return validatedCases;
-        })
-      );
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side or network error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Backend returned an unsuccessful response code
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(() => new Error(errorMessage));
   }
 }
