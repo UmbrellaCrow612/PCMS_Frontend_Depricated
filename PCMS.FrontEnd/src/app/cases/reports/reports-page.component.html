@@ -1,1 +1,15 @@
-<p>reports-page works!</p>
+<div class="main">
+  <div class="section_one">
+    <a mat-raised-button [routerLink]="['./create']">Create A Report</a>
+    <button mat-raised-button [routerLink]="['./search']">
+      Search For A Report
+    </button>
+  </div>
+  <div class="section_two">
+    <app-grid
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [rowSelection]="'single'"
+    ></app-grid>
+  </div>
+</div>
