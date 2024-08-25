@@ -1,36 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Case } from './interfaces';
 
-interface Case {
-  id: number;
-  name: string;
-}
 
 @Injectable({
   providedIn: 'root',
 })
 export class CasesService {
-  
   constructor(private http: HttpClient) {}
 
   getCases(): Observable<Case[]> {
-    const url = new URL('/cases', environment.apiUrl).toString();
+    let url = new URL('/cases', environment.apiUrl).toString();
 
-    return this.http.get<Case[]>(url).pipe(
-      map((response: Case[]) => response),
-      catchError(this.handleError)
-    );
+    return this.http.get<Case[]>(url).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
+    let errorMessage = 'An unknown error occurred';
     if (error.error instanceof ErrorEvent) {
-      // Client-side or network error
+      // Client-side error
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Backend returned an unsuccessful response code
+      // Server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.error(errorMessage);
