@@ -1,0 +1,22 @@
+<div class="main">
+  <h2>Create A Report</h2>
+  <form [formGroup]="reportForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Case</mat-label>
+      <input
+        #caseInput
+        type="text"
+        matInput
+        formControlName="case"
+        [matAutocomplete]="caseAuto"
+        (input)="filterCases()"
+        (focus)="filterCases()"
+      />
+      <mat-autocomplete requireSelection #caseAuto="matAutocomplete">
+        @for (option of filteredCasesOptions; track option) {
+        <mat-option [value]="option.id">{{ option.name }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>

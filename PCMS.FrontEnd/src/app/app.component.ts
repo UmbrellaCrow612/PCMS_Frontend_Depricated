@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ThemeService } from './theme/theme-service.service';
 import { Subscription } from 'rxjs';
+import { ThemeService } from './core/theme/theme-service.service';
 
 @Component({
   selector: 'app-root',
