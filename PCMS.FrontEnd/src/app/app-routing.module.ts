@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: '**',
     loadComponent: () =>
-      import('./not-found/not-found-page.component').then(
+      import('./errors/not-found/not-found-page.component').then(
         (m) => m.NotFoundPageComponent
       ),
   },

@@ -40,10 +40,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     CommonModule,
     MatAutocompleteModule,
   ],
-  templateUrl: './search-page.component.html',
-  styleUrl: './search-page.component.scss',
+  templateUrl: './search-cases-page.component.html',
+  styleUrl: './search-cases-page.component.scss',
 })
-export class SearchPageComponent implements OnDestroy {
+export class SearchCasesPage implements OnDestroy {
   @ViewChild('incidentTypeInput')
   incidentTypeInput!: ElementRef<HTMLInputElement>;
 

@@ -20,9 +20,7 @@ export const CASES_ROUTES: Routes = [
       {
         path: 'search',
         loadComponent: () =>
-          import('./search/search-page.component').then(
-            (m) => m.SearchPageComponent
-          ),
+          import('./search/search-cases-page').then((m) => m.SearchCasesPage),
         title: 'PCMS - Search',
       },
       {
