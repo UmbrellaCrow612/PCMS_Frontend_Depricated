@@ -7,8 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { NavProfileMenuComponent } from '../../shared/nav-profile-menu/nav-profile-menu.component';
 
 @Component({
   selector: 'app-system-page',
@@ -21,7 +21,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatIconModule,
     MatProgressSpinnerModule,
     RouterLink,
-    MatMenuModule,
+    NavProfileMenuComponent,
     MatBadgeModule,
     RouterLinkActive
   ],

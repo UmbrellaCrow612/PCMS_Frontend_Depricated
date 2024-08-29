@@ -1,0 +1,28 @@
+<button mat-icon-button aria-label="Profile" [matMenuTriggerFor]="profileMenu">
+  <mat-icon>account_circle</mat-icon>
+</button>
+<mat-menu #profileMenu="matMenu">
+  <ng-template matMenuContent>
+    @if (!isCurrentUrl('/dashboard')) {
+    <a routerLink="/dashboard" mat-menu-item>
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </a>
+    } @if (!isCurrentUrl('/cases')) {
+    <a routerLink="/cases" mat-menu-item>
+      <mat-icon>work</mat-icon>
+      <span>Cases</span>
+    </a>
+    } @if (!isCurrentUrl('/system')) {
+    <a routerLink="/system" mat-menu-item>
+      <mat-icon>settings_applications</mat-icon>
+      <span>System</span>
+    </a>
+    } @if (!isCurrentUrl('/settings')) {
+    <a routerLink="/settings" mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </a>
+    }
+  </ng-template>
+</mat-menu>

@@ -8,12 +8,6 @@ import {
   MatDrawer,
   MatDrawerContent,
 } from '@angular/material/sidenav';
-import {
-  MatMenuTrigger,
-  MatMenu,
-  MatMenuContent,
-  MatMenuItem,
-} from '@angular/material/menu';
 import { MatBadge } from '@angular/material/badge';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -21,6 +15,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatIconButton, MatAnchor } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
+import { NavProfileMenuComponent } from '../../shared/nav-profile-menu/nav-profile-menu.component';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -38,13 +33,10 @@ import { CommonModule } from '@angular/common';
     MatDrawerContent,
     MatToolbar,
     MatBadge,
-    MatMenuTrigger,
-    MatMenu,
-    MatMenuContent,
-    MatMenuItem,
     RouterOutlet,
     CommonModule,
     RouterLinkActive,
+    NavProfileMenuComponent
   ],
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {

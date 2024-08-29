@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {
   ActivatedRoute,
@@ -15,6 +14,7 @@ import {
 } from '@angular/material/bottom-sheet';
 
 import { MobileBottomSheetComponent } from './components/mobile-bottom-sheet/mobile-bottom-sheet.component';
+import { NavProfileMenuComponent } from '../../shared/nav-profile-menu/nav-profile-menu.component';
 @Component({
   selector: 'app-cases-page',
   standalone: true,
@@ -22,11 +22,11 @@ import { MobileBottomSheetComponent } from './components/mobile-bottom-sheet/mob
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule,
     RouterLink,
     RouterLinkActive,
     RouterOutlet,
     MatBottomSheetModule,
+    NavProfileMenuComponent
   ],
   templateUrl: './cases-page.component.html',
   styleUrl: './cases-page.component.scss',
