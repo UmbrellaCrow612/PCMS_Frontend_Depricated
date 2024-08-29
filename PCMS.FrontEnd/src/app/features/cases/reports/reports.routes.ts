@@ -23,4 +23,11 @@ export const REPORT_ROUTES: Routes = [
       ),
     title: 'PCMS - Search For A Report',
   },
+  {
+    path: ':id',
+    loadComponent: () =>
+      import('./id/report-id-page.component').then(
+        (m) => m.ReportIdPageComponent
+      ),
+  },
 ];
