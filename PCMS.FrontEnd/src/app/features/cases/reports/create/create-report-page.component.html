@@ -1,7 +1,7 @@
 <div class="main">
   <h2>Create A Report</h2>
-  <form [formGroup]="reportForm">
-    <mat-form-field class="example-full-width">
+  <form [formGroup]="reportForm" class="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
       <mat-label>Case</mat-label>
       <input
         #caseInput
@@ -12,11 +12,108 @@
         (input)="filterCases()"
         (focus)="filterCases()"
       />
-      <mat-autocomplete requireSelection #caseAuto="matAutocomplete">
+      <mat-autocomplete
+        autoActiveFirstOption
+        requireSelection
+        #caseAuto="matAutocomplete"
+      >
         @for (option of filteredCasesOptions; track option) {
-        <mat-option [value]="option.id">{{ option.name }}</mat-option>
+        <mat-option [value]="option.name">{{ option.name }}</mat-option>
         }
       </mat-autocomplete>
+      @if (reportForm.controls.case.hasError("required")) {
+      <mat-error> Valid case option required </mat-error>
+      }
     </mat-form-field>
+
+    <div formGroupName="incident" class="incident_form">
+      <h3 class="heading">Incident Details</h3>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+        @if (reportForm.controls.incident.controls.title.hasError("required")) {
+        <mat-error> Required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        @if
+        (reportForm.controls.incident.controls.description.hasError("required"))
+        {
+        <mat-error> Required </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Occurrence Date </mat-label>
+        <input
+          matInput
+          [min]="minDate"
+          [max]="maxDate"
+          [matDatepicker]="occurrencePicker"
+          formControlName="occurrenceDate"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="occurrencePicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker [touchUi]="isMobile" #occurrencePicker></mat-datepicker>
+        @if
+        (reportForm.controls.incident.controls.occurrenceDate.hasError("required"))
+        {
+        <mat-error> Required</mat-error>
+        } @else if
+        (reportForm.controls.incident.controls.occurrenceDate.hasError("matDatepickerMin"))
+        {
+        <mat-error> To Far In The Past </mat-error>
+        } @else if
+        (reportForm.controls.incident.controls.occurrenceDate.hasError("matDatepickerMax"))
+        {
+        <mat-error> In The Future </mat-error>
+        } @else if
+        (reportForm.controls.incident.controls.occurrenceDate.hasError("matDatepickerParse"))
+        {
+        <mat-error> Invalid date value </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" />
+      </mat-form-field>
+    </div>
+
+    <span class="heading"> Report Details </span>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Details</mat-label>
+      <textarea matInput formControlName="details"></textarea>
+      @if (reportForm.controls.details.hasError("required")) {
+      <mat-error> Required </mat-error>
+      }
+    </mat-form-field>
+
+    <div class="btns_container">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="reportForm.invalid"
+      >
+        Create
+      </button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="accent"
+        (click)="clearForm()"
+      >
+        Clear
+      </button>
+    </div>
   </form>
 </div>
