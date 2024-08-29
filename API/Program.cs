@@ -18,6 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSqlite<ApplicationDbContext>(connectionString);
+builder.Services.AddAuthentication().AddJwtBearer();
 
 var app = builder.Build();
 
