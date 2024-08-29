@@ -3,7 +3,12 @@
 </button>
 <mat-menu #profileMenu="matMenu">
   <ng-template matMenuContent>
-    @if (!isCurrentUrl('/dashboard')) {
+    @if (!isCurrentUrl('/')) {
+    <a routerLink="/" mat-menu-item>
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </a>
+    } @if (!isCurrentUrl('/dashboard')) {
     <a routerLink="/dashboard" mat-menu-item>
       <mat-icon>dashboard</mat-icon>
       <span>Dashboard</span>
