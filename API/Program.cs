@@ -40,16 +40,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
            ValidateLifetime = true,
            ValidateIssuerSigningKey = true,
            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-           ValidAudience = builder.Configuration["Jwt:Issuer"],
+           ValidAudience = builder.Configuration["Jwt:Audience"],
            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
        };
    })
    .AddCookie(options =>
-     {
-         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-         options.SlidingExpiration = true;
-         options.AccessDeniedPath = "/Forbidden/";
-     });
+    {
+        options.Cookie.Name = builder.Configuration["Cookie:Name"];
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(double.Parse(builder.Configuration["Cookie:ExpireTimeSpanInMinutes"]));
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/Forbidden/";
+    });
 
 builder.Services.AddAuthorization();
 
