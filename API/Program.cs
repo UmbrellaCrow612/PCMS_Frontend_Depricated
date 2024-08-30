@@ -1,6 +1,10 @@
 using API.Models;
+using API.Swagger;
+using Microsoft.Extensions.Options;
 using Serilog;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
+// auth vid use for jwt and swagger https://www.youtube.com/watch?v=mgeuh8k3I4g
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +23,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
 builder.Services.AddSqlite<ApplicationDbContext>(connectionString);
 
