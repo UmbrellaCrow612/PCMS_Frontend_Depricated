@@ -16,9 +16,12 @@ var connectionString = builder.Configuration.GetConnectionString("db") ?? "Data 
 
 // Add services to the container.
 builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddSqlite<ApplicationDbContext>(connectionString);
+
 builder.Services.AddAuthentication().AddJwtBearer();
 builder.Services.AddAuthorization();
 
@@ -33,6 +36,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthentication();
+
 app.MapControllers();
 
 try
