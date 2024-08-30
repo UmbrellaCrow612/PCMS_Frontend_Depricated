@@ -7,7 +7,6 @@ using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 
-// auth vid use for jwt and swagger https://www.youtube.com/watch?v=mgeuh8k3I4g
 
 var builder = WebApplication.CreateBuilder(args);
 
