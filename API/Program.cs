@@ -1,5 +1,4 @@
 using API.Models;
-using Microsoft.OpenApi.Models;
 using Serilog;
 
 
@@ -21,6 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSqlite<ApplicationDbContext>(connectionString);
 builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddAuthorization();
 
 
 var app = builder.Build();
@@ -33,7 +33,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
 app.MapControllers();
 
 try
