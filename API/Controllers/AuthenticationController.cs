@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
@@ -6,7 +7,13 @@ namespace API.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-       
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] string login)
+        {
+            return Unauthorized();
+        }
+
     }
 
   
