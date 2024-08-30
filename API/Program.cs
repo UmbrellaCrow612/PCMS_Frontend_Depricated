@@ -43,13 +43,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
        };
    })
-   .AddCookie(options =>
-    {
-        options.Cookie.Name = builder.Configuration["Cookie:Name"];
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(double.Parse(builder.Configuration["Cookie:ExpireTimeSpanInMinutes"]));
-        options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
-    });
+   .AddCookie("CookieAuth");
 
 builder.Services.AddAuthorization();
 
