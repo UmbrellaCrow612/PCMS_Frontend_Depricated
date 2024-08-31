@@ -2,7 +2,7 @@
 
 namespace API.Models.People
 {
-    public class Person : PersonDetails
+    public class Person
     {
        public ICollection<VictimAccount> VictimAccounts { get; set; } = [];
 

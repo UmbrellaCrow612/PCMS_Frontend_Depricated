@@ -1,9 +1,9 @@
-﻿namespace API.Models.People
-{
-    public abstract class PersonDetails
-    {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+﻿using Microsoft.AspNetCore.Identity;
 
+namespace API.Models.People
+{
+    public abstract class ApplicationUser : IdentityUser
+    {
         public required string FirstName { get; set; }
 
         public string? MiddleName { get; set; }
@@ -11,10 +11,6 @@
         public required string LastName { get; set; }
 
         public required DateTime DateOfBirth { get; set; }
-
-        public string? Email { get; set; }
-
-        public required string PhoneNumber { get; set; }
 
         public required string ProfileImgUrl { get; set; }
 
