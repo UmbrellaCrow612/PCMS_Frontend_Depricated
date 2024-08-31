@@ -19,15 +19,6 @@ namespace API.Swagger
                 Scheme = "Bearer"
             });
 
-            // Cookie Configuration
-            options.AddSecurityDefinition("Cookie", new OpenApiSecurityScheme
-            {
-                In = ParameterLocation.Cookie,
-                Description = "Please provide a valid session cookie",
-                Name = ".AspNetCore.Cookies", // Default ASP.NET Core cookie name
-                Type = SecuritySchemeType.ApiKey
-            });
-
             options.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
@@ -41,17 +32,7 @@ namespace API.Swagger
                     },
                     Array.Empty<string>()
                 },
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Cookie"
-                        },
-                    },
-                    Array.Empty<string>()
-                }
+            
             });
         }
     }

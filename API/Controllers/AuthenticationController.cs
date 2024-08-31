@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -14,62 +13,14 @@ namespace API.Controllers
 
         private readonly IConfiguration _configuration = configuration;
 
-        [HttpPost("jwt/login")]
+        [HttpPost("login")]
         public IActionResult Login([FromBody] UserDto model)
         {
-            // Perform user validation against your preferred mechanism (e.g., database)
-            if (model.UserName == "admin")
+           
+            if (model.UserName == "admin" && model.Password == "password123")
             {
-                // Generate JWT token as before
                 var token = GenerateJwtToken(model.UserName);
-
-                // Create and issue the cookie
-                var claims = new[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, model.UserName)
-                };
-
-                var identity = new ClaimsIdentity(claims, "MyCookie");
-                var principal = new ClaimsPrincipal(identity);
-
-                var authProperties = new AuthenticationProperties
-                {
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(int.Parse(_configuration["Cookie:ExpireTimeSpanInMinutes"])),
-                    IsPersistent = true // Set to true for persistent cookies
-                };
-
-                HttpContext.SignInAsync("MyCookie", principal, authProperties);
-
-                // Return token and any additional user information in response
-                return Ok(new { token, user = model.UserName }); // Assuming a basic user object
-            }
-
-            return Unauthorized();
-        }
-
-        [HttpPost("cookie/login")]
-        public IActionResult CookieLogin([FromBody] UserDto model)
-        {
-            if (model.UserName == "admin")
-            {
-                var claims = new[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, model.UserName)
-                };
-
-                var identity = new ClaimsIdentity(claims, "CookieAuth");
-                var principal = new ClaimsPrincipal(identity);
-
-                var authProperties = new AuthenticationProperties
-                {
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(int.Parse(_configuration["Cookie:ExpireTimeSpanInMinutes"])),
-
-                    IsPersistent = true
-                };
-
-                HttpContext.SignInAsync("CookieAuth", principal, authProperties);
-
-                return Ok("Login successful");
+                return Ok(new { token });
             }
 
             return Unauthorized();
@@ -87,7 +38,7 @@ namespace API.Controllers
                 Subject = new ClaimsIdentity(claims),
                 Issuer = _configuration["Jwt:Issuer"],
                 Audience = _configuration["Jwt:Audience"],
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.UtcNow.AddMinutes(double.Parse(_configuration["Jwt:DurationInMinutes"])),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])),
                     SecurityAlgorithms.HmacSha256
