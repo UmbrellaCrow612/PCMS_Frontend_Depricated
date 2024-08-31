@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,56 +9,63 @@ namespace API.Controllers
 {
     [Route("api/v1/auth")]
     [ApiController]
-    public class AuthenticationController(IConfiguration configuration) : ControllerBase
+    public class AuthenticationController(
+        UserManager<IdentityUser> userManager,
+        IConfiguration configuration,
+        ILogger<AuthenticationController> logger) : ControllerBase
     {
-
+        private readonly UserManager<IdentityUser> _userManager = userManager;
         private readonly IConfiguration _configuration = configuration;
+        private readonly ILogger<AuthenticationController> _logger = logger;
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] UserDto model)
+        public async Task<IActionResult> Login([FromBody] UserDto model)
         {
-           
-            if (model.UserName == "admin" && model.Password == "password123")
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var token = GenerateJwtToken(model.UserName);
+                var userRoles = await _userManager.GetRolesAsync(user);
+
+                var token = GenerateJwtToken(user, userRoles);
+
+                _logger.LogInformation("User {UserName} logged in successfully.", model.UserName);
                 return Ok(new { token });
             }
 
+            _logger.LogWarning("Failed login attempt for user {UserName}.", model.UserName);
             return Unauthorized();
         }
 
-        private string GenerateJwtToken(string username)
+        private string GenerateJwtToken(IdentityUser user, IList<string> roles)
         {
-            var claims = new[]
+            var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, username)
+                new(ClaimTypes.NameIdentifier, user.Id),
+                new(ClaimTypes.Name, user.UserName),
+                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
-            var securityTokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Issuer = _configuration["Jwt:Issuer"],
-                Audience = _configuration["Jwt:Audience"],
-                Expires = DateTime.UtcNow.AddMinutes(double.Parse(_configuration["Jwt:DurationInMinutes"])),
-                SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])),
-                    SecurityAlgorithms.HmacSha256
-                )
-            };
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(securityTokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expires = DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpireMinutes"]));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: expires,
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         public class UserDto
         {
-            public string UserName { get; set; } = string.Empty;
-
-            public string Password { get; set; } = string.Empty;
-
+            public required string UserName { get; set; }
+            public required string Password { get; set; }
         }
     }
-
-
 }
